@@ -25,6 +25,7 @@
           <li class="{{ Request::is('admin/features*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_features_index') }}"><i class="fab fa-flipboard"></i><span>Features</span></a></li>
           <li class="{{ Request::is('admin/testimonials*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_testimonials_index') }}"><i class="fab fa-discourse"></i><span>Testimonials</span></a></li>
           <li class="{{ Request::is('admin/team-members*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_team_members_index') }}"><i class="fas fa-users"></i><span>Team Members</span></a></li>
+          <li class="{{ Request::is('admin/faqs*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_faqs_index') }}"><i class="fas fa-users"></i><span>FAQs</span></a></li>
       </ul>
   </aside>
 </div>

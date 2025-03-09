@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Faq;
 use App\Models\Feature;
 use App\Models\Slider;
 use App\Models\TeamMember;
@@ -35,4 +36,11 @@ class FrontController extends Controller
     public function team_member(TeamMember $team_member) {
       return view('front.team-member', compact('team_member'));
     }
+
+    public function faqs() {
+      $faqs = Faq::all();
+
+      return view('front.faq', compact('faqs'));
+    }
+
 }

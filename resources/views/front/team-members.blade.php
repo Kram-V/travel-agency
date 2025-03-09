@@ -31,7 +31,7 @@
                     @endif
                 </div>
                 <div class="text">
-                    <h2><a href="{{ route('team_member', $team_member->id) }}">{{ $team_member->name }}</a></h2>
+                    <h2><a style="text-decoration: underline;"  href="{{ route('team_member', $team_member->id) }}">{{ $team_member->name }}</a></h2>
                     <div class="designation">{{ $team_member->designation }}</div>
                     <div class="social">
                         <ul>

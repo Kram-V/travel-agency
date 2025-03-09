@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSliderController;
@@ -17,6 +18,7 @@ Route::get('/', [FrontController::class, 'home'])->name('home');
 Route::get('/about', [FrontController::class, 'about'])->name('about');
 Route::get('/team-members', [FrontController::class, 'team_members'])->name('team_members');
 Route::get('/team-members/{team_member}', [FrontController::class, 'team_member'])->name('team_member');
+Route::get('/faqs', [FrontController::class, 'faqs'])->name('faqs');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -97,6 +99,16 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::post('/team-members/{team_member}', [AdminTeamMemberController::class, 'update'])->name('admin_team_members_update');
 
   Route::delete('/team-members/{team_member}', [AdminTeamMemberController::class, 'delete'])->name('admin_team_members_delete');
+
+  Route::get('/faqs', [AdminFaqController::class, 'index'])->name('admin_faqs_index');
+  Route::get('/faqs/create', [AdminFaqController::class, 'create'])->name('admin_faqs_create');
+  Route::get('/faqs/{faq}/edit', [AdminFaqController::class, 'edit'])->name('admin_faqs_edit');
+
+  Route::post('faqs/create', [AdminFaqController::class, 'store'])->name('admin_faqs_store');
+
+  Route::put('faqs/{faq}', [AdminFaqController::class, 'update'])->name('admin_faqs_update');
+
+  Route::delete('faqs/{faq}', [AdminFaqController::class, 'delete'])->name('admin_faqs_delete');
 
   Route::get('/logout', [AdminAuthController::class, 'logout_submit'])->name('admin_logout_submit');
 });
