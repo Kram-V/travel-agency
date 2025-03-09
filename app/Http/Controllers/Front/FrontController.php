@@ -43,4 +43,8 @@ class FrontController extends Controller
       return view('front.faq', compact('faqs'));
     }
 
+    public function blogs() {
+      
+    }
+
 }

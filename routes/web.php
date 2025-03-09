@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminBlogCategoryController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminFeatureController;
@@ -109,6 +111,16 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::put('faqs/{faq}', [AdminFaqController::class, 'update'])->name('admin_faqs_update');
 
   Route::delete('faqs/{faq}', [AdminFaqController::class, 'delete'])->name('admin_faqs_delete');
+
+  Route::get('/blog-categories', [AdminBlogCategoryController::class, 'index'])->name('admin_blog_categories_index');
+  Route::get('/blog-categories/create', [AdminBlogCategoryController::class, 'create'])->name('admin_blog_categories_create');
+  Route::get('/blog-categories/{blog_category}', [AdminBlogCategoryController::class, 'edit'])->name('admin_blog_categories_edit');
+
+  Route::post('/blog-categories/create', [AdminBlogCategoryController::class, 'store'])->name('admin_blog_categories_store');
+
+  Route::put('/blog-categories/{blog_category}', [AdminBlogCategoryController::class, 'update'])->name('admin_blog_categories_update');
+
+  Route::delete('/blog-categories/{blog_category}', [AdminBlogCategoryController::class, 'delete'])->name('admin_blog_categories_delete');
 
   Route::get('/logout', [AdminAuthController::class, 'logout_submit'])->name('admin_logout_submit');
 });
