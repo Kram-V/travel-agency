@@ -46,4 +46,12 @@
       </div>
   </div>
 </div>
+
+<div class="container pb_50">
+  <div class="row">
+    <div class="col-md-12">
+      {{ $blog_posts->links() }}
+    </div>
+  </div>
+</div>
 @endsection
