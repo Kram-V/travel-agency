@@ -10,4 +10,8 @@ class BlogCategory extends Model
       'name',
       'slug'
     ];
+
+    public function blog_posts() {
+      return $this->hasMany(BlogPost::class);
+    }
 }

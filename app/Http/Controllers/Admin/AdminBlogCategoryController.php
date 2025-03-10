@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
 class AdminBlogCategoryController extends Controller
@@ -51,6 +52,12 @@ class AdminBlogCategoryController extends Controller
     }
 
     public function delete(BlogCategory $blog_category) {
+      $blog_post =  BlogPost::where('blog_category_id', $blog_category->id)->first();
+
+      if (!empty($blog_post)) {
+        return redirect()->back()->with('error', 'You can\'t delete this blog category because this category is in use');
+      }
+
       $blog_category->delete();
 
       return redirect()->route('admin_blog_categories_index')->with('success', 'Blog Category Deleted Successfully');

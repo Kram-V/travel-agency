@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminBlogCategoryController;
+use App\Http\Controllers\Admin\AdminBlogPostController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminFaqController;
@@ -21,6 +22,9 @@ Route::get('/about', [FrontController::class, 'about'])->name('about');
 Route::get('/team-members', [FrontController::class, 'team_members'])->name('team_members');
 Route::get('/team-members/{team_member}', [FrontController::class, 'team_member'])->name('team_member');
 Route::get('/faqs', [FrontController::class, 'faqs'])->name('faqs');
+Route::get('/blogs', [FrontController::class, 'blogs'])->name('blogs');
+Route::get('/blogs/{slug}', [FrontController::class, 'blog'])->name('blog');
+Route::get('/blogs/category/{slug}', [FrontController::class, 'blog_category'])->name('blog_category');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -87,7 +91,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::get('/testimonials', [AdminTestimonialController::class, 'index'])->name('admin_testimonials_index');
   Route::get('/testimonials/create', [AdminTestimonialController::class, 'create'])->name('admin_testimonials_create');
   Route::get('/testimonials/{testimonial}/edit', [AdminTestimonialController::class, 'edit'])->name('admin_testimonials_edit');
-
+ 
   Route::post('/testimonials/create', [AdminTestimonialController::class, 'store'])->name('admin_testimonials_store');
   Route::post('/testimonials/{testimonial}', [AdminTestimonialController::class, 'update'])->name('admin_testimonials_update');
 
@@ -121,6 +125,15 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::put('/blog-categories/{blog_category}', [AdminBlogCategoryController::class, 'update'])->name('admin_blog_categories_update');
 
   Route::delete('/blog-categories/{blog_category}', [AdminBlogCategoryController::class, 'delete'])->name('admin_blog_categories_delete');
+
+  Route::get("/blog-posts", [AdminBlogPostController::class, 'index'])->name('admin_blog_posts_index');
+  Route::get("/blog-posts/create", [AdminBlogPostController::class, 'create'])->name('admin_blog_posts_create');
+  Route::get("/blog-posts/{blog_post}/edit", [AdminBlogPostController::class, 'edit'])->name('admin_blog_posts_edit');
+
+  Route::post("/blog-posts/create", [AdminBlogPostController::class, 'store'])->name('admin_blog_posts_store');
+  Route::post("/blog-posts/{blog_post}", [AdminBlogPostController::class, 'update'])->name('admin_blog_posts_update');
+
+  Route::delete("/blog-posts/{blog_post}", [AdminBlogPostController::class, 'delete'])->name('admin_blog_posts_delete');
 
   Route::get('/logout', [AdminAuthController::class, 'logout_submit'])->name('admin_logout_submit');
 });

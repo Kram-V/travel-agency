@@ -58,7 +58,7 @@
                           <a href="{{ route('faqs') }}" class="nav-link">FAQ</a>
                       </li>
                       <li class="nav-item">
-                          <a href="blog.html" class="nav-link">Blog</a>
+                          <a href="{{ route('blogs') }}" class="nav-link">Blogs</a>
                       </li>
                       <li class="nav-item">
                           <a href="contact.html" class="nav-link">Contact</a>

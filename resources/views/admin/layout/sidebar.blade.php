@@ -14,8 +14,8 @@
           <li class="nav-item dropdown {{ Request::is('admin/blog-*') ? 'active' : '' }}">
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Blog</span></a>
               <ul class="dropdown-menu">
-                  <li class="{{ Request::is('admin/blog-categories') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_blog_categories_index') }}"><i class="fas fa-angle-right"></i>Categories</a></li>
-                  <li class=""><a class="nav-link active" href=""><i class="fas fa-angle-right"></i>Posts</a></li>
+                  <li class="{{ Request::is('admin/blog-categories*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_blog_categories_index') }}"><i class="fas fa-angle-right"></i>Categories</a></li>
+                  <li class="{{ Request::is('admin/blog-posts*') ? 'active' : '' }}"><a class="nav-link active" href="{{ route('admin_blog_posts_index') }}"><i class="fas fa-angle-right"></i>Posts</a></li>
               </ul>
           </li>
 
