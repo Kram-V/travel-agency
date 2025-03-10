@@ -21,7 +21,7 @@ class AdminBlogCategoryController extends Controller
     public function store(Request $request) {
       $request->validate([
         'name' => 'required',
-        'slug' => 'required',
+        'slug' => 'required|alpha_dash|unique:blog_categories',
       ]);
 
       $blog_category = new BlogCategory();
@@ -40,7 +40,7 @@ class AdminBlogCategoryController extends Controller
     public function update(Request $request, BlogCategory $blog_category) {
       $request->validate([
         'name' => 'required',
-        'slug' => 'required',
+        'slug' => 'required|alpha_dash|unique:blog_categories,slug,' . $blog_category->id,
       ]);
 
       $blog_category->name = $request->name;

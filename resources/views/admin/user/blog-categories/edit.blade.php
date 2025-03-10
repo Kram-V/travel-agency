@@ -28,7 +28,7 @@
 
                                   <div class="mb-4 form-group col-md-12">
                                     <label class="form-label">Slug *</label>
-                                    <textarea name="slug" class="form-control h_100" rows="3">{{ $blog_category->slug }}</textarea>
+                                    <input type="text" class="form-control" name="slug" value="{{ $blog_category->slug }}">
                                   </div>
 
                                   <div class="mb-4">
