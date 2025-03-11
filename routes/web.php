@@ -3,8 +3,8 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminBlogCategoryController;
 use App\Http\Controllers\Admin\AdminBlogPostController;
-use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminDestinationController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminProfileController;
@@ -19,8 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'home'])->name('home');
 Route::get('/about', [FrontController::class, 'about'])->name('about');
+Route::get('/destinations', [FrontController::class, 'destinations'])->name('destinations');
+Route::get('/destinations/{slug}', [FrontController::class, 'destination'])->name('destination');
 Route::get('/team-members', [FrontController::class, 'team_members'])->name('team_members');
-Route::get('/team-members/{team_member}', [FrontController::class, 'team_member'])->name('team_member');
+Route::get('/team-members/{team_member}', [FrontController::class, 'team_member'])->name('team_member'); 
 Route::get('/faqs', [FrontController::class, 'faqs'])->name('faqs');
 Route::get('/blogs', [FrontController::class, 'blogs'])->name('blogs');
 Route::get('/blogs/{slug}', [FrontController::class, 'blog'])->name('blog');
@@ -134,6 +136,16 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::post("/blog-posts/{blog_post}", [AdminBlogPostController::class, 'update'])->name('admin_blog_posts_update');
 
   Route::delete("/blog-posts/{blog_post}", [AdminBlogPostController::class, 'delete'])->name('admin_blog_posts_delete');
+
+  Route::get('/destinations', [AdminDestinationController::class, 'index'])->name('admin_destinations_index');
+  Route::get('/destinations/create', [AdminDestinationController::class, 'create'])->name('admin_destinations_create');
+  Route::get('/destinations/{destination}', [AdminDestinationController::class, 'show'])->name('admin_destinations_show');
+  Route::get('/destinations/{slug}/edit', [AdminDestinationController::class, 'edit'])->name('admin_destinations_edit');
+
+  Route::post('/destinations/create', [AdminDestinationController::class, 'store'])->name('admin_destinations_store');
+  Route::post('/destinations/{destination}', [AdminDestinationController::class, 'update'])->name('admin_destinations_update');
+
+  Route::delete('/destinations/{destination}', [AdminDestinationController::class, 'delete'])->name('admin_destinations_delete');
 
   Route::get('/logout', [AdminAuthController::class, 'logout_submit'])->name('admin_logout_submit');
 });

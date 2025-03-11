@@ -84,108 +84,26 @@
           </div>
       </div>
       <div class="row">
-          <div class="col-lg-3 col-md-6">
-              <div class="item pb_25">
-                  <div class="photo">
-                      <a href="destination.html"><img src="images/destination-1.jpg" alt=""></a>
-                  </div>
-                  <div class="text">
-                      <h2>
-                          <a href="destination.html">Australia</a>
-                      </h2>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-              <div class="item pb_25">
-                  <div class="photo">
-                      <a href="destination.html"><img src="images/destination-2.jpg" alt=""></a>
-                  </div>
-                  <div class="text">
-                      <h2>
-                          <a href="destination.html">Thailand</a>
-                      </h2>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-              <div class="item pb_25">
-                  <div class="photo">
-                      <a href="destination.html"><img src="images/destination-3.jpg" alt=""></a>
-                  </div>
-                  <div class="text">
-                      <h2>
-                          <a href="destination.html">Canada</a>
-                      </h2>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-              <div class="item pb_25">
-                  <div class="photo">
-                      <a href="destination.html"><img src="images/destination-4.jpg" alt=""></a>
-                  </div>
-                  <div class="text">
-                      <h2>
-                          <a href="destination.html">Dubai</a>
-                      </h2>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-              <div class="item pb_25">
-                  <div class="photo">
-                      <a href="destination.html"><img src="images/destination-5.jpg" alt=""></a>
-                  </div>
-                  <div class="text">
-                      <h2>
-                          <a href="destination.html">Portugal</a>
-                      </h2>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-              <div class="item pb_25">
-                  <div class="photo">
-                      <a href="destination.html"><img src="images/destination-6.jpg" alt=""></a>
-                  </div>
-                  <div class="text">
-                      <h2>
-                          <a href="destination.html">Morocco</a>
-                      </h2>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-              <div class="item pb_25">
-                  <div class="photo">
-                      <a href="destination.html"><img src="images/destination-7.jpg" alt=""></a>
-                  </div>
-                  <div class="text">
-                      <h2>
-                          <a href="destination.html">Venice</a>
-                      </h2>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-              <div class="item pb_25">
-                  <div class="photo">
-                      <a href="destination.html"><img src="images/destination-8.jpg" alt=""></a>
-                  </div>
-                  <div class="text">
-                      <h2>
-                          <a href="destination.html">Paris</a>
-                      </h2>
-                  </div>
-              </div>
-          </div>
+        @foreach ($destinations as $destination)
+        <div class="col-lg-3 col-md-6">
+            <div class="item pb_25">
+                <div class="photo">
+                    <a href="{{ route('destination', $destination->slug) }}"><img src="{{ asset('uploads/destinations/' . $destination->featured_photo) }}" alt=""></a>
+                </div>
+                <div class="text">
+                    <h2>
+                        <a href="{{ route('destination', $destination->slug) }}">Australia</a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        @endforeach
       </div>
       <div class="row">
           <div class="col-md-12">
               <div class="see-more">
                   <div class="button-style-1 mt_20">
-                      <a href="destinations.html">View All Destinations</a>
+                      <a href="{{ route('destinations') }}">View All Destinations</a>
                   </div>
               </div>
           </div>

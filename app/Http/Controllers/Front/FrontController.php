@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
+use App\Models\Destination;
 use App\Models\Faq;
 use App\Models\Feature;
 use App\Models\Slider;
@@ -20,14 +21,27 @@ class FrontController extends Controller
       $features = Feature::latest()->get();
       $testimonials = Testimonial::latest()->get();
       $blog_posts = BlogPost::latest()->take(3)->get();
+      $destinations = Destination::latest()->take(4)->get();
 
-      return view('front.home', compact('sliders', 'welcome_item', 'features', 'testimonials', 'blog_posts'));
+      return view('front.home', compact('sliders', 'welcome_item', 'features', 'testimonials', 'blog_posts', 'destinations'));
     }
 
     public function about() {
       $welcome_item = WelcomeItem::first();
 
       return view('front.about', compact('welcome_item'));
+    }
+
+    public function destinations() {
+      $destinations = Destination::latest()->get();
+
+      return view('front.destinations', compact('destinations'));
+    }
+
+    public function destination($slug) {
+      $destination = Destination::where('slug', $slug)->first();
+
+      return view('front.destination', compact('destination'));
     }
 
     public function team_members() {
