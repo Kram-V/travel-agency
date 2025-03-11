@@ -147,5 +147,11 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 
   Route::delete('/destinations/{destination}', [AdminDestinationController::class, 'delete'])->name('admin_destinations_delete');
 
+  Route::get('/destinations/{destination}/destination-photos', [AdminDestinationController::class, 'create_photo'])->name('admin_destinations_create_photo');
+
+  Route::post('/destination-photos/{id}', [AdminDestinationController::class, 'store_photo'])->name('admin_destinations_store_photo');
+
+  Route::delete('/destination-photos/{destination_photo}', [AdminDestinationController::class, 'delete_photo'])->name('admin_destinations_delete_photo');
+
   Route::get('/logout', [AdminAuthController::class, 'logout_submit'])->name('admin_logout_submit');
 });

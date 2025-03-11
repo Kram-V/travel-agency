@@ -22,4 +22,8 @@ class Destination extends Model
       'view_count',
       'map',
     ];
+
+    public function destination_photos() {
+      return $this->hasMany(DestinationPhoto::class);
+    }
 }

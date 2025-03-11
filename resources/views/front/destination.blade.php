@@ -246,62 +246,15 @@
                   </h2>
                   <div class="photo-all">
                       <div class="row">
-                          <div class="col-md-6 col-lg-3">
-                              <div class="item">
-                                  <a href="{{ asset('images/australia-1.jpg') }}" class="magnific">
-                                      <img src="{{ asset('images/australia-1.jpg') }}" alt="">
-                                  </a>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-3">
-                              <div class="item">
-                                  <a href="{{ asset('images/australia-2.jpg') }}" class="magnific">
-                                      <img src="{{ asset('images/australia-2.jpg') }}" alt="">
-                                  </a>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-3">
-                              <div class="item">
-                                  <a href="{{ asset('images/australia-3.jpg') }}" class="magnific">
-                                      <img src="{{ asset('images/australia-3.jpg') }}" alt="">
-                                  </a>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-3">
-                              <div class="item">
-                                  <a href="{{ asset('images/australia-4.jpg') }}" class="magnific">
-                                      <img src="{{ asset('images/australia-4.jpg') }}" alt="">
-                                  </a>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-3">
-                              <div class="item">
-                                  <a href="{{ asset('images/australia-5.jpg') }}" class="magnific">
-                                      <img src="{{ asset('images/australia-5.jpg') }}" alt="">
-                                  </a>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-3">
-                              <div class="item">
-                                  <a href="{{ asset('images/australia-6.jpg') }}" class="magnific">
-                                      <img src="{{ asset('images/australia-6.jpg') }}" alt="">
-                                  </a>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-3">
-                              <div class="item">
-                                  <a href="{{ asset('images/australia-7.jpg') }}" class="magnific">
-                                      <img src="{{ asset('images/australia-7.jpg') }}" alt="">
-                                  </a>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-3">
-                              <div class="item">
-                                  <a href="{{ asset('images/australia-8.jpg') }}" class="magnific">
-                                      <img src="{{ asset('images/australia-8.jpg') }}" alt="">
-                                  </a>
-                              </div>
-                          </div>
+                        @foreach ($destination_photos as $i => $photo)
+                        <div class="col-md-6 col-lg-3">
+                            <div class="item">
+                                <a href="{{ asset('uploads/destination-photos/' . $photo->photo) }}" class="magnific">
+                                    <img src="{{ asset('uploads/destination-photos/' . $photo->photo) }}" alt="{{ $photo->destination->name . '-' .  $i + 1}}">
+                                </a>
+                            </div>
+                        </div>
+                        @endforeach
                       </div>
                   </div>
               </div>

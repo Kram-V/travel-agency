@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
+use App\Models\DestinationPhoto;
 use Illuminate\Http\Request;
 
 class AdminDestinationController extends Controller
@@ -124,6 +125,13 @@ class AdminDestinationController extends Controller
     }
 
     public function delete(Destination $destination) {
+      $destination_photo = DestinationPhoto::where('destination_id', $destination->id)->first();
+
+      if (!empty($destination_photo)) {
+        return redirect()->back()->with('error', 'Can\'t delete this because the data id is in use');
+      }
+
+
       if ($destination->featured_photo) {
         unlink(public_path('uploads/destinations/' . $destination->featured_photo));
       }
@@ -131,5 +139,39 @@ class AdminDestinationController extends Controller
       $destination->delete();
 
       return redirect()->back()->with('success', 'Destination Deleted Successfully');
+    }
+
+    public function create_photo(Destination $destination) {
+      $destination_photos = DestinationPhoto::latest()->where('destination_id', $destination->id)->get();
+
+      return view('admin.user.destinations.create-photo', compact('destination', 'destination_photos'));
+    }
+
+    public function store_photo(Request $request, $id) {
+      $request->validate([
+        'photo' => 'required|mimes:png,jpg,jpeg'
+      ]);
+
+      $photo = time() . '.' . $request->photo->extension();
+      $request->photo->move(public_path('uploads/destination-photos'), $photo); 
+
+      $destination_photo = new DestinationPhoto();
+
+      $destination_photo->destination_id = $id;
+      $destination_photo->photo = $photo;
+      $destination_photo->save();
+
+      return redirect()->back()->with('success', 'Destination Photo Created Successfully');
+    }
+
+
+    public function delete_photo(DestinationPhoto $destination_photo) {
+      if ($destination_photo->photo) {
+        unlink(public_path('uploads/destination-photos/' . $destination_photo->photo));
+      }
+
+      $destination_photo->delete();
+
+      return redirect()->back()->with('success', 'Photo Deleted Successfully');
     }
 }

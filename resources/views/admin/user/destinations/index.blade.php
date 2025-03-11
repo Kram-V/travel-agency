@@ -25,7 +25,7 @@
                                             <th>Featured Photo</th>
                                             <th>Name</th>
                                             <th>Slug</th> 
-                                            <th>Visa Requirement</th> 
+                                            <th>Gallery</th> 
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -38,7 +38,10 @@
                                           </td>
                                           <td>{{ $destination->name }}</td>
                                           <td>{{ $destination->slug }}</td>
-                                          <td>{{ $destination->visa_requirement }}</td>
+                                          <td>
+                                            <a href="{{ route('admin_destinations_create_photo', $destination->id) }}" class="btn btn-success btn-sm">Photo Gallery</a>
+                                            <a href="" class="btn btn-success btn-sm">Video Gallery</a>
+                                          </td>
                                           <td class="pt_10 pb_10">
                                               <a href="{{ route('admin_destinations_show', $destination->id) }}" class="btn btn-warning"><i class="fas fa-eye"></i></a>
                                               <a href="{{ route('admin_destinations_edit', $destination->slug) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
