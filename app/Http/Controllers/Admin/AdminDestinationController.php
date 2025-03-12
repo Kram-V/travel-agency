@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
 use App\Models\DestinationPhoto;
+use App\Models\DestinationVideo;
 use Illuminate\Http\Request;
 
 class AdminDestinationController extends Controller
@@ -126,8 +127,9 @@ class AdminDestinationController extends Controller
 
     public function delete(Destination $destination) {
       $destination_photo = DestinationPhoto::where('destination_id', $destination->id)->first();
+      $destination_video = DestinationVideo::where('destination_id', $destination->id)->first();
 
-      if (!empty($destination_photo)) {
+      if (!empty($destination_photo) || !empty($destination_video)) {
         return redirect()->back()->with('error', 'Can\'t delete this because the data id is in use');
       }
 
@@ -174,4 +176,31 @@ class AdminDestinationController extends Controller
 
       return redirect()->back()->with('success', 'Photo Deleted Successfully');
     }
+
+    public function create_video(Destination $destination) {
+      $destination_videos = DestinationVideo::latest()->where('destination_id', $destination->id)->get();
+
+      return view('admin.user.destinations.create-video', compact('destination', 'destination_videos'));
+    }
+
+    public function store_video(Request $request, $id) {
+      $request->validate([
+        'video' => 'required'
+      ]);
+
+      $destination_video = new DestinationVideo();
+
+      $destination_video->destination_id = $id;
+      $destination_video->video = $request->video;
+      $destination_video->save();
+
+      return redirect()->back()->with('success', 'Destination Video Created Successfully');
+    }
+
+    public function delete_video(DestinationVideo $destination_video) {
+      $destination_video->delete();
+
+      return redirect()->back()->with('success', 'Video Deleted Successfully');
+    }
+
 }

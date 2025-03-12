@@ -264,28 +264,19 @@
                   </h2>
                   <div class="video-all">
                       <div class="row">
-                          <div class="col-md-6 col-lg-6">
-                              <div class="item">
-                                  <a class="video-button" href="http://www.youtube.com/watch?v=kLuqCtnKr_8">
-                                      <img src="http://img.youtube.com/vi/kLuqCtnKr_8/0.jpg" alt="">
-                                      <div class="icon">
-                                          <i class="far fa-play-circle"></i>
-                                      </div>
-                                      <div class="bg"></div>
-                                  </a>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-6">
-                              <div class="item">
-                                  <a class="video-button" href="http://www.youtube.com/watch?v=HRg1gJi6yqc">
-                                      <img src="http://img.youtube.com/vi/HRg1gJi6yqc/0.jpg" alt="">
-                                      <div class="icon">
-                                          <i class="far fa-play-circle"></i>
-                                      </div>
-                                      <div class="bg"></div>
-                                  </a>
-                              </div>
-                          </div>
+                        @foreach ($destination_videos as $video)
+                        <div class="col-md-6 col-lg-6">
+                            <div class="item">
+                                <a class="video-button" href="http://www.youtube.com/watch?v={{ $video->video }}">
+                                    <img src="http://img.youtube.com/vi/{{ $video->video }}/0.jpg" alt="">
+                                    <div class="icon">
+                                        <i class="far fa-play-circle"></i>
+                                    </div>
+                                    <div class="bg"></div>
+                                </a>
+                            </div>
+                        </div>
+                        @endforeach
                       </div>
                   </div>
               </div>

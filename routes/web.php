@@ -153,5 +153,11 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 
   Route::delete('/destination-photos/{destination_photo}', [AdminDestinationController::class, 'delete_photo'])->name('admin_destinations_delete_photo');
 
+  Route::get('/destinations/{destination}/destination-videos', [AdminDestinationController::class, 'create_video'])->name('admin_destinations_create_video');
+
+  Route::post('/destination-videos/{id}', [AdminDestinationController::class, 'store_video'])->name('admin_destinations_store_video');
+
+  Route::delete('/destination-videos/{destination_video}', [AdminDestinationController::class, 'delete_video'])->name('admin_destinations_delete_video');
+
   Route::get('/logout', [AdminAuthController::class, 'logout_submit'])->name('admin_logout_submit');
 });

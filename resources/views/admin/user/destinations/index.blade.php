@@ -40,7 +40,7 @@
                                           <td>{{ $destination->slug }}</td>
                                           <td>
                                             <a href="{{ route('admin_destinations_create_photo', $destination->id) }}" class="btn btn-success btn-sm">Photo Gallery</a>
-                                            <a href="" class="btn btn-success btn-sm">Video Gallery</a>
+                                            <a href="{{ route('admin_destinations_create_video', $destination->id) }}" class="btn btn-success btn-sm">Video Gallery</a>
                                           </td>
                                           <td class="pt_10 pb_10">
                                               <a href="{{ route('admin_destinations_show', $destination->id) }}" class="btn btn-warning"><i class="fas fa-eye"></i></a>

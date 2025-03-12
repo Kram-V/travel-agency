@@ -73,15 +73,23 @@
                                 {{ $destination->best_time }}
                               </div>
 
-                              
                               <div class="mb-4 form-group col-md-6">
-                                <label class="form-label">Map</label> <br>
-                                {!! $destination->map !!}
+                                <label class="form-label">Gallery</label> <br>
+                                <div>
+                                  <a href="{{ route('admin_destinations_create_photo', $destination->id) }}" class="btn btn-success btn-sm">Photo Gallery</a>
+                                  <a href="{{ route('admin_destinations_create_video', $destination->id) }}" class="btn btn-success btn-sm">Video Gallery</a>
+                                </div>
                               </div>
 
                               <div class="mb-4 form-group col-md-6">
                                 <label class="form-label">Description</label> <br>
                                 {!! $destination->description !!}
+                              </div>
+
+                              
+                              <div class="mb-4 form-group col-md-6">
+                                <label class="form-label">Map</label> <br>
+                                {!! $destination->map !!}
                               </div>
                             </div>
                         </div>

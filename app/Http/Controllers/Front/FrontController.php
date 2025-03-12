@@ -7,6 +7,7 @@ use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use App\Models\Destination;
 use App\Models\DestinationPhoto;
+use App\Models\DestinationVideo;
 use App\Models\Faq;
 use App\Models\Feature;
 use App\Models\Slider;
@@ -41,10 +42,10 @@ class FrontController extends Controller
 
     public function destination($slug) {
       $destination = Destination::where('slug', $slug)->first();
-
       $destination_photos = DestinationPhoto::latest()->where('destination_id', $destination->id)->get();
+      $destination_videos = DestinationVideo::latest()->where('destination_id', $destination->id)->get();
 
-      return view('front.destination', compact('destination', 'destination_photos'));
+      return view('front.destination', compact('destination', 'destination_photos', 'destination_videos'));
     }
 
     public function team_members() {
