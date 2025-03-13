@@ -30,4 +30,8 @@ class Destination extends Model
     public function destination_videos() {
       return $this->hasMany(DestinationVideo::class);
     }
+
+    public function packages() {
+      return $this->hasMany(Package::class);
+    }
 }

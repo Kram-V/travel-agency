@@ -9,10 +9,10 @@
 
       <ul class="sidebar-menu">
 
-          <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_dashboard') }}"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
+          <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_dashboard') }}"><i class="fas fa-chart-line"></i> <span>Dashboard</span></a></li>
 
           <li class="nav-item dropdown {{ Request::is('admin/blog-*') ? 'active' : '' }}">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Blog</span></a>
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-blog"></i><span>Blog</span></a>
               <ul class="dropdown-menu">
                   <li class="{{ Request::is('admin/blog-categories*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_blog_categories_index') }}"><i class="fas fa-angle-right"></i>Categories</a></li>
                   <li class="{{ Request::is('admin/blog-posts*') ? 'active' : '' }}"><a class="nav-link active" href="{{ route('admin_blog_posts_index') }}"><i class="fas fa-angle-right"></i>Posts</a></li>
@@ -25,8 +25,9 @@
           <li class="{{ Request::is('admin/features*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_features_index') }}"><i class="fab fa-flipboard"></i><span>Features</span></a></li>
           <li class="{{ Request::is('admin/testimonials*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_testimonials_index') }}"><i class="fab fa-discourse"></i><span>Testimonials</span></a></li>
           <li class="{{ Request::is('admin/team-members*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_team_members_index') }}"><i class="fas fa-users"></i><span>Team Members</span></a></li>
-          <li class="{{ Request::is('admin/faqs*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_faqs_index') }}"><i class="fas fa-users"></i><span>FAQs</span></a></li>
-          <li class="{{ Request::is('admin/destinations*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_destinations_index') }}"><i class="fas fa-users"></i><span>Destinations</span></a></li>
+          <li class="{{ Request::is('admin/faqs*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_faqs_index') }}"><i class="fas fa-question"></i><span>FAQs</span></a></li>
+          <li class="{{ Request::is('admin/destinations*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_destinations_index') }}"><i class="fas fa-plane-departure"></i><span>Destinations</span></a></li>
+          <li class="{{ Request::is('admin/packages*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_packages_index') }}"><i class="fas fa-suitcase"></i><span>Packages</span></a></li>
       </ul>
   </aside>
 </div>

@@ -17,7 +17,7 @@
                   <div class="col-md-6">
                       <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('admin_destinations_store_video', $destination->id) }}" method="POST" enctype="multipart/form-data"> 
+                            <form action="{{ route('admin_destinations_store_video', $destination->id) }}" method="POST"> 
                                 @csrf
                                 <div class="row">
                                   <div class="mb-3 form-group col-md-12">

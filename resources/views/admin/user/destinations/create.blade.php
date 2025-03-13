@@ -83,7 +83,7 @@
                                   
                                   <div class="mb-4 form-group col-md-6">
                                     <label class="form-label">Map * (Iframe Code)</label>
-                                    <textarea name="map" class="form-control editor h_100" rows="3">{{ old('map') }}</textarea>
+                                    <textarea name="map" class="form-control h_300" rows="3">{{ old('map') }}</textarea>
                                   </div>
 
                                   <div class="mb-4 form-group col-md-6">

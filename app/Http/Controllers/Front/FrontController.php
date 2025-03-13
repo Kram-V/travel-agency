@@ -10,6 +10,7 @@ use App\Models\DestinationPhoto;
 use App\Models\DestinationVideo;
 use App\Models\Faq;
 use App\Models\Feature;
+use App\Models\Package;
 use App\Models\Slider;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
@@ -83,5 +84,17 @@ class FrontController extends Controller
       $blog_posts = BlogPost::with('blog_category')->where('blog_category_id', $blog_category->id)->latest()->paginate(6);
 
       return view('front.blog-category', compact('blog_category', 'blog_posts'));
+    }
+
+    public function packages() {
+      $packages = Package::latest()->get();
+
+      return view('front.packages', compact('packages'));
+    }
+
+    public function package($slug) {
+      $package = Package::with('destination')->where('slug', $slug)->first();
+
+      return view('front.package', compact('package'));
     }
 }
