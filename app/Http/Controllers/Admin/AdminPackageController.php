@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Amenity;
 use App\Models\Destination;
 use App\Models\Package;
+use App\Models\PackageAmenity;
 use Illuminate\Http\Request;
 
 class AdminPackageController extends Controller
@@ -110,6 +112,11 @@ class AdminPackageController extends Controller
       //   return redirect()->back()->with('error', 'Can\'t delete this because the data id is in use');
       // }
 
+      $package_amenity = PackageAmenity::where('package_id', $package->id)->first();
+
+      if (!empty($package_amenity)) {
+        return redirect()->back()->with('error', 'You can\'t delete this data because it is in use with other data');
+      }
 
       if ($package->featured_photo) {
         unlink(public_path('uploads/packages/' . $package->featured_photo));
@@ -118,5 +125,39 @@ class AdminPackageController extends Controller
       $package->delete();
 
       return redirect()->back()->with('success', 'Package Deleted Successfully');
+    }
+
+    public function create_amenity(Package $package) {
+      $amenities = Amenity::latest()->get();
+      $package_amenities = PackageAmenity::with('amenity')->where('package_id', $package->id)->latest()->get();
+
+      return view('admin.user.packages.create-amenity', compact('package', 'amenities', 'package_amenities'));
+    }
+
+    public function store_amenity(Request $request, Package $package) {
+      $request->validate([
+        'amenity' => 'required',
+        'type' => 'required',
+      ]);
+
+      $count = PackageAmenity::where(['package_id' => $package->id, 'amenity_id' => $request->amenity])->count();
+
+      if ($count > 0) {
+        return redirect()->back()->with('error', 'You have already created this amenity')->withInput();
+      }
+
+      $package_amenity = new PackageAmenity();
+      $package_amenity->package_id = $package->id;
+      $package_amenity->amenity_id = $request->amenity;
+      $package_amenity->type = $request->type;
+      $package_amenity->save();
+
+      return redirect()->back()->with('success', 'Amenity Added Successfully');
+    }
+
+    public function delete_amenity(PackageAmenity $package_amenity) {
+      $package_amenity->delete();
+
+      return redirect()->back()->with('success', 'Amenity Deleted Successfully');
     }
 }

@@ -7,9 +7,9 @@
   <div class="main-content">
       <section class="section">
           <div class="section-header justify-content-between">
-              <h1>Create FAQ</h1>
+              <h1>Create Amenity</h1>
               <div class="ml-auto">
-                  <a href="{{ route('admin_faqs_index') }}" class="btn btn-primary">Back to listing</a>
+                  <a href="{{ route('admin_amenities_index') }}" class="btn btn-primary">Back to listing</a>
               </div>
           </div>
           <div class="section-body">
@@ -17,17 +17,12 @@
                   <div class="col-12">
                       <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('admin_faqs_store') }}" method="POST"> 
+                            <form action="" method="POST"> 
                                 @csrf
                                 <div class="row">
                                   <div class="mb-4 form-group col-md-12">
-                                    <label class="form-label">Question *</label>
-                                    <input type="text" class="form-control" name="question" value="{{ old('question') }}">
-                                  </div>
-
-                                  <div class="mb-4 form-group col-md-12">
-                                    <label class="form-label">Answer *</label>
-                                    <textarea name="answer" class="form-control h_100" rows="3">{{ old('answer') }}</textarea>
+                                    <label class="form-label">Name *</label>
+                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                                   </div>
 
                                   <div class="mb-4">

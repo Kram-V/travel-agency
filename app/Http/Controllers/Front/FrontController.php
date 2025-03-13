@@ -11,6 +11,7 @@ use App\Models\DestinationVideo;
 use App\Models\Faq;
 use App\Models\Feature;
 use App\Models\Package;
+use App\Models\PackageAmenity;
 use App\Models\Slider;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
@@ -94,7 +95,9 @@ class FrontController extends Controller
 
     public function package($slug) {
       $package = Package::with('destination')->where('slug', $slug)->first();
+      $package_amenities_included = PackageAmenity::with('amenity')->where(['package_id' => $package->id, 'type' => 'included'])->get();
+      $package_amenities_excluded = PackageAmenity::with('amenity')->where(['package_id' => $package->id, 'type' => 'excluded'])->get();
 
-      return view('front.package', compact('package'));
+      return view('front.package', compact('package', 'package_amenities_included', 'package_amenities_excluded'));
     }
 }

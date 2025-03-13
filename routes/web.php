@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAmenityController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminBlogCategoryController;
 use App\Http\Controllers\Admin\AdminBlogPostController;
@@ -143,9 +144,19 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::get('/packages/{slug}/edit', [AdminPackageController::class, 'edit'])->name('admin_packages_edit');
   Route::get('/packages/{package}/package-photos', [AdminPackageController::class, 'create_photo'])->name('admin_packages_create_photo');
   Route::get('/packages/{package}/package-videos', [AdminPackageController::class, 'create_video'])->name('admin_packages_create_video');
+  Route::get('/packages/{package}/package-amenities', [AdminPackageController::class, 'create_amenity'])->name('admin_packages_create_amenity');
+  Route::post('/packages/{package}/package-amenities', [AdminPackageController::class, 'store_amenity'])->name('admin_packages_store_amenity');
   Route::post('/packages/create', [AdminPackageController::class, 'store'])->name('admin_packages_store');
   Route::post('/packages/{package}', [AdminPackageController::class, 'update'])->name('admin_packages_update');
   Route::delete('/packages/{package}', [AdminPackageController::class, 'delete'])->name('admin_packages_delete');
+  Route::delete('/packages/package-amenities/{package_amenity}', [AdminPackageController::class, 'delete_amenity'])->name('admin_packages_delete_amenity');
+
+  Route::get('/amenities', [AdminAmenityController::class, 'index'])->name('admin_amenities_index');
+  Route::get('/amenities/{amenity}/edit', [AdminAmenityController::class, 'edit'])->name('admin_amenities_edit');
+  Route::get('/amenities/create', [AdminAmenityController::class, 'create'])->name('admin_amenities_create');
+  Route::post('/amenities/create', [AdminAmenityController::class, 'store'])->name('admin_amenities_store');
+  Route::put('/amenities/{amenity}', [AdminAmenityController::class, 'update'])->name('admin_amenities_update');
+  Route::delete('/amenities/{amenity}', [AdminAmenityController::class, 'delete'])->name('admin_amenities_delete');
 
   Route::get('/logout', [AdminAuthController::class, 'logout_submit'])->name('admin_logout_submit');
 });

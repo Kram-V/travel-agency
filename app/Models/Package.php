@@ -20,4 +20,8 @@ class Package extends Model
     public function destination() {
       return $this->belongsTo(Destination::class);
     }
+
+    public function package_amenities() {
+      return $this->hasMany(PackageAmenity::class);
+    }
 }

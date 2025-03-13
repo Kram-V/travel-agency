@@ -65,6 +65,8 @@
                                 <div>
                                   <a href="" class="btn btn-success btn-sm">Photo Gallery</a>
                                   <a href="" class="btn btn-success btn-sm">Video Gallery</a>
+                                  <a href=" {{ route('admin_packages_create_amenity', $package->id) }}" class="btn btn-success btn-sm">Amenities</a>
+                                  <a href="" class="btn btn-success btn-sm">Itenerary</a>
                                 </div>
                               </div>
                             </div>
