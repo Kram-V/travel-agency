@@ -7,6 +7,7 @@ use App\Models\Amenity;
 use App\Models\Destination;
 use App\Models\Package;
 use App\Models\PackageAmenity;
+use App\Models\PackageItenerary;
 use Illuminate\Http\Request;
 
 class AdminPackageController extends Controller
@@ -113,8 +114,9 @@ class AdminPackageController extends Controller
       // }
 
       $package_amenity = PackageAmenity::where('package_id', $package->id)->first();
+      $package_itenerary = PackageItenerary::where('package_id', $package->id)->first();
 
-      if (!empty($package_amenity)) {
+      if (!empty($package_amenity) || !empty($package_amenity)) {
         return redirect()->back()->with('error', 'You can\'t delete this data because it is in use with other data');
       }
 
@@ -159,5 +161,33 @@ class AdminPackageController extends Controller
       $package_amenity->delete();
 
       return redirect()->back()->with('success', 'Amenity Deleted Successfully');
+    }
+
+    
+    public function create_itenerary(Package $package) {
+      $package_iteneraries = PackageItenerary::where('package_id', $package->id)->get();
+
+      return view('admin.user.packages.create-itenerary', compact('package_iteneraries', 'package'));
+    }
+
+    public function store_itenerary(Request $request, Package $package) {
+      $request->validate([
+        'name' => 'required',
+        'description' => 'required',
+      ]);
+
+      $package_itenerary = new PackageItenerary();
+      $package_itenerary->package_id = $package->id;
+      $package_itenerary->name = $request->name;
+      $package_itenerary->description = $request->description;
+      $package_itenerary->save();
+
+      return redirect()->back()->with('success', 'Itenerary Added Successfully');
+    }
+
+    public function delete_itenerary(PackageItenerary $package_itenerary) {
+      $package_itenerary->delete();
+
+      return redirect()->back()->with('success', 'Itenerary Deleted Successfully');
     }
 }

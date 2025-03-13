@@ -24,4 +24,8 @@ class Package extends Model
     public function package_amenities() {
       return $this->hasMany(PackageAmenity::class);
     }
+
+    public function package_iteneraries() {
+      return $this->hasMany(PackageItenerary::class);
+    }
 }
