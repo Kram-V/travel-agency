@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WebsiteMail;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use App\Models\Destination;
@@ -20,6 +21,8 @@ use App\Models\Slider;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
 use App\Models\WelcomeItem;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
@@ -116,5 +119,26 @@ class FrontController extends Controller
           'package_videos', 
           'package_faqs',
         ));
+    }
+
+    public function send_inquiry(Request $request) {
+      $request->validate([
+        'full_name' => 'required',
+        'email' => 'required|email',
+        'phone_number' => 'required',
+        'message' => 'required',
+      ]);
+
+      $subject = 'Inquiry';
+      $content = "
+        <b>Full Name: </b> {$request->full_name} <br><br>
+        <b>Email: </b> {$request->email} <br><br>
+        <b>Phone Number: </b> {$request->phone_number} <br><br>
+        <b>Message: </b> {$request->message} 
+      ";
+  
+      Mail::to($request->email)->send(new WebsiteMail($subject, $content));
+
+      return redirect()->back()->with('success', 'Email Sent Successfully');
     }
 }

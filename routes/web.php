@@ -32,6 +32,8 @@ Route::get('/blogs/category/{slug}', [FrontController::class, 'blog_category'])-
 Route::get('/packages', [FrontController::class, 'packages'])->name('packages');
 Route::get('/packages/{slug}', [FrontController::class, 'package'])->name('package');
 
+Route::post('/send-inquiry', [FrontController::class, 'send_inquiry'])->name('send_inquiry');
+
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/forget-password', [AuthController::class, 'forget_password'])->name('forget_password');

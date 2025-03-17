@@ -281,21 +281,22 @@
 
 
                       <div class="tab-pane fade" id="tab-7-pane" role="tabpanel" aria-labelledby="tab-7" tabindex="0">
-                          <!-- Enquery -->
+                          <!-- Inquiry -->
                           <h2 class="mt_30">Ask Your Question</h2>
                           <div class="enquery-form">
-                              <form action="" method="post">
+                              <form action="{{ route('send_inquiry') }}" method="POST">
+                                  @csrf
                                   <div class="mb-3">
-                                      <input type="text" class="form-control" placeholder="Full Name">
+                                      <input type="text" class="form-control" placeholder="Full Name" name="full_name" value="{{ old('full_name') }}">
                                   </div>
                                   <div class="mb-3">
-                                      <input type="email" class="form-control" placeholder="Email Address">
+                                      <input type="email" class="form-control" placeholder="Email Address" name="email" value="{{ old('email') }}">
                                   </div>
                                   <div class="mb-3">
-                                      <input type="text" class="form-control" placeholder="Phone Number">
+                                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" value="{{ old('phone_number') }}">
                                   </div>
                                   <div class="mb-3">
-                                      <textarea class="form-control h-150" rows="3" placeholder="Message"></textarea>
+                                      <textarea class="form-control h-150" rows="3" placeholder="Message" name="message">{{ old('message') }}</textarea>
                                   </div>
                                   <div class="mb-3">
                                       <button type="submit" class="btn btn-primary">
@@ -304,7 +305,7 @@
                                   </div>
                               </form>
                           </div>
-                          <!-- // Enquery -->
+                          <!-- // Inquiry -->
                       </div>
 
 
