@@ -8,6 +8,7 @@ use App\Models\Destination;
 use App\Models\Package;
 use App\Models\PackageAmenity;
 use App\Models\PackageItenerary;
+use App\Models\PackagePhoto;
 use Illuminate\Http\Request;
 
 class AdminPackageController extends Controller
@@ -116,7 +117,7 @@ class AdminPackageController extends Controller
       $package_amenity = PackageAmenity::where('package_id', $package->id)->first();
       $package_itenerary = PackageItenerary::where('package_id', $package->id)->first();
 
-      if (!empty($package_amenity) || !empty($package_amenity)) {
+      if (!empty($package_amenity) || !empty($package_itenerary)) {
         return redirect()->back()->with('error', 'You can\'t delete this data because it is in use with other data');
       }
 
@@ -179,7 +180,7 @@ class AdminPackageController extends Controller
       $package_itenerary = new PackageItenerary();
       $package_itenerary->package_id = $package->id;
       $package_itenerary->name = $request->name;
-      $package_itenerary->description = $request->description;
+      $package_itenerary->description = $request->description; 
       $package_itenerary->save();
 
       return redirect()->back()->with('success', 'Itenerary Added Successfully');
@@ -190,4 +191,62 @@ class AdminPackageController extends Controller
 
       return redirect()->back()->with('success', 'Itenerary Deleted Successfully');
     }
+
+    public function create_photo(Package $package) {
+      $package_photos = PackagePhoto::latest()->get();
+
+      return view('admin.user.packages.create-photo', compact('package', 'package_photos'));
+    }
+
+    public function store_photo(Request $request, Package $package) {
+      $request->validate([
+        'photo' => 'required|mimes:png,jpg,jpeg',
+      ]);
+
+ 
+      $photo = time() . '.' . $request->photo->extension();
+      $request->photo->move(public_path('uploads/package-photos'), $photo); 
+
+      $package_photo = new PackagePhoto();
+
+      $package_photo->package_id = $package->id;
+      $package_photo->photo = $photo;
+      $package_photo->save();
+
+      return redirect()->back()->with('success', 'Photo Added Successfully');
+    }
+
+    public function delete_photo(PackagePhoto $package_photo) {
+
+      unlink(public_path('uploads/package-photos/' . $package_photo->photo));
+      $package_photo->delete();
+
+      return redirect()->back()->with('success', 'Amenity Deleted Successfully');
+    }
+
+    // public function create_video(Destination $destination) {
+    //   $destination_videos = DestinationVideo::latest()->where('destination_id', $destination->id)->get();
+
+    //   return view('admin.user.destinations.create-video', compact('destination', 'destination_videos'));
+    // }
+
+    // public function store_video(Request $request, $id) {
+    //   $request->validate([
+    //     'video' => 'required'
+    //   ]);
+
+    //   $destination_video = new DestinationVideo();
+
+    //   $destination_video->destination_id = $id;
+    //   $destination_video->video = $request->video;
+    //   $destination_video->save();
+
+    //   return redirect()->back()->with('success', 'Destination Video Created Successfully');
+    // }
+
+    // public function delete_video(DestinationVideo $destination_video) {
+    //   $destination_video->delete();
+
+    //   return redirect()->back()->with('success', 'Video Deleted Successfully');
+    // }
 }

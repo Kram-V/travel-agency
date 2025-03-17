@@ -28,4 +28,8 @@ class Package extends Model
     public function package_iteneraries() {
       return $this->hasMany(PackageItenerary::class);
     }
+
+    public function package_photos() {
+      return $this->hasMany(PackagePhoto::class);
+    }
 }
