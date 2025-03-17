@@ -9,6 +9,7 @@ use App\Models\Package;
 use App\Models\PackageAmenity;
 use App\Models\PackageItenerary;
 use App\Models\PackagePhoto;
+use App\Models\PackageVideo;
 use Illuminate\Http\Request;
 
 class AdminPackageController extends Controller
@@ -107,17 +108,12 @@ class AdminPackageController extends Controller
     }
 
     public function delete(Package $package) {
-      // $destination_photo = DestinationPhoto::where('destination_id', $destination->id)->first();
-      // $destination_video = DestinationVideo::where('destination_id', $destination->id)->first();
-
-      // if (!empty($destination_photo) || !empty($destination_video)) {
-      //   return redirect()->back()->with('error', 'Can\'t delete this because the data id is in use');
-      // }
-
       $package_amenity = PackageAmenity::where('package_id', $package->id)->first();
       $package_itenerary = PackageItenerary::where('package_id', $package->id)->first();
+      $package_photo = PackagePhoto::where('package_id', $package->id)->first();
+      $package_video = PackageVideo::where('package_id', $package->id)->first();
 
-      if (!empty($package_amenity) || !empty($package_itenerary)) {
+      if (!empty($package_amenity) || !empty($package_itenerary) || !empty($package_photo) || !empty($package_video)) {
         return redirect()->back()->with('error', 'You can\'t delete this data because it is in use with other data');
       }
 
@@ -193,7 +189,7 @@ class AdminPackageController extends Controller
     }
 
     public function create_photo(Package $package) {
-      $package_photos = PackagePhoto::latest()->get();
+      $package_photos = PackagePhoto::where('package_id', $package->id)->latest()->get();
 
       return view('admin.user.packages.create-photo', compact('package', 'package_photos'));
     }
@@ -224,29 +220,29 @@ class AdminPackageController extends Controller
       return redirect()->back()->with('success', 'Amenity Deleted Successfully');
     }
 
-    // public function create_video(Destination $destination) {
-    //   $destination_videos = DestinationVideo::latest()->where('destination_id', $destination->id)->get();
+    public function create_video(Package $package) {
+      $package_videos = PackageVideo::latest()->where('package_id', $package->id)->get();
 
-    //   return view('admin.user.destinations.create-video', compact('destination', 'destination_videos'));
-    // }
+      return view('admin.user.packages.create-video', compact('package', 'package_videos'));
+    }
 
-    // public function store_video(Request $request, $id) {
-    //   $request->validate([
-    //     'video' => 'required'
-    //   ]);
+    public function store_video(Request $request, Package $package) {
+      $request->validate([
+        'video' => 'required'
+      ]);
 
-    //   $destination_video = new DestinationVideo();
+      $package_video = new PackageVideo();
 
-    //   $destination_video->destination_id = $id;
-    //   $destination_video->video = $request->video;
-    //   $destination_video->save();
+      $package_video->package_id = $package->id;
+      $package_video->video = $request->video;
+      $package_video->save();
 
-    //   return redirect()->back()->with('success', 'Destination Video Created Successfully');
-    // }
+      return redirect()->back()->with('success', 'Package Video Created Successfully');
+    }
 
-    // public function delete_video(DestinationVideo $destination_video) {
-    //   $destination_video->delete();
+    public function delete_video(PackageVideo $package_video) {
+      $package_video->delete();
 
-    //   return redirect()->back()->with('success', 'Video Deleted Successfully');
-    // }
+      return redirect()->back()->with('success', 'Video Deleted Successfully');
+    }
 }

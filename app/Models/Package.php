@@ -32,4 +32,8 @@ class Package extends Model
     public function package_photos() {
       return $this->hasMany(PackagePhoto::class);
     }
+
+    public function package_videos() {
+      return $this->hasMany(PackageVideo::class);
+    }
 }

@@ -143,18 +143,20 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::get('/packages/{package}', [AdminPackageController::class, 'show'])->name('admin_packages_show');
   Route::get('/packages/{slug}/edit', [AdminPackageController::class, 'edit'])->name('admin_packages_edit');
   Route::get('/packages/{package}/package-photos', [AdminPackageController::class, 'create_photo'])->name('admin_packages_create_photo');
-  Route::get('/packages/{package}/package-videos', [AdminPackageController::class, 'create_video'])->name('admin_packages_create_video');
   Route::get('/packages/{package}/package-amenities', [AdminPackageController::class, 'create_amenity'])->name('admin_packages_create_amenity');
   Route::get('/packages/{package}/package-iteneraries', [AdminPackageController::class, 'create_itenerary'])->name('admin_packages_create_itenerary');
+  Route::get('/packages/{package}/package-videos', [AdminPackageController::class, 'create_video'])->name('admin_packages_create_video');
   Route::post('/packages/{package}/package-amenities', [AdminPackageController::class, 'store_amenity'])->name('admin_packages_store_amenity');
   Route::post('/packages/{package}/package-iteneraries', [AdminPackageController::class, 'store_itenerary'])->name('admin_packages_store_itenerary');
   Route::post('/packages/create', [AdminPackageController::class, 'store'])->name('admin_packages_store');
   Route::post('/packages/{package}', [AdminPackageController::class, 'update'])->name('admin_packages_update');
   Route::post('/packages/{package}/package-photos', [AdminPackageController::class, 'store_photo'])->name('admin_packages_store_photo');
+  Route::post('/packages/{package}/package-videos', [AdminPackageController::class, 'store_video'])->name('admin_packages_store_video');
   Route::delete('/packages/{package}', [AdminPackageController::class, 'delete'])->name('admin_packages_delete');
   Route::delete('/packages/package-amenities/{package_amenity}', [AdminPackageController::class, 'delete_amenity'])->name('admin_packages_delete_amenity');
   Route::delete('/packages/package-iteneraries/{package_itenerary}', [AdminPackageController::class, 'delete_itenerary'])->name('admin_packages_delete_itenerary');
   Route::delete('/packages/package-photos/{package_photo}', [AdminPackageController::class, 'delete_photo'])->name('admin_packages_delete_photo');
+  Route::delete('/packages/package-videos/{package_video}', [AdminPackageController::class, 'delete_video'])->name('admin_packages_delete_video');
 
   Route::get('/amenities', [AdminAmenityController::class, 'index'])->name('admin_amenities_index');
   Route::get('/amenities/{amenity}/edit', [AdminAmenityController::class, 'edit'])->name('admin_amenities_edit');

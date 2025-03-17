@@ -7,9 +7,9 @@
   <div class="main-content">
       <section class="section">
           <div class="section-header justify-content-between">
-              <h1>Videos of {{ $destination->country }}</h1>
+              <h1>Videos of {{ $package->name }}</h1>
               <div class="ml-auto">
-                  <a href="{{ route('admin_destinations_index') }}" class="btn btn-primary">Back to listing</a>
+                  <a href="{{ route('admin_packages_index') }}" class="btn btn-primary">Back to listing</a>
               </div>
           </div>
           <div class="section-body">
@@ -17,7 +17,7 @@
                   <div class="col-md-6">
                       <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('admin_destinations_store_video', $destination->id) }}" method="POST"> 
+                            <form action="{{ route('admin_packages_store_video', $package->id) }}" method="POST"> 
                                 @csrf
                                 <div class="row">
                                   <div class="mb-3 form-group col-md-12">
@@ -48,18 +48,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  @foreach ($destination_videos as $video)
+                                  @foreach ($package_videos as $package_video)
                                   <tr>
                                       <td>{{ $loop->iteration }}</td>
                                       <td>
-                                        <iframe width="360" height="215" src="https://www.youtube.com/embed/{{ $video->video }}" 
+                                        <iframe width="360" height="215" src="https://www.youtube.com/embed/{{ $package_video->video }}" 
                                           title="YouTube video player" frameborder="0" 
                                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                           allowfullscreen>
                                       </iframe>
                                       </td>            
                                       <td class="pt_10 pb_10">
-                                          <form action="{{ route('admin_destinations_delete_video', $video->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?');">
+                                          <form action="{{ route('admin_packages_delete_video', $package_video->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">
