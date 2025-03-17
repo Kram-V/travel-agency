@@ -12,6 +12,7 @@ use App\Models\Faq;
 use App\Models\Feature;
 use App\Models\Package;
 use App\Models\PackageAmenity;
+use App\Models\PackageFaq;
 use App\Models\PackageItenerary;
 use App\Models\PackagePhoto;
 use App\Models\PackageVideo;
@@ -103,7 +104,17 @@ class FrontController extends Controller
       $package_amenities_excluded = PackageAmenity::with('amenity')->where(['package_id' => $package->id, 'type' => 'excluded'])->get();
       $package_photos = PackagePhoto::where('package_id', $package->id)->get();
       $package_videos = PackageVideo::where('package_id', $package->id)->get();
+      $package_faqs = PackageFaq::where('package_id', $package->id)->get();
 
-      return view('front.package', compact('package', 'package_amenities_included', 'package_amenities_excluded', 'package_iteneraries', 'package_photos', 'package_videos'));
+      return view(
+        'front.package', 
+        compact('package', 
+          'package_amenities_included', 
+          'package_amenities_excluded', 
+          'package_iteneraries', 
+          'package_photos', 
+          'package_videos', 
+          'package_faqs',
+        ));
     }
 }

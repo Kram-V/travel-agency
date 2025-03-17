@@ -36,4 +36,8 @@ class Package extends Model
     public function package_videos() {
       return $this->hasMany(PackageVideo::class);
     }
+
+    public function package_faqs() {
+      return $this->hasMany(PackageFaq::class);
+    }
 }

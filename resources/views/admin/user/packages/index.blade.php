@@ -43,6 +43,7 @@
                                             <a href="{{ route('admin_packages_create_video', $package->id) }}" class="btn btn-success btn-sm">Video Gallery</a>
                                             <a href="{{ route('admin_packages_create_amenity', $package->id) }}" class="btn btn-success btn-sm">Amenities</a>
                                             <a href="{{ route('admin_packages_create_itenerary', $package->id) }}" class="btn btn-success btn-sm">Itenerary</a>
+                                            <a href="{{ route('admin_packages_create_faq', $package->id) }}" class="btn btn-success btn-sm">FAQs</a>
                                           </td>
                                           <td class="pt_10 pb_10">
                                               <a href="{{ route('admin_packages_show', $package->id) }}" class="btn btn-warning"><i class="fas fa-eye"></i></a>
