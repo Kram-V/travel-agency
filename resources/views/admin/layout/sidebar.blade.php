@@ -29,6 +29,7 @@
           <li class="{{ Request::is('admin/destinations*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_destinations_index') }}"><i class="fas fa-plane-departure"></i><span>Destinations</span></a></li>
           <li class="{{ Request::is('admin/packages*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_packages_index') }}"><i class="fas fa-suitcase"></i><span>Packages</span></a></li>
           <li class="{{ Request::is('admin/amenities*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_amenities_index') }}"><i class="fas fa-suitcase"></i><span>Amenities</span></a></li>
+          <li class="{{ Request::is('admin/tours*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_tours_index') }}"><i class="fas fa-suitcase"></i><span>Tours</span></a></li>
       </ul>
   </aside>
 </div>

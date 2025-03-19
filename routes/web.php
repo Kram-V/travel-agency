@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Admin\AdminTeamMemberController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
+use App\Http\Controllers\Admin\AdminTourController;
 use App\Http\Controllers\Admin\AdminWelcomeItemController;
 use App\Http\Controllers\Front\AuthController;
 use App\Http\Controllers\Front\FrontController;
@@ -43,8 +44,11 @@ Route::get('/verify-email/{token}/{email}', [AuthController::class, 'verify_emai
 Route::middleware('auth')->group(function () {
   Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
   Route::get('/profile', [UserController::class, 'profile'])->name('profile');
-
   Route::post('/profile', [UserController::class, 'update_profile'])->name('update_profile');
+
+  Route::get('/paypal-success', [FrontController::class, 'paypal_success'])->name('paypal_success');
+  Route::get('/paypal-cancel', [FrontController::class, 'paypal_cancel'])->name('paypal_cancel');
+  Route::post('/payment', [FrontController::class, 'payment'])->name('payment');
 
   Route::get('/logout', [AuthController::class, 'logout_submit'])->name('logout_submit');
 });
@@ -169,6 +173,13 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::post('/amenities/create', [AdminAmenityController::class, 'store'])->name('admin_amenities_store');
   Route::put('/amenities/{amenity}', [AdminAmenityController::class, 'update'])->name('admin_amenities_update');
   Route::delete('/amenities/{amenity}', [AdminAmenityController::class, 'delete'])->name('admin_amenities_delete');
+
+  Route::get('/tours', [AdminTourController::class, 'index'])->name('admin_tours_index');
+  Route::get('/tours/create', [AdminTourController::class, 'create'])->name('admin_tours_create');
+  Route::get('/tours/{tour}/edit', [AdminTourController::class, 'edit'])->name('admin_tours_edit');
+  Route::post('/tours/create', [AdminTourController::class, 'store'])->name('admin_tours_store');
+  Route::put('/tours/{tour}', [AdminTourController::class, 'update'])->name('admin_tours_update');
+  Route::delete('/tours/{tour}', [AdminTourController::class, 'delete'])->name('admin_tours_delete');
 
   Route::get('/logout', [AdminAuthController::class, 'logout_submit'])->name('admin_logout_submit');
 });

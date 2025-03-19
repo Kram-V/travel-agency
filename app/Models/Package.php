@@ -40,4 +40,12 @@ class Package extends Model
     public function package_faqs() {
       return $this->hasMany(PackageFaq::class);
     }
+
+    public function package_tours() {
+      return $this->hasMany(PackageTour::class);
+    }
+
+    public function bookings() {
+      return $this->hasMany(Booking::class);
+    }
 }

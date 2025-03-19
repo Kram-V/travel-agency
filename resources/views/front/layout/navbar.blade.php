@@ -7,15 +7,25 @@
                   <li class="email-text"><i class="fas fa-envelope"></i> contact@example.com</li>
               </ul>
           </div>
+
           <div class="col-md-6 right-side">
-              <ul class="right">
-                  <li class="menu">
-                      <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
-                  </li>
-                  <li class="menu">
-                      <a href="{{ route('register') }}"><i class="fas fa-user"></i> Sign Up</a>
-                  </li>
-              </ul>
+            <ul class="right">
+              @if (Auth::guard('web')->check())
+              <li class="menu">
+                <a href="{{ route('dashboard') }}"><i class="fas fa-columns"></i> Dashboard</a>
+              </li>
+              <li class="menu">
+                <a href="{{ route('logout_submit') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+              </li>
+              @else
+                <li class="menu">
+                    <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                </li>
+                <li class="menu">
+                    <a href="{{ route('register') }}"><i class="fas fa-user"></i> Sign Up</a>
+                </li>
+              @endif
+            </ul>
           </div>
       </div>
   </div>

@@ -311,96 +311,111 @@
 
                       <div class="tab-pane fade" id="tab-8-pane" role="tabpanel" aria-labelledby="tab-8" tabindex="0">
                           <!-- Booking -->
+                          <form action="{{ route('payment') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="package_id" value="{{ $package->id }}">
+                            <div class="row">
+                                <div class="col-md-8">
+                                  <div class="row">
+                                    @foreach ($package_tours as $i => $package_tour)
+                                    <div class="col-md-12">
+                                      <h2 class="mt_30">
+                                        <input type="radio" name="package_tour_id" {{ $i + 1 === 1 ? 'checked' : '' }} value="{{ $package_tour->id }}">
+                                        <span>Tour {{ $i + 1 }}</span>
+                                      </h2>
+                                      <div class="summary">
+                                          <div class="table-responsive">
+                                              <table class="table table-bordered">
+                                                  <tr>
+                                                      <td><b>Tour Start Date</b></td>
+                                                      <td>
+                                                          {{ $package_tour->tour_start_date }}
+                                                      </td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td><b>Tour End Date</b></td>
+                                                      <td>
+                                                        {{ $package_tour->tour_end_date }}
+                                                      </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><b>Booking End Date</b></td>
+                                                    <td class="text-danger">
+                                                      {{ $package_tour->booking_end_date }}
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td><b>Total Seat</b></td>
+                                                      <td>
+                                                        {{ $package_tour->total_seat }}
+                                                      </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><b>Booked Seat</b></td>
+                                                    <td>
+                                                        999999999999
+                                                    </td>
+                                                  </tr>
+                                              </table>
+                                          </div>
+                                      </div>
+                                    </div>
+                                    @endforeach
+                                  </div>
+                                </div>
 
-                          <div class="row">
-                              <div class="col-md-8">
-                                  <h2 class="mt_30">Booking Information</h2>
-                                  <div class="summary">
-                                      <div class="table-responsive">
-                                          <table class="table table-bordered">
-                                              <tr>
-                                                  <td><b>Price (per person)</b></td>
-                                                  <td>$400</td>
-                                              </tr>
-                                              <tr>
-                                                  <td><b>Start Date</b></td>
-                                                  <td>
-                                                      12 Jun, 2024
-                                                  </td>
-                                              </tr>
-                                              <tr>
-                                                  <td><b>End Date</b></td>
-                                                  <td>
-                                                      28 Jun, 2024
-                                                  </td>
-                                              </tr>
-                                              <tr>
-                                                  <td><b>Total Seat</b></td>
-                                                  <td>
-                                                      20
-                                                  </td>
-                                              </tr>
-                                              <tr>
-                                                  <td><b>Booked Seat</b></td>
-                                                  <td>
-                                                      15
-                                                  </td>
-                                              </tr>
-                                              <tr>
-                                                  <td><b>Available Seat</b></td>
-                                                  <td>
-                                                      5
-                                                  </td>
-                                              </tr>
-                                          </table>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-4">
-                                  <h2 class="mt_30">Payment</h2>
-                                  <div class="summary">
-                                      <div class="table-responsive">
-                                          <table class="table table-bordered">
-                                              <tr>
-                                                  <td>
-                                                      <input type="hidden" name="ticket_price" id="ticketPrice" value="400">
-                                                      <label for=""><b>Number of Persons</b></label>
-                                                      <input type="number" min="1" max="100" name="total_person" class="form-control" value="1" id="numPersons" oninput="calculateTotal()">
-                                                  </td>
-                                              </tr>
-                                              <tr>
-                                                  <td>
-                                                      <label for=""><b>Total</b></label>
-                                                      <input type="text" name="" class="form-control" id="totalAmount" value="$400" disabled>
-                                                  </td>
-                                              </tr>
-                                              <tr>
-                                                  <td>
-                                                      <label for=""><b>Select Payment Method</b></label>
-                                                      <select name="" class="form-select">
-                                                          <option value="">PayPal</option>
-                                                          <option value="">Stripe</option>
-                                                      </select>
-                                                  </td>
-                                              </tr>
-                                              <tr>
-                                                  <td>
-                                                      <button type="submit" class="btn btn-primary">Pay Now</button>
-                                                  </td>
-                                              </tr>
-                                          </table>
-                                      </div>
-                                  </div>
-                                  <script>
-                                      function calculateTotal() {
-                                          const ticketPrice = document.getElementById('ticketPrice').value;
-                                          const numPersons = document.getElementById('numPersons').value;
-                                          const totalAmount = ticketPrice * numPersons;
-                                          document.getElementById('totalAmount').value = `$${totalAmount}`;
-                                      }
-                                  </script>
-                              </div>
-                          </div>
+                                <div class="col-md-4">
+                                    <h2 class="mt_30">Payment</h2>
+                                
+                                    <div class="summary">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <td>
+                                                        <input type="hidden" name="ticket_price" id="ticketPrice" value="{{ $package->price }}">
+                                                        <label for=""><b>Number of Persons</b></label>
+                                                        <input type="number" min="1" max="100" name="total_person" class="form-control" value="1" id="numPersons" oninput="calculateTotal()">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label for=""><b>Total</b></label>
+                                                        <input type="text" name="paid_amount" class="form-control" id="totalAmount" value="${{ $package->price }}" disabled>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label for=""><b>Select Payment Method</b></label>
+                                                        <select name="payment_method" class="form-select">
+                                                            <option value="paypal">PayPal</option>
+                                                            <option value="stripe">Stripe</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        @if (Auth::guard('web')->check())
+                                                          <button type="submit" class="btn btn-primary">Pay Now</button>
+                                                        @else
+                                                          <a href="{{ route('login') }}"  class="btn btn-primary">Login First</a>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                              
+                                    <script>
+                                        function calculateTotal() {
+                                            const ticketPrice = document.getElementById('ticketPrice').value;
+                                            const numPersons = document.getElementById('numPersons').value;
+                                            const totalAmount = ticketPrice * numPersons;
+                                            document.getElementById('totalAmount').value = `$${totalAmount}`;
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                          </form>
                           <!-- // Booking -->
                       </div>
 

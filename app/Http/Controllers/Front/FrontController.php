@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\WebsiteMail;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
+use App\Models\Booking;
 use App\Models\Destination;
 use App\Models\DestinationPhoto;
 use App\Models\DestinationVideo;
@@ -16,13 +17,16 @@ use App\Models\PackageAmenity;
 use App\Models\PackageFaq;
 use App\Models\PackageItenerary;
 use App\Models\PackagePhoto;
+use App\Models\PackageTour;
 use App\Models\PackageVideo;
 use App\Models\Slider;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
 use App\Models\WelcomeItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Srmklive\PayPal\Services\PayPal;
 
 class FrontController extends Controller
 {
@@ -108,16 +112,20 @@ class FrontController extends Controller
       $package_photos = PackagePhoto::where('package_id', $package->id)->get();
       $package_videos = PackageVideo::where('package_id', $package->id)->get();
       $package_faqs = PackageFaq::where('package_id', $package->id)->get();
+      $package_tours = PackageTour::where('package_id', $package->id)->get();
+
 
       return view(
         'front.package', 
-        compact('package', 
-          'package_amenities_included', 
+        compact(
+          'package', 
+          'package_amenities_included',  
           'package_amenities_excluded', 
           'package_iteneraries', 
           'package_photos', 
           'package_videos', 
           'package_faqs',
+          'package_tours'
         ));
     }
 
@@ -137,8 +145,87 @@ class FrontController extends Controller
         <b>Message: </b> {$request->message} 
       ";
   
-      Mail::to($request->email)->send(new WebsiteMail($subject, $content));
+      Mail::to('markanthonyvivar241@gmail.com')->send(new WebsiteMail($subject, $content));
 
       return redirect()->back()->with('success', 'Email Sent Successfully');
+    }
+
+    public function payment(Request $request) {
+      $package = Package::where('id', $request->package_id)->first();
+
+      if ($request->payment_method === 'paypal') {
+        $total_amount = $request->ticket_price * $request->total_person;
+
+        $provider = new PayPal();
+        $provider->setApiCredentials(config('paypal'));
+        $provider->getAccessToken();
+
+        $response = $provider->createOrder([
+          'intent' => 'CAPTURE',
+          'application_context' => [
+            'return_url' => route('paypal_success'),
+            'cancel_url' => route('paypal_cancel'),
+          ],
+          'purchase_units' => [
+            [
+              'amount' => [
+                'currency_code' => 'USD',
+                'value' => $total_amount,
+              ]
+            ]
+          ]
+        ]); 
+
+        if (!empty($response['id'])) {
+          foreach($response['links'] as $link) {
+            if ($link['rel'] == 'approve') {
+              session()->put('total_person', $request->total_person);
+              session()->put('package_id', $package->id);
+              session()->put('package_tour_id', $request->package_tour_id);
+              session()->put('user_id', Auth::guard('web')->user()->id);
+              return redirect()->away($link['href']);
+            }
+          }
+        } else {
+          return redirect()->route('paypal_cancel');
+        }
+      } else {
+        dd('STRIPE');
+      }
+    }
+
+    public function paypal_success(Request $request) {
+      $provider = new PayPal();
+      $provider->setApiCredentials(config('paypal'));
+      $provider->getAccessToken();
+
+      $response = $provider->capturePaymentOrder($request->token);
+
+      if (!empty($response['status']) && $response['status'] === 'COMPLETED') {
+        $booking = new Booking();
+
+        $booking->user_id = session()->get('user_id');
+        $booking->package_id = session()->get('package_id');
+        $booking->package_tour_id = session()->get('package_tour_id');
+        $booking->total_person = session()->get('total_person');
+        $booking->paid_amount = $response['purchase_units'][0]['payments']['captures'][0]['amount']['value'];
+        $booking->payment_method = 'paypal';
+        $booking->payment_status = $response['status'];
+        $booking->invoice_no = time();
+        $booking->save();
+
+        return redirect()->back()->with('success', 'Payment Is Successful');
+
+        unset($_SESSION['user_id']);
+        unset($_SESSION['package_id']);
+        unset($_SESSION['package_tour_id']);
+        unset($_SESSION['total_person']);
+      } else {
+        return redirect()->route('paypal_cancel');
+      }
+    }
+
+    public function paypal_cancel() {
+      return redirect()->back()->with('error', 'Payment Is Cancelled');
     }
 }

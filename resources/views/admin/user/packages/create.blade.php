@@ -37,7 +37,7 @@
 
                                   <div class="mb-4 form-group col-md-6">
                                     <label class="form-label">Destination *</label>
-                                    <select name="destination" class="form-control">
+                                    <select name="destination" class="form-select">
                                       <option value="">Select Destination</option>
                                       @foreach ($destinations as $destination)
                                         <option value="{{ $destination->id }}" {{ old('destination') == $destination->id ? 'selected' : '' }}>{{ $destination->name }}</option>

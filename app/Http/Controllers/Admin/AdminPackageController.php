@@ -10,6 +10,7 @@ use App\Models\PackageAmenity;
 use App\Models\PackageFaq;
 use App\Models\PackageItenerary;
 use App\Models\PackagePhoto;
+use App\Models\PackageTour;
 use App\Models\PackageVideo;
 use Illuminate\Http\Request;
 
@@ -113,8 +114,9 @@ class AdminPackageController extends Controller
       $package_itenerary = PackageItenerary::where('package_id', $package->id)->first();
       $package_photo = PackagePhoto::where('package_id', $package->id)->first();
       $package_video = PackageVideo::where('package_id', $package->id)->first();
+      $package_tour = PackageTour::where('package_id', $package->id)->first();
 
-      if (!empty($package_amenity) || !empty($package_itenerary) || !empty($package_photo) || !empty($package_video)) {
+      if (!empty($package_amenity) || !empty($package_itenerary) || !empty($package_photo) || !empty($package_video) || !empty($package_tour)) {
         return redirect()->back()->with('error', 'You can\'t delete this data because it is in use with other data');
       }
 
