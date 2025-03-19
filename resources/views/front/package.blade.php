@@ -313,7 +313,7 @@
                           <!-- Booking -->
                           <form action="{{ route('payment') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="package_id" value="{{ $package->id }}">
+                            <input type="hidden" name="package_id" value="{{ $package->id }}"> 
                             <div class="row">
                                 <div class="col-md-8">
                                   <div class="row">

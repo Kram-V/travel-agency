@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
   Route::get('/profile', [UserController::class, 'profile'])->name('profile');
   Route::post('/profile', [UserController::class, 'update_profile'])->name('update_profile');
 
+  Route::get('/stripe-success', [FrontController::class, 'stripe_success'])->name('stripe_success');
+  Route::get('/stripe-cancel', [FrontController::class, 'stripe_cancel'])->name('stripe_cancel');
   Route::get('/paypal-success', [FrontController::class, 'paypal_success'])->name('paypal_success');
   Route::get('/paypal-cancel', [FrontController::class, 'paypal_cancel'])->name('paypal_cancel');
   Route::post('/payment', [FrontController::class, 'payment'])->name('payment');
