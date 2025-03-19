@@ -316,50 +316,66 @@
                             <input type="hidden" name="package_id" value="{{ $package->id }}"> 
                             <div class="row">
                                 <div class="col-md-8">
+                                  @php $i = 0; @endphp
                                   <div class="row">
-                                    @foreach ($package_tours as $i => $package_tour)
-                                    <div class="col-md-12">
-                                      <h2 class="mt_30">
-                                        <input type="radio" name="package_tour_id" {{ $i + 1 === 1 ? 'checked' : '' }} value="{{ $package_tour->id }}">
-                                        <span>Tour {{ $i + 1 }}</span>
-                                      </h2>
-                                      <div class="summary">
-                                          <div class="table-responsive">
-                                              <table class="table table-bordered">
-                                                  <tr>
-                                                      <td><b>Tour Start Date</b></td>
-                                                      <td>
-                                                          {{ $package_tour->tour_start_date }}
+                                    @foreach ($package_tours as $package_tour)
+                                      @if ($package_tour->booking_end_date <= date('Y-m-d'))
+                                        @continue
+                                      @endif
+                                  
+                                      @php 
+                                        $i += 1; 
+                                        $total_booked_seats = 0;
+
+                                        $all_data = App\Models\Booking::where(['package_tour_id' => $package_tour->id, 'package_id' => $package->id])->get();
+
+                                        foreach ($all_data as $data) {
+                                          $total_booked_seats += $data->total_person;
+                                        }                                        
+                                      @endphp
+
+                                      <div class="col-md-12">
+                                        <h2 class="mt_30">
+                                          <input type="radio" name="package_tour_id" value="{{ $package_tour->id }}">
+                                          <span>Tour {{ $i }}</span>
+                                        </h2>
+                                        <div class="summary">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <td><b>Tour Start Date</b></td>
+                                                        <td>
+                                                            {{ $package_tour->tour_start_date }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Tour End Date</b></td>
+                                                        <td>
+                                                          {{ $package_tour->tour_end_date }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td><b>Booking End Date</b></td>
+                                                      <td class="text-danger">
+                                                        {{ $package_tour->booking_end_date }}
                                                       </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td><b>Tour End Date</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Total Seat</b></td>
+                                                        <td>
+                                                          {{ $package_tour->total_seat }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td><b>Booked Seat</b></td>
                                                       <td>
-                                                        {{ $package_tour->tour_end_date }}
+                                                          {{ $total_booked_seats }}
                                                       </td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td><b>Booking End Date</b></td>
-                                                    <td class="text-danger">
-                                                      {{ $package_tour->booking_end_date }}
-                                                    </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td><b>Total Seat</b></td>
-                                                      <td>
-                                                        {{ $package_tour->total_seat }}
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td><b>Booked Seat</b></td>
-                                                    <td>
-                                                        999999999999
-                                                    </td>
-                                                  </tr>
-                                              </table>
-                                          </div>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
                                       </div>
-                                    </div>
                                     @endforeach
                                   </div>
                                 </div>

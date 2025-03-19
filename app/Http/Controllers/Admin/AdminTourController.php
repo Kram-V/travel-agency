@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use App\Models\Package;
 use App\Models\PackageTour;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class AdminTourController extends Controller
     public function create() {
       $packages = Package::latest()->get();
 
-      return view('admin.user.tours.create', compact('packages'));
+      return view('admin.user.tours.create', compact('packages')); 
     }
 
     public function store(Request $request) {
@@ -71,5 +72,11 @@ class AdminTourController extends Controller
       $tour->delete();
 
       return redirect()->route('admin_tours_index')->with('success', 'Tour Deleted Successfully');
+    }
+
+    public function tour_booking(PackageTour $tour, Package $package) {
+      $tour_bookings = Booking::with('user')->where(['package_id' => $package->id, 'package_tour_id' => $tour->id])->get();
+
+      return view('admin.user.tours.booking-details', compact('tour_bookings'));
     }
 }

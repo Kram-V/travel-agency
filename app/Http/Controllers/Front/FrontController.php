@@ -151,6 +151,23 @@ class FrontController extends Controller
     }
 
     public function payment(Request $request) {
+      if (empty($request->package_tour_id)) return redirect()->back()->with('error', 'Please select first your tour before you make payment');
+
+      $total_booked_seats = 0;
+
+      $bookings = Booking::where(['package_tour_id' => $request->package_tour_id, 'package_id' =>  $request->package_id])->get();
+      $package_tour = PackageTour::where('id', $request->package_tour_id)->first();
+
+      foreach ($bookings as $booking) {  
+        $total_booked_seats += $booking->total_person;
+      }    
+      
+      $total_booked_seats += $request->total_person;
+
+      if ($total_booked_seats > (int) $package_tour->total_seat) {
+        return redirect()->back()->with('error', 'You have exceeded with total seat for the tour');
+      }
+
       $package = Package::where('id', $request->package_id)->first();
       $total_amount = $request->ticket_price * $request->total_person;
 

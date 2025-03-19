@@ -179,6 +179,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::get('/tours', [AdminTourController::class, 'index'])->name('admin_tours_index');
   Route::get('/tours/create', [AdminTourController::class, 'create'])->name('admin_tours_create');
   Route::get('/tours/{tour}/edit', [AdminTourController::class, 'edit'])->name('admin_tours_edit');
+  Route::get('/tours/{tour}/packages/{package}/bookings', [AdminTourController::class, 'tour_booking'])->name('admin_tour_booking');
   Route::post('/tours/create', [AdminTourController::class, 'store'])->name('admin_tours_store');
   Route::put('/tours/{tour}', [AdminTourController::class, 'update'])->name('admin_tours_update');
   Route::delete('/tours/{tour}', [AdminTourController::class, 'delete'])->name('admin_tours_delete');

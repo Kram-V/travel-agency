@@ -128,7 +128,12 @@
                       </div>
                       <div class="text">
                           <div class="price">
-                              ${{ $package->price }} <del>${{ $package->old_price }}</del>
+                              ${{ $package->price }} 
+                              @if ($package->old_price)
+                                <del>
+                                  ${{ $package->old_price }}
+                                </del>
+                              @endif
                           </div>
                           <h2>
                               <a href="package.html">{{ $package->name }}</a>

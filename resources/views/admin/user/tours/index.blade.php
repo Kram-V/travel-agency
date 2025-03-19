@@ -22,11 +22,12 @@
                                     <thead>
                                         <tr>
                                             <th>SL</th>
-                                            <th>Package Info</th>
+                                            <th>Package Name</th>
                                             <th>Tour Start</th>
                                             <th>Tour End</th>
                                             <th>Booking End</th>
                                             <th>Total Seat</th>
+                                            <th>Booking</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -43,6 +44,7 @@
                                           <td>{{ $package_tour->tour_end_date }}</td>
                                           <td>{{ $package_tour->booking_end_date }}</td>
                                           <td>{{ $package_tour->total_seat }}</td>
+                                          <td><a href="{{ route('admin_tour_booking', [$package_tour->id, $package_tour->package->id]) }}" class="btn btn-success btn-sm">Booking Details</a></td>
                                           <td class="pt_10 pb_10">
                                               <a href="{{ route('admin_tours_edit', $package_tour->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                               <form action="{{ route('admin_tours_delete', $package_tour->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?');">
