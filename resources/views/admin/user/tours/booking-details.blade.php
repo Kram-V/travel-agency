@@ -36,7 +36,7 @@
                                   <tr>
                                       <td>{{ $loop->iteration }}</td>
                                       <td>
-                                        {{ $tour_booking->invoice_no }}
+                                        <a href="{{ route('admin_tour_booking_invoice', $tour_booking->invoice_no) }}" target="_blank">{{ $tour_booking->invoice_no }}</a>
                                       </td>
                                       <td>
                                         {{ $tour_booking->package->name }}

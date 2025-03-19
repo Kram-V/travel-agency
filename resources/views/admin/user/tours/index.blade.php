@@ -10,7 +10,7 @@
               <h1>Tours</h1>
               <div class="ml-auto">
                 <a href="{{ route('admin_tours_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
-            </div>
+             </div>
           </div>
           <div class="section-body">
               <div class="row">
