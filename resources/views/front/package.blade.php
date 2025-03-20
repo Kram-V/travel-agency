@@ -405,6 +405,7 @@
                                                         <select name="payment_method" class="form-select">
                                                             <option value="paypal">PayPal</option>
                                                             <option value="stripe">Stripe</option>
+                                                            <option value="cash">Cash</option>
                                                         </select>
                                                     </td>
                                                 </tr>

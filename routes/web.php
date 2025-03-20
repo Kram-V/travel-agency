@@ -44,7 +44,10 @@ Route::get('/verify-email/{token}/{email}', [AuthController::class, 'verify_emai
 Route::middleware('auth')->group(function () {
   Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
   Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+  Route::get('/bookings', [UserController::class, 'bookings'])->name('bookings');
+  Route::get('/invoices/{invoice_no}', [UserController::class, 'invoice'])->name('invoice');
   Route::post('/profile', [UserController::class, 'update_profile'])->name('update_profile');
+
 
   Route::get('/stripe-success', [FrontController::class, 'stripe_success'])->name('stripe_success');
   Route::get('/stripe-cancel', [FrontController::class, 'stripe_cancel'])->name('stripe_cancel');
@@ -181,6 +184,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::get('/tours/{tour}/edit', [AdminTourController::class, 'edit'])->name('admin_tours_edit');
   Route::get('/tours/{tour}/packages/{package}/bookings', [AdminTourController::class, 'tour_booking'])->name('admin_tour_booking');
   Route::get('/tours/invoices/{invoice_no}', [AdminTourController::class, 'tour_booking_invoice'])->name('admin_tour_booking_invoice');
+  Route::get('/tours/bookings/{booking}', [AdminTourController::class, 'mark_complete_booking'])->name('admin_mark_complete_booking');
   Route::post('/tours/create', [AdminTourController::class, 'store'])->name('admin_tours_store');
   Route::put('/tours/{tour}', [AdminTourController::class, 'update'])->name('admin_tours_update');
   Route::delete('/tours/{tour}', [AdminTourController::class, 'delete'])->name('admin_tours_delete');

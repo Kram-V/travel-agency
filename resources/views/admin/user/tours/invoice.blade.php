@@ -21,7 +21,7 @@
                             <div class="row g-4">
                                 <div class="col-md-4">
                                     <address>
-                                        <strong>Invoice To</strong><br>
+                                        <strong>Customer</strong><br>
                                         {{ $booking_details->user->name }}<br>
                                         {{ $booking_details->user->email }}<br>
                                         {{ $booking_details->user->phone }}<br>
@@ -45,21 +45,21 @@
                                 <div class="col-md-4">
                                   <address>
                                       <strong>Tour Start Date</strong><br>
-                                      {{ $booking_details->package_tour->tour_start_date }}
+                                      {{ \Carbon\Carbon::parse($booking_details->package_tour->tour_start_date)->format('F j, Y') }}
                                   </address>
                                 </div>
 
                                 <div class="col-md-4">
                                   <address>
                                       <strong>Tour End Date</strong><br>
-                                      {{ $booking_details->package_tour->tour_end_date }}
+                                      {{ \Carbon\Carbon::parse($booking_details->package_tour->tour_end_date)->format('F j, Y') }}
                                   </address>
                                 </div>
 
                                 <div class="col-md-4">
                                   <address>
                                       <strong>Booking End Date</strong><br>
-                                      {{ $booking_details->package_tour->booking_end_date }}
+                                      {{ \Carbon\Carbon::parse($booking_details->package_tour->booking_end_date)->format('F j, Y') }}
                                   </address>
                                 </div>
                             </div>

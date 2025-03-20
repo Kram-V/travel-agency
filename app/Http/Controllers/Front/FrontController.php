@@ -205,7 +205,7 @@ class FrontController extends Controller
         } else {
           return redirect()->route('paypal_cancel');
         }
-      } else {
+      } else if ($request->payment_method === 'stripe') {
         $stripe = new \Stripe\StripeClient(config('stripe.stripe_sk'));
 
         $response = $stripe->checkout->sessions->create([
@@ -237,6 +237,20 @@ class FrontController extends Controller
         } else {
           return redirect()->route('stripe_cancel');
         }
+      } else {
+        $booking = new Booking();
+
+        $booking->user_id = Auth::guard('web')->user()->id;
+        $booking->package_id = $package->id;
+        $booking->package_tour_id = $request->package_tour_id;
+        $booking->total_person = $request->total_person;
+        $booking->paid_amount = $total_amount;
+        $booking->payment_method = 'cash';
+        $booking->payment_status = 'PENDING';
+        $booking->invoice_no = time();
+        $booking->save();
+
+        return redirect()->back()->with('success', 'Your cash payment is pending');
       }
     }
 

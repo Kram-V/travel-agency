@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +13,17 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function dashboard() {
-      return view('front.user.dashboard');
+      $completed_orders = Booking::where(['user_id' => Auth::guard('web')->user()->id, 'payment_status' => 'COMPLETED'])->count();
+      $pending_orders = Booking::where(['user_id' => Auth::guard('web')->user()->id, 'payment_status' => 'PENDING'])->count();
+
+      return view('front.user.dashboard', compact('completed_orders', 'pending_orders'));
+    }
+
+    public function bookings() {
+      $user = Auth::guard('web')->user();
+      $user_bookings = Booking::with(['package.destination', 'package_tour'])->where('user_id', $user->id)->latest()->get();
+
+      return view('front.user.bookings', compact('user', 'user_bookings'));
     }
 
     public function profile() {
@@ -64,5 +76,12 @@ class UserController extends Controller
       $user->update();
   
       return redirect()->back()->with('success', 'Profile updated successfully');
+    }
+
+    public function invoice($invoice_no) {
+      $user_booking = Booking::with(['user', 'package', 'package_tour'])->where('invoice_no', $invoice_no)->first();
+      $admin_user = Admin::first();
+
+      return view('front.user.invoice', compact('user_booking', 'admin_user'));
     }
 }

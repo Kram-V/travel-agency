@@ -2,8 +2,8 @@
   <li class="list-group-item {{ Route::is('dashboard') ? 'active' : '' }}">
       <a href="{{ route('dashboard') }}">Dashboard</a>
   </li>
-  <li class="list-group-item">
-      <a href="user-order.html">Orders</a>
+  <li class="list-group-item {{ Route::is('bookings') ? 'active' : '' }}">
+      <a href="{{ route('bookings') }}">Bookings</a>
   </li>
   <li class="list-group-item">
       <a href="user-wishlist.html">Wishlist</a>

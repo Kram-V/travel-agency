@@ -77,12 +77,19 @@ class AdminTourController extends Controller
     public function tour_booking(PackageTour $tour, Package $package) {
       $tour_bookings = Booking::with('user')->where(['package_id' => $package->id, 'package_tour_id' => $tour->id])->get();
 
-      return view('admin.user.tours.booking-details', compact('tour_bookings'));
+      return view('admin.user.tours.booking-details', compact('tour_bookings')); 
     }
 
     public function tour_booking_invoice($invoice_no) {
       $booking_details = Booking::with(['user', 'package', 'package_tour'])->where('invoice_no', $invoice_no)->first();
 
       return view('admin.user.tours.invoice', compact('booking_details', 'invoice_no'));
+    }
+
+    public function mark_complete_booking(Booking $booking) {
+      $booking->payment_status = 'COMPLETED';
+      $booking->update();
+
+      return redirect()->back()->with('success', 'Booking marked as completed');
     }
 }

@@ -47,10 +47,17 @@
                                         <strong>Phone: </strong>{{ $tour_booking->user->phone }}
                                       </td>
                                       <td>{{ $tour_booking->total_person }}</td>
-                                      <td>{{ $tour_booking->paid_amount }}</td>
-                                      <td>{{ $tour_booking->payment_method }}</td>
+                                      <td>${{ $tour_booking->paid_amount }}</td>
+                                      <td>{{ ucfirst($tour_booking->payment_method) }}</td>
                                       <td>
-                                        <span class="badge bg-success">{{ $tour_booking->payment_status }}</span>
+                                        <span class="badge {{ $tour_booking->payment_status === 'COMPLETED' ? 'bg-success' : 'bg-warning' }}">{{ $tour_booking->payment_status }}</span>
+                                          @if ($tour_booking->payment_status === 'PENDING')
+                                          <span>
+                                            <a href="{{ route('admin_mark_complete_booking', $tour_booking->id) }}">
+                                              Complete
+                                            </a>
+                                          </span>
+                                        @endif
                                       </td>
                                   </tr>
                                   @endforeach
