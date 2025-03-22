@@ -153,6 +153,10 @@ class FrontController extends Controller
     public function payment(Request $request) {
       if (empty($request->package_tour_id)) return redirect()->back()->with('error', 'Please select first your tour before you make payment');
 
+      $is_user_booked = Booking::where(['package_tour_id' => $request->package_tour_id, 'package_id' =>  $request->package_id, 'user_id' => Auth::guard('web')->user()->id])->first();
+
+      if (!empty($is_user_booked)) return redirect()->back()->with('error', 'You have booked this tour already');
+
       $total_booked_seats = 0;
 
       $bookings = Booking::where(['package_tour_id' => $request->package_tour_id, 'package_id' =>  $request->package_id])->get();
