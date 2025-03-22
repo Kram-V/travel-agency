@@ -19,6 +19,7 @@ use App\Models\PackageItenerary;
 use App\Models\PackagePhoto;
 use App\Models\PackageTour;
 use App\Models\PackageVideo;
+use App\Models\Review;
 use App\Models\Slider;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
@@ -113,8 +114,21 @@ class FrontController extends Controller
       $package_videos = PackageVideo::where('package_id', $package->id)->get();
       $package_faqs = PackageFaq::where('package_id', $package->id)->get();
       $package_tours = PackageTour::where('package_id', $package->id)->get();
+      $reviews = Review::with('user')->where('package_id', $package->id)->latest()->get();
 
+      $total_rating = 0;
 
+      foreach($reviews as $review) {
+        $total_rating += $review->rating;
+      }
+
+      if (count($reviews) === 0) {
+        $average_rating = 0;
+      } else {
+        $average_rating = floor($total_rating / count($reviews));
+      }
+
+    
       return view(
         'front.package', 
         compact(
@@ -125,7 +139,9 @@ class FrontController extends Controller
           'package_photos', 
           'package_videos', 
           'package_faqs',
-          'package_tours'
+          'package_tours',
+          'reviews',
+          'average_rating'
         ));
     }
 
@@ -324,5 +340,22 @@ class FrontController extends Controller
 
     public function stripe_cancel() {
       return redirect()->back()->with('error', 'Payment Is Cancelled');
+    }
+
+    public function review(Request $request, $package_id, $user_id) {
+      $request->validate([
+        'rating' => 'required',
+        'comment' => 'required',
+      ]);
+
+      $review = new Review();
+
+      $review->package_id = $package_id;
+      $review->user_id = $user_id;
+      $review->rating = $request->rating;
+      $review->comment = $request->comment;
+      $review->save();
+
+      return redirect()->back()->with('success', 'You have rated and reviewed successfully');
     }
 }

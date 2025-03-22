@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Booking;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -83,5 +84,11 @@ class UserController extends Controller
       $admin_user = Admin::first();
 
       return view('front.user.invoice', compact('user_booking', 'admin_user'));
+    }
+
+    public function reviews() {
+      $reviews = Review::with(['user', 'package.destination'])->where('user_id', Auth::guard('web')->user()->id)->latest()->get();
+
+      return view('front.user.reviews', compact('reviews'));
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminReviewController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Admin\AdminTeamMemberController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
@@ -46,14 +47,15 @@ Route::middleware('auth')->group(function () {
   Route::get('/profile', [UserController::class, 'profile'])->name('profile');
   Route::get('/bookings', [UserController::class, 'bookings'])->name('bookings');
   Route::get('/invoices/{invoice_no}', [UserController::class, 'invoice'])->name('invoice');
+  Route::get('/reviews', [UserController::class, 'reviews'])->name('reviews');
   Route::post('/profile', [UserController::class, 'update_profile'])->name('update_profile');
-
 
   Route::get('/stripe-success', [FrontController::class, 'stripe_success'])->name('stripe_success');
   Route::get('/stripe-cancel', [FrontController::class, 'stripe_cancel'])->name('stripe_cancel');
   Route::get('/paypal-success', [FrontController::class, 'paypal_success'])->name('paypal_success');
   Route::get('/paypal-cancel', [FrontController::class, 'paypal_cancel'])->name('paypal_cancel');
   Route::post('/payment', [FrontController::class, 'payment'])->name('payment');
+  Route::post('/review/{package_id}/{user_id}', [FrontController::class, 'review'])->name('review');
 
   Route::get('/logout', [AuthController::class, 'logout_submit'])->name('logout_submit');
 });
@@ -188,6 +190,8 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::post('/tours/create', [AdminTourController::class, 'store'])->name('admin_tours_store');
   Route::put('/tours/{tour}', [AdminTourController::class, 'update'])->name('admin_tours_update');
   Route::delete('/tours/{tour}', [AdminTourController::class, 'delete'])->name('admin_tours_delete');
+
+  Route::get('/reviews', [AdminReviewController::class, 'index'])->name('admin_reviews_index');
 
   Route::get('/logout', [AdminAuthController::class, 'logout_submit'])->name('admin_logout_submit');
 });

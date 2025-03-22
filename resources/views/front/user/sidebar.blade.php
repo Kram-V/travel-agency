@@ -11,8 +11,8 @@
   <li class="list-group-item">
       <a href="user-message.html">Message</a>
   </li>
-  <li class="list-group-item">
-      <a href="user-review.html">Reviews</a>
+  <li class="list-group-item {{ Route::is('reviews') ? 'active' : '' }}">
+      <a href="{{ route('reviews') }}">Reviews</a>
   </li>
   <li class="list-group-item {{ Route::is('profile') ? 'active' : '' }}">
       <a href="{{ route('profile') }}">Edit Profile</a>

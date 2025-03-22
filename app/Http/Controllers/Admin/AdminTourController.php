@@ -69,6 +69,12 @@ class AdminTourController extends Controller
     }
 
     public function delete(PackageTour $tour) {
+      $booking = Booking::where('package_tour_id', $tour->id)->first();
+
+      if (!empty($booking)) {
+        return redirect()->back()->with('error', 'You can\'t delete this data because it is in use with other data');
+      }
+
       $tour->delete();
 
       return redirect()->route('admin_tours_index')->with('success', 'Tour Deleted Successfully');
