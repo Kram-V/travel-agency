@@ -38,10 +38,10 @@
                       <div class="box">
                           <div class="row">
                               <div class="col-md-6">
-                                  <input type="number" name="min_price" class="form-control" placeholder="Min" value="{{ $_GET['min_price'] == '' || !isset($_GET['min_price']) ? '0' : $_GET['min_price'] }}">
+                                  <input type="number" name="min_price" class="form-control" placeholder="Min" value="{{ !isset($_GET['min_price']) || $_GET['min_price'] == ''  ? '0' : $_GET['min_price'] }}">
                               </div>
                               <div class="col-md-6">
-                                  <input type="number" name="max_price" class="form-control" placeholder="Max" value="{{ $_GET['max_price'] == '' || !isset($_GET['max_price']) ? '0' : $_GET['max_price'] }}">
+                                  <input type="number" name="max_price" class="form-control" placeholder="Max" value="{{ !isset($_GET['max_price']) || $_GET['max_price'] == '' ? '0' : $_GET['max_price'] }}">
                               </div>
                           </div>
                       </div>
@@ -123,9 +123,6 @@
                       <div class="item pb_25">
                           <div class="photo">
                               <a href="{{ route('package', $package->slug) }}"><img src="{{ asset('uploads/packages/' . $package->featured_photo) }}" alt="{{ $package->name }}"></a>
-                              <div class="wishlist">
-                                  <a href=""><i class="far fa-heart"></i></a>
-                              </div>
                           </div>
                           <div class="text">
                               <div class="price">
@@ -194,7 +191,6 @@
                 @else
                   <b style="font-size: 30px" class="text-center ">No Package Found</b>
                 @endif
-               
               </div>
 
               <div class="row">

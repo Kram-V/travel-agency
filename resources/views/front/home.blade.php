@@ -140,7 +140,7 @@
       <div class="row">
           <div class="col-md-12">
               <div class="heading">
-                  <h2>Popular Packages</h2>
+                  <h2>Some Of Our Packages</h2>
                   <p>
                       Explore our most popular travel packages around the world
                   </p>
@@ -148,138 +148,82 @@
           </div>
       </div>
       <div class="row">
+        @foreach ($packages as $package)
           <div class="col-lg-4 col-md-6">
-              <div class="item pb_25">
-                  <div class="photo">
-                      <a href="package.html"><img src="images/package-1.jpg" alt=""></a>
-                      <div class="wishlist">
-                          <a href=""><i class="far fa-heart"></i></a>
-                      </div>
-                  </div>
-                  <div class="text">
-                      <div class="price">
-                          $150 <del>$250</del>
-                      </div>
-                      <h2>
-                          <a href="package.html">Venice Grand Canal</a>
-                      </h2>
-                      <div class="review">
+            <div class="item pb_25">
+                <div class="photo">
+                    <a href="{{ route('package', $package->slug) }}"><img src="{{ asset('uploads/packages/' . $package->featured_photo) }}" alt="{{ $package->name }}"></a>
+                </div>
+                <div class="text">
+                    <div class="price">
+                        ${{ $package->price }} 
+                        @if ($package->old_price)
+                          <del>
+                            ${{ $package->old_price }}
+                          </del>
+                        @endif
+                    </div>
+                    <h2>
+                        <a href="{{ route('package', $package->slug) }}">{{ $package->name }}</a>
+                    </h2>
+
+                    @php
+                      $all_reviews = $package->reviews;
+
+                      $total_ratings = 0;
+                      $average = 0;
+
+                      if (count($all_reviews) > 0) {
+                        foreach ($all_reviews as $review) {
+                          $total_ratings += $review->rating;
+                        }
+
+                        $average = floor($total_ratings / count($package->reviews));
+                      }
+                    @endphp
+
+                    <div class="review">
+                      @for ($i = 1; $i <= 5; $i++)
+                        @if ($i <= $average)
                           <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          (4 Reviews)
-                      </div>
-                      <div class="element">
-                          <div class="element-left">
-                              <i class="fas fa-plane-departure"></i> Italy
-                          </div>
-                          <div class="element-right">
-                              <i class="fas fa-calendar-alt date-icon"></i> 14 Jun, 2024
-                          </div>
-                      </div>
-                      <div class="element">
-                          <div class="element-left">
-                              <i class="fas fa-users"></i> 25 Persons
-                          </div>
-                          <div class="element-right">
-                              <i class="fas fa-clock"></i> 7 Days
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                        @else
+                          <i class="far fa-star"></i>
+                        @endif
+                      @endfor
+                      ({{ count($all_reviews) }} Reviews)
+                    </div>
+                    <div class="element">
+                        <div class="element-left">
+                            <i class="fas fa-plane-departure"></i> {{ $package->destination->country }}
+                        </div>
+                    </div>
+                    <div class="element">
+                        <div  class="element-left">
+                          @php
+                            $package_tours = $package->package_tours;
+
+                            $total_tours = 0;
+
+                            foreach ($package_tours as $package_tour) {
+                              if ($package_tour->booking_end_date > date('Y-m-d')) {
+                                $total_tours += 1;
+                              }
+                            }
+                          @endphp
+
+                          <i class="fas fa-globe-asia"></i> {{ $total_tours }} Tours
+                        </div>
+                    </div>
+                </div>
+            </div>
           </div>
-          <div class="col-lg-4 col-md-6">
-              <div class="item pb_25">
-                  <div class="photo">
-                      <a href="package.html"><img src="images/package-2.jpg" alt=""></a>
-                      <div class="wishlist">
-                          <a href=""><i class="far fa-heart"></i></a>
-                      </div>
-                  </div>
-                  <div class="text">
-                      <div class="price">
-                          $230
-                      </div>
-                      <h2>
-                          <a href="package.html">Great Barrier Reef</a>
-                      </h2>
-                      <div class="review">
-                          <i class="far fa-star"></i>
-                          <i class="far fa-star"></i>
-                          <i class="far fa-star"></i>
-                          <i class="far fa-star"></i>
-                          <i class="far fa-star"></i>
-                          (0 Reviews)
-                      </div>
-                      <div class="element">
-                          <div class="element-left">
-                              <i class="fas fa-plane-departure"></i> Australia
-                          </div>
-                          <div class="element-right">
-                              <i class="fas fa-calendar-alt date-icon"></i> 23 Sep, 2024
-                          </div>
-                      </div>
-                      <div class="element">
-                          <div class="element-left">
-                              <i class="fas fa-users"></i> 12 Persons
-                          </div>
-                          <div class="element-right">
-                              <i class="fas fa-clock"></i> 3 Days
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-              <div class="item pb_25">
-                  <div class="photo">
-                      <a href="package.html"><img src="images/package-3.jpg" alt=""></a>
-                      <div class="wishlist">
-                          <a href=""><i class="far fa-heart"></i></a>
-                      </div>
-                  </div>
-                  <div class="text">
-                      <div class="price">
-                          $540
-                      </div>
-                      <h2>
-                          <a href="package.html">Similan Islands, Andaman Sea</a>
-                      </h2>
-                      <div class="review">
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="far fa-star"></i>
-                          (34 Reviews)
-                      </div>
-                      <div class="element">
-                          <div class="element-left">
-                              <i class="fas fa-plane-departure"></i> Thailand
-                          </div>
-                          <div class="element-right">
-                              <i class="fas fa-calendar-alt date-icon"></i> 20 Jul, 2024
-                          </div>
-                      </div>
-                      <div class="element">
-                          <div class="element-left">
-                              <i class="fas fa-users"></i> 22 Persons
-                          </div>
-                          <div class="element-right">
-                              <i class="fas fa-clock"></i> 5 Days
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+        @endforeach
       </div>
       <div class="row">
           <div class="col-md-12">
               <div class="see-more">
                   <div class="button-style-1 mt_20">
-                      <a href="packages.html">View All Packages</a>
+                      <a href="{{ route('packages') }}">View All Packages</a>
                   </div>
               </div>
           </div>

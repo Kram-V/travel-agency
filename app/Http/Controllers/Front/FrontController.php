@@ -38,8 +38,9 @@ class FrontController extends Controller
       $testimonials = Testimonial::latest()->get();
       $blog_posts = BlogPost::latest()->take(3)->get();
       $destinations = Destination::latest()->take(4)->get();
+      $packages = Package::with(['destination', 'reviews', 'package_tours'])->latest()->take(3)->get();
 
-      return view('front.home', compact('sliders', 'welcome_item', 'features', 'testimonials', 'blog_posts', 'destinations'));
+      return view('front.home', compact('sliders', 'welcome_item', 'features', 'testimonials', 'blog_posts', 'destinations', 'packages'));
     }
 
     public function about() {
@@ -58,8 +59,9 @@ class FrontController extends Controller
       $destination = Destination::where('slug', $slug)->first();
       $destination_photos = DestinationPhoto::latest()->where('destination_id', $destination->id)->get();
       $destination_videos = DestinationVideo::latest()->where('destination_id', $destination->id)->get();
+      $packages = Package::with(['destination', 'reviews', 'package_tours'])->where('destination_id', $destination->id)->latest()->get();
 
-      return view('front.destination', compact('destination', 'destination_photos', 'destination_videos'));
+      return view('front.destination', compact('destination', 'destination_photos', 'destination_videos', 'packages'));
     }
 
     public function team_members() {

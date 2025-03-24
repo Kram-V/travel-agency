@@ -6,12 +6,11 @@
   <div class="container">
       <div class="row">
           <div class="col-md-12">
-              <h2>Invoice</h2>
+              <h2>My Reviews</h2>
               <div class="breadcrumb-container">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                      <li class="breadcrumb-item"><a href="{{ route('bookings') }}">Bookings</a></li>
-                      <li class="breadcrumb-item active">Invoice</li>
+                      <li class="breadcrumb-item active">Reviews</li>
                   </ol>
               </div>
           </div>

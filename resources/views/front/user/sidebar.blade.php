@@ -6,9 +6,6 @@
       <a href="{{ route('bookings') }}">Bookings</a>
   </li>
   <li class="list-group-item">
-      <a href="user-wishlist.html">Wishlist</a>
-  </li>
-  <li class="list-group-item">
       <a href="user-message.html">Message</a>
   </li>
   <li class="list-group-item {{ Route::is('reviews') ? 'active' : '' }}">
