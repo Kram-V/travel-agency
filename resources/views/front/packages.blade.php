@@ -8,7 +8,7 @@
               <h2>Packages</h2>
               <div class="breadcrumb-container">
                   <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                      <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                       <li class="breadcrumb-item active">Packages</li>
                   </ol>
               </div>
@@ -21,13 +21,14 @@
   <div class="container">
       <div class="row">
           <div class="col-lg-4 col-md-6">
+            <form action="{{ route('packages') }}" method="GET">
               <div class="package-sidebar">
                   <div class="widget">
                       <h2>Search Package</h2>
                       <div class="box">
                           <div class="row">
                               <div class="col-md-12">
-                                  <input type="text" name="" class="form-control" placeholder="Package Name ...">
+                                  <input type="text" name="package_name" class="form-control" placeholder="Package Name ..." value="{{ $_GET['package_name'] ?? '' }}">
                               </div>
                           </div>
                       </div>
@@ -37,38 +38,36 @@
                       <div class="box">
                           <div class="row">
                               <div class="col-md-6">
-                                  <input type="text" name="" class="form-control" placeholder="Min">
+                                  <input type="number" name="min_price" class="form-control" placeholder="Min" value="{{ $_GET['min_price'] == '' || !isset($_GET['min_price']) ? '0' : $_GET['min_price'] }}">
                               </div>
                               <div class="col-md-6">
-                                  <input type="text" name="" class="form-control" placeholder="Max">
+                                  <input type="number" name="max_price" class="form-control" placeholder="Max" value="{{ $_GET['max_price'] == '' || !isset($_GET['max_price']) ? '0' : $_GET['max_price'] }}">
                               </div>
                           </div>
                       </div>
                   </div>
                   <div class="widget">
-                      <h2>Filter by Country</h2>
+                      <h2>Filter by Destination</h2>
                       <div class="box">
-                          <ul>
-                              <li><a href=""><i class="fas fa-angle-right"></i> All</a></li>
-                              <li><a href=""><i class="fas fa-angle-right"></i> Australia</a></li>
-                              <li><a href=""><i class="fas fa-angle-right"></i> Italy</a></li>
-                              <li><a href=""><i class="fas fa-angle-right"></i> Thailand</a></li>
-                              <li><a href=""><i class="fas fa-angle-right"></i> Canada</a></li>
-                              <li><a href=""><i class="fas fa-angle-right"></i> Japan</a></li>
-                          </ul>
+                        <select name="destination_id" class="form-select">
+                          <option value="">All</option>
+                          @foreach ($destinations as $destination)
+                            <option value="{{ $destination->id }}" {{ isset($_GET['destination_id']) && $_GET['destination_id'] == $destination->id ? 'selected' : '' }}>{{ $destination->country }}</option>
+                          @endforeach
+                        </select>
                       </div>
                   </div>
                   <div class="widget">
                       <h2>Filter by Review</h2>
                       <div class="box">
                           <div class="form-check form-check-review form-check-review-1">
-                              <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadiosAll" value="option1" checked>
+                              <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadiosAll" value="all" {{ !isset($_GET['review']) ||  (isset($_GET['review']) && $_GET['review'] == 'all') ? 'checked' : '' }}>
                               <label class="form-check-label" for="reviewRadiosAll">
                                   All
                               </label>
                           </div>
                           <div class="form-check form-check-review">
-                              <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios1" value="option1" checked>
+                              <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios1" value="5"  {{ isset($_GET['review']) && $_GET['review'] == '5' ? 'checked' : '' }}>
                               <label class="form-check-label" for="reviewRadios1">
                                   <i class="fas fa-star"></i>
                                   <i class="fas fa-star"></i>
@@ -78,7 +77,7 @@
                               </label>
                           </div>
                           <div class="form-check form-check-review">
-                              <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios2" value="option2">
+                              <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios2" value="4"  {{ isset($_GET['review']) && $_GET['review'] == '4' ? 'checked' : '' }}>
                               <label class="form-check-label" for="reviewRadios2">
                                   <i class="fas fa-star"></i>
                                   <i class="fas fa-star"></i>
@@ -87,7 +86,7 @@
                               </label>
                           </div>
                           <div class="form-check form-check-review">
-                              <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios3" value="option2">
+                              <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios3" value="3"  {{ isset($_GET['review']) && $_GET['review'] == '3' ? 'checked' : '' }}>
                               <label class="form-check-label" for="reviewRadios3">
                                   <i class="fas fa-star"></i>
                                   <i class="fas fa-star"></i>
@@ -95,14 +94,14 @@
                               </label>
                           </div>
                           <div class="form-check form-check-review">
-                              <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios4" value="option2">
+                              <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios4" value="2"  {{ isset($_GET['review']) && $_GET['review'] == '2' ? 'checked' : '' }}>
                               <label class="form-check-label" for="reviewRadios4">
                                   <i class="fas fa-star"></i>
                                   <i class="fas fa-star"></i>
                               </label>
                           </div>
                           <div class="form-check form-check-review">
-                              <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios5" value="option2">
+                              <input name="review" class="form-check-input" type="radio" name="reviewRadios" id="reviewRadios5" value="1"  {{ isset($_GET['review']) && $_GET['review'] == '1' ? 'checked' : '' }}>
                               <label class="form-check-label" for="reviewRadios5">
                                   <i class="fas fa-star"></i>
                               </label>
@@ -113,83 +112,95 @@
                       <button class="btn btn-primary">Filter</button>
                   </div>
               </div>
+            </form>
           </div>
 
           <div class="col-lg-8 col-md-6">
               <div class="row">
-                @foreach ($packages as $package)
-                <div class="col-lg-6 col-md-6">
-                  <div class="item pb_25">
-                      <div class="photo">
-                          <a href="{{ route('package', $package->slug) }}"><img src="{{ asset('uploads/packages/' . $package->featured_photo) }}" alt="{{ $package->name }}"></a>
-                          <div class="wishlist">
-                              <a href=""><i class="far fa-heart"></i></a>
+                @if (count($packages) > 0)
+                  @foreach ($packages as $package)
+                    <div class="col-lg-6 col-md-6">
+                      <div class="item pb_25">
+                          <div class="photo">
+                              <a href="{{ route('package', $package->slug) }}"><img src="{{ asset('uploads/packages/' . $package->featured_photo) }}" alt="{{ $package->name }}"></a>
+                              <div class="wishlist">
+                                  <a href=""><i class="far fa-heart"></i></a>
+                              </div>
+                          </div>
+                          <div class="text">
+                              <div class="price">
+                                  ${{ $package->price }} 
+                                  @if ($package->old_price)
+                                    <del>
+                                      ${{ $package->old_price }}
+                                    </del>
+                                  @endif
+                              </div>
+                              <h2>
+                                  <a href="{{ route('package', $package->slug) }}">{{ $package->name }}</a>
+                              </h2>
+
+                              @php
+                                $all_reviews = $package->reviews;
+
+                                $total_ratings = 0;
+                                $average = 0;
+
+                                if (count($all_reviews) > 0) {
+                                  foreach ($all_reviews as $review) {
+                                    $total_ratings += $review->rating;
+                                  }
+
+                                  $average = floor($total_ratings / count($package->reviews));
+                                }
+                              @endphp
+
+                              <div class="review">
+                                @for ($i = 1; $i <= 5; $i++)
+                                  @if ($i <= $average)
+                                    <i class="fas fa-star"></i>
+                                  @else
+                                    <i class="far fa-star"></i>
+                                  @endif
+                                @endfor
+                                ({{ count($all_reviews) }} Reviews)
+                              </div>
+                              <div class="element">
+                                  <div class="element-left">
+                                      <i class="fas fa-plane-departure"></i> {{ $package->destination->country }}
+                                  </div>
+                              </div>
+                              <div class="element">
+                                  <div  class="element-left">
+                                    @php
+                                      $package_tours = $package->package_tours;
+
+                                      $total_tours = 0;
+
+                                      foreach ($package_tours as $package_tour) {
+                                        if ($package_tour->booking_end_date > date('Y-m-d')) {
+                                          $total_tours += 1;
+                                        }
+                                      }
+                                    @endphp
+
+                                    <i class="fas fa-globe-asia"></i> {{ $total_tours }} Tours
+                                  </div>
+                              </div>
                           </div>
                       </div>
-                      <div class="text">
-                          <div class="price">
-                              ${{ $package->price }} 
-                              @if ($package->old_price)
-                                <del>
-                                  ${{ $package->old_price }}
-                                </del>
-                              @endif
-                          </div>
-                          <h2>
-                              <a href="package.html">{{ $package->name }}</a>
-                          </h2>
-                          <div class="review">
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                              (4 Reviews)
-                          </div>
-                          <div class="element">
-                              <div class="element-left">
-                                  <i class="fas fa-plane-departure"></i> {{ $package->destination->country }}
-                              </div>
-                              <div class="element-right">
-                                  <i class="fas fa-calendar-alt date-icon"></i> 14 Jun, 2024
-                              </div>
-                          </div>
-                          <div class="element">
-                              <div class="element-left">
-                                  <i class="fas fa-users"></i> 25 Persons
-                              </div>
-                              <div class="element-right">
-                                  <i class="fas fa-clock"></i> 7 Days
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-                @endforeach
+                    </div>
+                  @endforeach
+                @else
+                  <b style="font-size: 30px" class="text-center ">No Package Found</b>
+                @endif
+               
               </div>
 
               <div class="row">
-                  <div class="col-md-12">
-                      <div class="pagi">
-                          <nav>
-                              <ul class="pagination">
-                                  <li class="page-item">
-                                      <a class="page-link" href="#" aria-label="Previous">
-                                          <span aria-hidden="true">&laquo;</span>
-                                      </a>
-                                  </li>
-                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                  <li class="page-item">
-                                      <a class="page-link" href="#" aria-label="Next">
-                                          <span aria-hidden="true">&raquo;</span>
-                                      </a>
-                                  </li>
-                              </ul>
-                          </nav>
-                      </div>
-                  </div>
+                <div class="col-md-12">
+                  {{ $packages->appends($_GET)->links() }}
+                </div>
               </div>
           </div>
       </div>

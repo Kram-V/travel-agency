@@ -72,29 +72,38 @@
                       
                       <div class="tab-pane fade show active" id="tab-1-pane" role="tabpanel" aria-labelledby="tab-1" tabindex="0">
                           <!-- Detail -->
-                          <h2 class="mt_30">Detail</h2>
+                          <h2 class="mt_30">Details</h2>
 
                           {!! $package->description !!}
 
                           <h2 class="mt_30">Includes</h2>
                           <div class="amenity">
                               <div class="row">
-                                @foreach ($package_amenities_included as $included)
-                                <div class="col-lg-3 mb_15">
-                                    <i class="fas fa-check"></i> {{ $included->amenity->name }}
-                                </div>
-                                @endforeach
+                                @if (count($package_amenities_included) > 0)
+                                  @foreach ($package_amenities_included as $included)
+                                  <div class="col-lg-3 mb_15">
+                                      <i class="fas fa-check"></i> {{ $included->amenity->name }}
+                                  </div>
+                                  @endforeach
+                                @else
+                                  <b>No Included Amenities</b>
+                                @endif
+                             
                               </div>
                           </div>
 
                           <h2 class="mt_30">Excludes</h2>
                           <div class="amenity">
                               <div class="row">
-                                @foreach ($package_amenities_excluded as $excluded)
-                                <div class="col-lg-3 mb_15">
-                                    <i class="fas fa-times"></i> {{ $excluded->amenity->name }}
-                                </div>
-                                @endforeach
+                                @if (count($package_amenities_excluded) > 0)
+                                  @foreach ($package_amenities_excluded as $excluded)
+                                  <div class="col-lg-3 mb_15">
+                                      <i class="fas fa-times"></i> {{ $excluded->amenity->name }}
+                                  </div>
+                                  @endforeach
+                                @else
+                                  <b>No Excluded Amenities</b>
+                                @endif
                               </div>
                           </div>
                           <!-- // Detail -->
@@ -106,19 +115,22 @@
                           <!-- Tour Plan -->
                           <h2 class="mt_30">Tour Plan</h2>
                           <div class="tour-plan">
-                              
-                              <div class="table-responsive">
-                                  <table class="table table-bordered">
-                                    @foreach ($package_iteneraries as $package_itenerary)
-                                    <tr>
-                                        <td><b>{{ $package_itenerary->name }}</b></td>
-                                        <td>
-                                            {!! $package_itenerary->description !!}
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                  </table>
-                              </div>
+                              @if (count($package_iteneraries) > 0)
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                      @foreach ($package_iteneraries as $package_itenerary)
+                                      <tr>
+                                          <td><b>{{ $package_itenerary->name }}</b></td>
+                                          <td>
+                                              {!! $package_itenerary->description !!}
+                                          </td>
+                                      </tr>
+                                      @endforeach
+                                    </table>
+                                </div>
+                              @else
+                                <b>No Tour Plans</b>
+                              @endif
                           </div>
 
                           <!-- // Tour Plan -->
@@ -140,15 +152,19 @@
                           </h2>
                           <div class="photo-all">
                               <div class="row">
-                                @foreach ($package_photos as $package_photo)
-                                <div class="col-md-6 col-lg-3">
-                                    <div class="item">
-                                        <a href="{{ asset('uploads/package-photos/' . $package_photo->photo) }}" class="magnific">
-                                            <img src="{{ asset('uploads/package-photos/' . $package_photo->photo) }}" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                @endforeach
+                                @if (count($package_photos) > 0)
+                                  @foreach ($package_photos as $package_photo)
+                                  <div class="col-md-6 col-lg-3">
+                                      <div class="item">
+                                          <a href="{{ asset('uploads/package-photos/' . $package_photo->photo) }}" class="magnific">
+                                              <img src="{{ asset('uploads/package-photos/' . $package_photo->photo) }}" alt="">
+                                          </a>
+                                      </div>
+                                  </div>
+                                  @endforeach
+                                @else
+                                  <b>No Photos</b>
+                                @endif
                               </div>
                           </div>
 
@@ -158,19 +174,23 @@
                           </h2>
                           <div class="video-all">
                               <div class="row">
-                                @foreach ($package_videos as $package_video)
-                                <div class="col-md-6 col-lg-6">
-                                    <div class="item">
-                                        <a class="video-button" href="http://www.youtube.com/watch?v={{ $package_video->video }}">
-                                            <img src="http://img.youtube.com/vi/{{ $package_video->video }}/0.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="far fa-play-circle"></i>
-                                            </div>
-                                            <div class="bg"></div>
-                                        </a>
-                                    </div>
-                                </div>       
-                                @endforeach
+                                @if (count($package_videos) > 0)
+                                  @foreach ($package_videos as $package_video)
+                                  <div class="col-md-6 col-lg-6">
+                                      <div class="item">
+                                          <a class="video-button" href="http://www.youtube.com/watch?v={{ $package_video->video }}">
+                                              <img src="http://img.youtube.com/vi/{{ $package_video->video }}/0.jpg" alt="">
+                                              <div class="icon">
+                                                  <i class="far fa-play-circle"></i>
+                                              </div>
+                                              <div class="bg"></div>
+                                          </a>
+                                      </div>
+                                  </div>       
+                                  @endforeach
+                                @else
+                                <b>No Videos</b>
+                                @endif
                               </div>
                           </div>
                           <!-- // Gallery -->
@@ -182,20 +202,25 @@
                           <h2 class="mt_30">Frequently Asked Questions</h2>
                           <div class="faq-package">
                               <div class="accordion" id="accordionExample">
-                                @foreach ($package_faqs as $i => $package_faq)
-                                <div class="accordion-item mb_30">
-                                    <h2 class="accordion-header" id="heading_1">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{{ $i }}" aria-expanded="false" aria-controls="collapse_{{ $i }}">
-                                            {{ $package_faq->question }}?
-                                        </button>
-                                    </h2>
-                                    <div id="collapse_{{ $i }}" class="accordion-collapse collapse" aria-labelledby="heading_1" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                          {{ $package_faq->answer }}
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
+                                @if (count($package_faqs) > 0)
+                                  @foreach ($package_faqs as $i => $package_faq)
+                                  <div class="accordion-item mb_30">
+                                      <h2 class="accordion-header" id="heading_1">
+                                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{{ $i }}" aria-expanded="false" aria-controls="collapse_{{ $i }}">
+                                              {{ $package_faq->question }}?
+                                          </button>
+                                      </h2>
+                                      <div id="collapse_{{ $i }}" class="accordion-collapse collapse" aria-labelledby="heading_1" data-bs-parent="#accordionExample">
+                                          <div class="accordion-body">
+                                            {{ $package_faq->answer }}
+                                          </div>
+                                      </div>
+                                  </div>
+                                  @endforeach
+                                @else
+                                  <b>No FAQs</b>
+                                @endif
+                          
                               </div>
                           </div>
                           <!-- // FAQ -->
@@ -208,41 +233,46 @@
 
                               <h2>Reviews ({{ count($reviews) }})</h2>
 
-                              @foreach ($reviews as $review)
-                              <div class="review-package-section">
-                                  <div class="review-package-box d-flex justify-content-start">
-                                      <div class="left">
-                                        @if ($review->user->photo)
-                                          <img src="{{ asset('uploads/user/' . $review->user->photo) }}" alt="{{ $review->user->name }}">
-                                        @else
-                                          <img src="{{ asset('images/default.png') }}" alt="Default User Image">
-                                        @endif
-                                      </div>
-                                      <div class="right">
-                                          <div class="name">{{ $review->user->name }}</div>
-                                          <div class="date">
-                                            {{ $review->created_at->format('F j, Y') }}
+                              @if (count($reviews) > 0)
+                                @foreach ($reviews as $review)
+                                <div class="review-package-section">
+                                    <div class="review-package-box d-flex justify-content-start">
+                                        <div class="left">
+                                          @if ($review->user->photo)
+                                            <img src="{{ asset('uploads/user/' . $review->user->photo) }}" alt="{{ $review->user->name }}">
+                                          @else
+                                            <img src="{{ asset('images/default.png') }}" alt="Default User Image">
+                                          @endif
+                                        </div>
+                                        <div class="right">
+                                            <div class="name">{{ $review->user->name }}</div>
+                                            <div class="date">
+                                              {{ $review->created_at->format('F j, Y') }}
 
-                                            <div class="review">
-                                                <div class="set">
-                                                  @for ($i = 1; $i <= 5; $i++)
-                                                    @if ($i <= $review->rating)
-                                                      <i style="color: rgba(255, 183, 0, 0.73)" class="fas fa-star"></i>
-                                                    @else
-                                                      <i style="color: rgba(255, 183, 0, 0.73)" class="far fa-star"></i>
-                                                    @endif
-                                                  @endfor
-                                                </div>
+                                              <div class="review">
+                                                  <div class="set">
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                      @if ($i <= $review->rating)
+                                                        <i style="color: rgba(255, 183, 0, 0.73)" class="fas fa-star"></i>
+                                                      @else
+                                                        <i style="color: rgba(255, 183, 0, 0.73)" class="far fa-star"></i>
+                                                      @endif
+                                                    @endfor
+                                                  </div>
+                                              </div>
                                             </div>
-                                          </div>
-                                        
-                                          <div class="text">
-                                            {{ $review->comment }}
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              @endforeach
+                                          
+                                            <div class="text">
+                                              {{ $review->comment }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                              @else
+                                <b>No Reviews Found</b>
+                              @endif
+                             
                             
                               <div class="mt_40"></div>
 
@@ -348,7 +378,9 @@
                             <input type="hidden" name="package_id" value="{{ $package->id }}"> 
                             <div class="row">
                                 <div class="col-md-8">
-                                  @php $i = 0; @endphp
+                                  @php 
+                                    $i = 0; 
+                                  @endphp
                                   <div class="row">
                                     @foreach ($package_tours as $package_tour)
                                       @if ($package_tour->booking_end_date <= date('Y-m-d'))
@@ -363,7 +395,7 @@
 
                                         foreach ($all_data as $data) {
                                           $total_booked_seats += $data->total_person;
-                                        }                                        
+                                        }                               
                                       @endphp
 
                                       <div class="col-md-12">
@@ -409,6 +441,11 @@
                                         </div>
                                       </div>
                                     @endforeach
+
+                                    
+                                    @if ($current_total_tours === 0)
+                                      <b class="text-center mt-5">No Tours Yet</b>
+                                    @endif
                                   </div>
                                 </div>
 

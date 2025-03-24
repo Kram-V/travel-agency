@@ -99,10 +99,41 @@ class FrontController extends Controller
       return view('front.blog-category', compact('blog_category', 'blog_posts'));
     }
 
-    public function packages() {
-      $packages = Package::latest()->get();
+    public function packages(Request $request) {
+      $form_package_name = $request->package_name;
+      $form_min_price = $request->min_price;
+      $form_max_price = $request->max_price;
+      $form_destination_id = $request->destination_id;
+      $form_review = $request->review;
 
-      return view('front.packages', compact('packages'));
+      $destinations = Destination::latest()->get();
+
+      $packages = Package::with(['destination', 'reviews', 'package_tours'])->latest();
+
+      if (!empty($form_package_name)) {
+        $packages = $packages->where('name', 'like', "%{$form_package_name}%");
+      }
+
+      if (!empty($form_min_price)) {
+        $packages = $packages->where('price', '>=', (int) $form_min_price);
+      }
+
+      if (!empty($form_max_price)) {
+        $packages = $packages->where('price', '<=', (int) $form_max_price);
+      }
+
+      if (!empty($form_destination_id)) {
+        $packages = $packages->where('destination_id', (int) $form_destination_id);
+      }
+
+
+      if (!empty($form_review) && $form_review !== 'all') {
+        $packages = $packages->where('average_rating', (int) $form_review);
+      }
+
+      $packages = $packages->paginate(6);
+
+      return view('front.packages', compact('packages', 'destinations'));
     }
 
     public function package($slug) {
@@ -128,6 +159,14 @@ class FrontController extends Controller
         $average_rating = floor($total_rating / count($reviews));
       }
 
+      $current_total_tours = 0;
+
+      foreach($package_tours as $package_tour) {
+        if ($package_tour->booking_end_date > date('Y-m-d')) {
+          $current_total_tours += 1;
+        }
+      }
+
     
       return view(
         'front.package', 
@@ -141,7 +180,8 @@ class FrontController extends Controller
           'package_faqs',
           'package_tours',
           'reviews',
-          'average_rating'
+          'average_rating',
+          'current_total_tours'
         ));
     }
 
@@ -355,6 +395,24 @@ class FrontController extends Controller
       $review->rating = $request->rating;
       $review->comment = $request->comment;
       $review->save();
+
+
+      $reviews = Review::where('package_id', $review->package_id)->get();
+      $total_ratings = 0;
+      $average = 0;
+
+      if (count($reviews) > 0) {
+        foreach($reviews as $review) {
+          $total_ratings += $review->rating;
+        }
+
+        $average = floor($total_ratings / count($reviews));
+      }
+
+
+      $package = Package::where('id', $review->package_id)->first();
+      $package->average_rating = $average;
+      $package->update();
 
       return redirect()->back()->with('success', 'You have rated and reviewed successfully');
     }
