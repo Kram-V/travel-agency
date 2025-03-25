@@ -5,8 +5,8 @@
   <li class="list-group-item {{ Route::is('bookings') ? 'active' : '' }}">
       <a href="{{ route('bookings') }}">Bookings</a>
   </li>
-  <li class="list-group-item">
-      <a href="user-message.html">Message</a>
+  <li class="list-group-item {{ Route::is('message') ? 'active' : '' }}">
+      <a href="{{ route('message') }}">Message</a>
   </li>
   <li class="list-group-item {{ Route::is('reviews') ? 'active' : '' }}">
       <a href="{{ route('reviews') }}">Reviews</a>

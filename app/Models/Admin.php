@@ -17,4 +17,8 @@ class Admin extends Authenticatable
       'password',
       'token',
     ];
+
+    public function message_comments() {
+      return $this->hasMany(MessageComment::class);
+    }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminDestinationController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminFeatureController;
+use App\Http\Controllers\Admin\AdminMessageController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminReviewController;
@@ -44,10 +45,13 @@ Route::get('/verify-email/{token}/{email}', [AuthController::class, 'verify_emai
 
 Route::middleware('auth')->group(function () {
   Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+  Route::get('/message', [UserController::class, 'message'])->name('message');
+  Route::get('/message-start', [UserController::class, 'message_start'])->name('message_start');
   Route::get('/profile', [UserController::class, 'profile'])->name('profile');
   Route::get('/bookings', [UserController::class, 'bookings'])->name('bookings');
   Route::get('/invoices/{invoice_no}', [UserController::class, 'invoice'])->name('invoice');
   Route::get('/reviews', [UserController::class, 'reviews'])->name('reviews');
+  Route::post('/message', [UserController::class, 'store_message'])->name('store_message');
   Route::post('/profile', [UserController::class, 'update_profile'])->name('update_profile');
 
   Route::get('/stripe-success', [FrontController::class, 'stripe_success'])->name('stripe_success');
@@ -192,6 +196,11 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::delete('/tours/{tour}', [AdminTourController::class, 'delete'])->name('admin_tours_delete');
 
   Route::get('/reviews', [AdminReviewController::class, 'index'])->name('admin_reviews_index');
+
+  Route::get('/user-section/messages', [AdminMessageController::class, 'messages'])->name('admin_user_section_messages');
+  Route::get('/user-section/messages/details/{id}', [AdminMessageController::class, 'message_details'])->name('admin_user_section_message_details');
+  Route::get('/user-section/users', [AdminMessageController::class, 'users'])->name('admin_user_section_users');
+  Route::post('user-section/messages', [AdminMessageController::class, 'store_message'])->name('admin_user_section_store_message');
 
   Route::get('/logout', [AdminAuthController::class, 'logout_submit'])->name('admin_logout_submit');
 });
