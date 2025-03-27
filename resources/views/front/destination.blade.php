@@ -78,7 +78,7 @@
         
                                       <div class="review">
                                         @for ($i = 1; $i <= 5; $i++)
-                                          @if ($i <= $average)
+                                          @if ($i <= round($package->average_rating))
                                             <i class="fas fa-star"></i>
                                           @else
                                             <i class="far fa-star"></i>

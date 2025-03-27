@@ -76,7 +76,7 @@
       <div class="row">
           <div class="col-md-12">
               <div class="heading">
-                  <h2>Popular Destinations</h2>
+                  <h2>Some Destinations</h2>
                   <p>
                       Explore our most popular travel destinations around the world
                   </p>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="text">
                     <h2>
-                        <a href="{{ route('destination', $destination->slug) }}">Australia</a>
+                        <a href="{{ route('destination', $destination->slug) }}">{{ $destination->country }}</a>
                     </h2>
                 </div>
             </div>
