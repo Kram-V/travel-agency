@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminReviewController;
 use App\Http\Controllers\Admin\AdminSliderController;
+use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\Admin\AdminTeamMemberController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminTourController;
@@ -36,6 +37,7 @@ Route::get('/packages', [FrontController::class, 'packages'])->name('packages');
 Route::get('/packages/{slug}', [FrontController::class, 'package'])->name('package');
 
 Route::post('/send-inquiry', [FrontController::class, 'send_inquiry'])->name('send_inquiry');
+Route::post('/subscriber', [FrontController::class, 'send_subscriber'])->name('send_subscriber');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -197,10 +199,13 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 
   Route::get('/reviews', [AdminReviewController::class, 'index'])->name('admin_reviews_index');
 
-  Route::get('/user-section/messages', [AdminMessageController::class, 'messages'])->name('admin_user_section_messages');
-  Route::get('/user-section/messages/details/{id}', [AdminMessageController::class, 'message_details'])->name('admin_user_section_message_details');
-  Route::get('/user-section/users', [AdminMessageController::class, 'users'])->name('admin_user_section_users');
-  Route::post('user-section/messages', [AdminMessageController::class, 'store_message'])->name('admin_user_section_store_message');
+  Route::get('/messages', [AdminMessageController::class, 'index'])->name('admin_messages_index');
+  Route::get('/messages/details/{id}', [AdminMessageController::class, 'message_details'])->name('admin_messages_message_details');
+  Route::post('/messages', [AdminMessageController::class, 'store_message'])->name('admin_messages_store_message');
+
+  Route::get('/subscribers-email', [AdminSubscriberController::class, 'index'])->name('admin_subscribers_index');
+  Route::get('/subscribers-send-mail', [AdminSubscriberController::class, 'email'])->name('admin_subscribers_email');
+  Route::post('/subscribers-send-mail', [AdminSubscriberController::class, 'send_email'])->name('admin_subscribers_send_email');
 
   Route::get('/logout', [AdminAuthController::class, 'logout_submit'])->name('admin_logout_submit');
 });

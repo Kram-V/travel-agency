@@ -9,7 +9,7 @@
           <div class="section-header justify-content-between">
               <h1>Messages from {{ $message->user->name }}</h1>
               <div class="ml-auto">
-                <a href="{{ route('admin_user_section_messages') }}" class="btn btn-primary">Back to listing</a>
+                <a href="{{ route('admin_messages_index') }}" class="btn btn-primary">Back to listing</a>
             </div>
           </div>
           <div class="section-body">
@@ -60,7 +60,7 @@
                       @if (count($message_comments) > 0)
                         <div class="card col-5">
                           <div class="card-body">
-                            <form action="{{ route('admin_user_section_store_message') }}" method="POST">
+                            <form action="{{ route('admin_messages_store_message') }}" method="POST">
                                 @csrf
                                 <input type="hidden" value="{{ $message->id }}" name="message_id">
                                 <input type="hidden" value="{{ $message->user->email }}" name="customer_email">

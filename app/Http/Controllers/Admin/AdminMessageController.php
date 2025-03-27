@@ -12,17 +12,17 @@ use Illuminate\Support\Facades\Mail;
 
 class AdminMessageController extends Controller
 {
-    public function messages() {
+    public function index() {
       $messages = Message::with('user')->latest()->get();
 
-      return view('admin.user.user-section.messages.index', compact('messages'));
+      return view('admin.user.messages.index', compact('messages'));
     }
 
     public function message_details($id) {
       $message = Message::with('user')->where('id', $id)->first();
       $message_comments = MessageComment::where('message_id', $id)->latest()->get();
 
-      return view('admin.user.user-section.messages.details', compact('message', 'message_comments'));
+      return view('admin.user.messages.details', compact('message', 'message_comments'));
     }
 
     public function store_message(Request $request) {
@@ -45,9 +45,5 @@ class AdminMessageController extends Controller
 
       return redirect()->back()->with('success', 'You message has been sent successfully');
     }
-
-    public function users() {
-      return view('admin.user.user-section.users.index');
-    }
-    
+  
 }

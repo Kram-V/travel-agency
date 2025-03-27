@@ -31,11 +31,12 @@
           <li class="{{ Request::is('admin/amenities*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_amenities_index') }}"><i class="fas fa-suitcase"></i><span>Amenities</span></a></li>
           <li class="{{ Request::is('admin/tours*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_tours_index') }}"><i class="fas fa-suitcase"></i><span>Tours</span></a></li>
           <li class="{{ Request::is('admin/reviews*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_reviews_index') }}"><i class="fas fa-suitcase"></i><span>Reviews</span></a></li>
-          <li class="nav-item dropdown {{ Request::is('admin/user-section/*') ? 'active' : '' }}">
-            <a href="#" class="nav-link has-dropdown"><i class="fas fa-blog"></i><span>User Section</span></a>
+          <li class="{{ Request::is('admin/messages/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_messages_index') }}"><i class="fas fa-suitcase"></i><span>Messages</span></a></li>
+          <li class="nav-item dropdown {{ Request::is('admin/subscribers-*') ? 'active' : '' }}">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-blog"></i><span>Subscribers Section</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ Request::is('admin/user-section/users') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_user_section_users') }}"><i class="fas fa-angle-right"></i>Users</a></li>
-                <li class="{{ Request::is('admin/user-section/messages') ? 'active' : '' }}"><a class="nav-link active" href="{{ route('admin_user_section_messages') }}"><i class="fas fa-angle-right"></i>Messages</a></li>
+                <li class="{{ Request::is('admin/subscribers-email') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_subscribers_index') }}"><i class="fas fa-angle-right"></i>Subscribers</a></li>
+                <li class="{{ Request::is('admin/subscribers-send-email') ? 'active' : '' }}"><a class="nav-link active" href="{{ route('admin_subscribers_email') }}"><i class="fas fa-angle-right"></i>Email</a></li>
             </ul>
         </li>
       </ul>

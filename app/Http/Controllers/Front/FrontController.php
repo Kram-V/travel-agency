@@ -21,6 +21,7 @@ use App\Models\PackageTour;
 use App\Models\PackageVideo;
 use App\Models\Review;
 use App\Models\Slider;
+use App\Models\Subscriber;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
 use App\Models\WelcomeItem;
@@ -206,6 +207,19 @@ class FrontController extends Controller
       Mail::to('markanthonyvivar241@gmail.com')->send(new WebsiteMail($subject, $content));
 
       return redirect()->back()->with('success', 'Email Sent Successfully');
+    }
+
+
+    public function send_subscriber(Request $request) {
+      $request->validate([
+        'email' => 'required|email|unique:subscribers',
+      ]);
+
+      $subscriber = new Subscriber();
+      $subscriber->email = $request->email;
+      $subscriber->save();
+
+      return redirect()->back()->with('success', 'You have subscribed your email');
     }
 
     public function payment(Request $request) {

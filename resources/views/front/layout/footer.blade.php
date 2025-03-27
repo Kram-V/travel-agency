@@ -64,9 +64,10 @@
                       To get the latest news from our website, please
                       subscribe us here:
                   </p>
-                  <form action="" method="post">
+                  <form action="{{ route('send_subscriber') }}" method="POST">
+                    @csrf
                       <div class="form-group">
-                          <input type="text" name="" class="form-control" placeholder="Email Address">
+                          <input type="text" name="email" class="form-control" placeholder="Email Address">
                       </div>
                       <div class="form-group">
                           <input type="submit" class="btn btn-primary" value="Subscribe Now">

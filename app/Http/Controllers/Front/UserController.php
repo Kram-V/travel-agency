@@ -68,7 +68,7 @@ class UserController extends Controller
       $message_comment->comment = $request->message;
       $message_comment->save();
 
-      $link = route('admin_user_section_message_details', $message->id);
+      $link = route('admin_messages_message_details', $message->id);
       $subject = "New User's Message";
       $content = "To see the message of your customer, please click this link: <a href='{$link}'>Click Here</a>";
 
