@@ -180,6 +180,29 @@ class FrontController extends Controller
         ));
     }
 
+    public function contact() {
+      return view('front.contact-page');
+    }
+
+    public function send_contact(Request $request) {
+      $request->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'message' => 'required',
+      ]);
+
+      $subject = 'Inquiry';
+      $content = "
+        <b>Name: </b> {$request->name} <br><br>
+        <b>Email: </b> {$request->email} <br><br>
+        <b>Message: </b> {$request->message} 
+      ";
+  
+      Mail::to('markanthonyvivar241@gmail.com')->send(new WebsiteMail($subject, $content));
+
+      return redirect()->back()->with('success', 'Email Sent Successfully');
+    }
+
     public function send_inquiry(Request $request) {
       $request->validate([
         'full_name' => 'required',

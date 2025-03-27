@@ -35,7 +35,9 @@ Route::get('/blogs/{slug}', [FrontController::class, 'blog'])->name('blog');
 Route::get('/blogs/category/{slug}', [FrontController::class, 'blog_category'])->name('blog_category');
 Route::get('/packages', [FrontController::class, 'packages'])->name('packages');
 Route::get('/packages/{slug}', [FrontController::class, 'package'])->name('package');
+Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 
+Route::post('/send-contact', [FrontController::class, 'send_contact'])->name('send_contact');
 Route::post('/send-inquiry', [FrontController::class, 'send_inquiry'])->name('send_inquiry');
 Route::post('/subscriber', [FrontController::class, 'send_subscriber'])->name('send_subscriber');
 
