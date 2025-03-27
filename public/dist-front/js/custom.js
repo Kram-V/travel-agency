@@ -14,7 +14,7 @@
             {
                 scrollTop: 0,
             },
-            700
+            0
         );
     });
 
@@ -128,9 +128,8 @@
 
     $(".datepicker").datepicker({
         format: "yyyy-mm-dd",
-        todayHighlight: true
+        todayHighlight: true,
     });
 
-    $('.counter').counterUp();
-
+    $(".counter").counterUp();
 })(jQuery);
