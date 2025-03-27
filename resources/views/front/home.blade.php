@@ -140,7 +140,7 @@
       <div class="row">
           <div class="col-md-12">
               <div class="heading">
-                  <h2>Some Of Our Packages</h2>
+                  <h2>Latest Packages</h2>
                   <p>
                       Explore our most popular travel packages around the world
                   </p>

@@ -24,6 +24,7 @@ use App\Models\Slider;
 use App\Models\Subscriber;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
+use App\Models\User;
 use App\Models\WelcomeItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,8 +47,12 @@ class FrontController extends Controller
 
     public function about() {
       $welcome_item = WelcomeItem::first();
+      $total_destinations = Destination::get()->count();
+      $total_clients = User::get()->count();
+      $total_packages = Package::get()->count();
+      $total_testimonials = Testimonial::get()->count();
 
-      return view('front.about', compact('welcome_item'));
+      return view('front.about', compact('welcome_item', 'total_destinations', 'total_clients', 'total_packages', 'total_testimonials'));
     }
 
     public function destinations() {

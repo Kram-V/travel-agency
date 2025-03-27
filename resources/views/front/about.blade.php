@@ -104,19 +104,19 @@
   <div class="container">
       <div class="row counter-items">
           <div class="col-md-3 counter-item">
-              <div class="counter">40</div>
+              <div class="counter">{{ $total_destinations }}</div>
               <div class="text">Destinations</div>
           </div>
           <div class="col-md-3 counter-item">
-              <div class="counter">1200</div>
+              <div class="counter">{{ $total_clients }}</div>
               <div class="text">Clients</div>
           </div>
           <div class="col-md-3 counter-item">
-              <div class="counter">130</div>
+              <div class="counter">{{ $total_packages }}</div>
               <div class="text">Packages</div>
           </div>
           <div class="col-md-3 counter-item">
-              <div class="counter">60</div>
+              <div class="counter">{{ $total_testimonials }}</div>
               <div class="text">Testimonials</div>
           </div>
       </div>
