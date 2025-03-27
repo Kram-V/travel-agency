@@ -10,14 +10,14 @@
               <div class="review">
                   <div class="set">
                     @for ($i = 1; $i <= 5; $i++)
-                      @if ($i <= $average_rating)
+                      @if ($i <= round($package->average_rating))
                         <i class="fas fa-star"></i>
                       @else
                         <i class="far fa-star"></i>
                       @endif
                     @endfor
                   </div>
-                  <span>({{ $average_rating }} out of 5)</span>
+                  <span>({{ $package->average_rating }} out of 5)</span>
               </div>
               <div class="price">
                   ${{ $package->price  }} 

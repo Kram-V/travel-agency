@@ -118,7 +118,7 @@
           <div class="col-lg-8 col-md-6">
               <div class="row">
                 @if (count($packages) > 0)
-                  @foreach ($packages as $package)
+                  @foreach ($packages as $package) 
                     <div class="col-lg-6 col-md-6">
                       <div class="item pb_25">
                           <div class="photo">
@@ -129,7 +129,7 @@
                                   ${{ $package->price }} 
                                   @if ($package->old_price)
                                     <del>
-                                      ${{ $package->old_price }}
+                                      ${{ $package->old_price }} 
                                     </del>
                                   @endif
                               </div>
@@ -138,23 +138,12 @@
                               </h2>
 
                               @php
-                                $all_reviews = $package->reviews;
-
-                                $total_ratings = 0;
-                                $average = 0;
-
-                                if (count($all_reviews) > 0) {
-                                  foreach ($all_reviews as $review) {
-                                    $total_ratings += $review->rating;
-                                  }
-
-                                  $average = floor($total_ratings / count($package->reviews));
-                                }
+                                $all_reviews = $package->reviews; 
                               @endphp
 
                               <div class="review">
                                 @for ($i = 1; $i <= 5; $i++)
-                                  @if ($i <= $average)
+                                  @if ($i <= round($package->average_rating))
                                     <i class="fas fa-star"></i>
                                   @else
                                     <i class="far fa-star"></i>

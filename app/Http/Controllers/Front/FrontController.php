@@ -150,18 +150,6 @@ class FrontController extends Controller
       $package_tours = PackageTour::where('package_id', $package->id)->get();
       $reviews = Review::with('user')->where('package_id', $package->id)->latest()->get();
 
-      $total_rating = 0;
-
-      foreach($reviews as $review) {
-        $total_rating += $review->rating;
-      }
-
-      if (count($reviews) === 0) {
-        $average_rating = 0;
-      } else {
-        $average_rating = floor($total_rating / count($reviews));
-      }
-
       $current_total_tours = 0;
 
       foreach($package_tours as $package_tour) {
@@ -183,7 +171,6 @@ class FrontController extends Controller
           'package_faqs',
           'package_tours',
           'reviews',
-          'average_rating',
           'current_total_tours'
         ));
     }
@@ -412,7 +399,6 @@ class FrontController extends Controller
       $review->comment = $request->comment;
       $review->save();
 
-
       $reviews = Review::where('package_id', $review->package_id)->get();
       $total_ratings = 0;
       $average = 0;
@@ -422,9 +408,8 @@ class FrontController extends Controller
           $total_ratings += $review->rating;
         }
 
-        $average = floor($total_ratings / count($reviews));
+        $average = round($total_ratings / count($reviews), 1);
       }
-
 
       $package = Package::where('id', $review->package_id)->first();
       $package->average_rating = $average;
