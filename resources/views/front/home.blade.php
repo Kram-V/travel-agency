@@ -293,14 +293,14 @@
       </div>
       <div class="row">
         @foreach ($blog_posts as $post)
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6"> 
               <div class="item pb_70">
                   <div class="photo">
                       <img src="{{ asset('uploads/blog-posts/' . $post->photo) }}" alt="{{ $post->title }}" />
                   </div>
                   <div class="text">
                       <h2>
-                          <a href="post.html">{{ $post->title }}</a>
+                          <a href="{{ route('blog', $post->slug) }}">{{ $post->title }}</a>
                       </h2>
                       <div class="short-des">
                           <p>
@@ -308,7 +308,7 @@
                           </p>
                       </div>
                       <div class="button-style-2 mt_20">
-                          <a href="post.html">Read More</a>
+                          <a href="{{ route('blog', $post->slug) }}">Read More</a>
                       </div>
                   </div>
               </div>
