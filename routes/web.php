@@ -41,9 +41,12 @@ Route::post('/send-contact', [FrontController::class, 'send_contact'])->name('se
 Route::post('/send-inquiry', [FrontController::class, 'send_inquiry'])->name('send_inquiry');
 Route::post('/subscriber', [FrontController::class, 'send_subscriber'])->name('send_subscriber');
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::get('/forget-password', [AuthController::class, 'forget_password'])->name('forget_password');
+Route::middleware('redirectToHomePage')->group(function () {
+  Route::get('/login', [AuthController::class, 'login'])->name('login');
+  Route::get('/register', [AuthController::class, 'register'])->name('register'); 
+  Route::get('/forget-password', [AuthController::class, 'forget_password'])->name('forget_password');
+});
+
 Route::get('/reset-password/{token}/{email}', [AuthController::class, 'reset_password'])->name('reset_password');
 Route::get('/verify-email/{token}/{email}', [AuthController::class, 'verify_email'])->name('verify_email');
 
@@ -75,8 +78,11 @@ Route::post('/reset-password/{token}/{email}', [AuthController::class, 'reset_pa
 
 // ADMIN
 Route::prefix('admin')->group(function () {
-  Route::get('/login', [AdminAuthController::class, 'login'])->name('admin_login');
-  Route::get('/forget-password', [AdminAuthController::class, 'forget_password'])->name('admin_forget_password');
+  Route::middleware('redirectToAdminPage')->group(function () {
+    Route::get('/login', [AdminAuthController::class, 'login'])->name('admin_login');
+    Route::get('/forget-password', [AdminAuthController::class, 'forget_password'])->name('admin_forget_password');
+  });
+
   Route::get('/reset-password/{token}/{email}', [AdminAuthController::class, 'reset_password'])->name('admin_reset_password');
 
   Route::post('/login', [AdminAuthController::class, 'login_submit'])->name('admin_login_submit');
