@@ -85,8 +85,8 @@
       </div>
       <div class="row">
         @foreach ($destinations as $destination)
-        <div class="col-lg-3 col-md-6">
-            <div class="item pb_25">
+        <div class="col-lg-3 col-md-6 pb_25">
+            <div class="item">
                 <div class="photo">
                     <a href="{{ route('destination', $destination->slug) }}"><img src="{{ asset('uploads/destinations/' . $destination->featured_photo) }}" alt=""></a>
                 </div>
