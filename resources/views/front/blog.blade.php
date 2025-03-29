@@ -43,14 +43,14 @@
                   <h2>Latest Posts</h2>
                   <ul>
                     @foreach ($latest_blog_posts as  $latest_blog_post)
-                      <li><a href="{{ route('blog', $latest_blog_post->slug) }}"><i class="fas fa-angle-right"></i> {{ $latest_blog_post->title }}</a></li>
+                      <li><a href="{{ route('blog', $latest_blog_post->slug) }}" class="{{ $blog_post->title === $latest_blog_post->title ? 'active' : '' }}"><i class="fas fa-angle-right"></i> {{ $latest_blog_post->title }}</a></li>
                     @endforeach
                   </ul>
 
                   <h2 class="mt_40">Categories</h2>
                   <ul>
                     @foreach ($categories as $category)
-                      <li><a href="{{ route('blog_category', $category->slug) }}"><i class="fas fa-angle-right"></i> {{ $category->name }}</a></li>
+                      <li><a href="{{ route('blog_category', $category->slug) }}" class="{{ $category->name === $blog_post->blog_category->name ? 'active' : '' }}"><i class="fas fa-angle-right"></i> {{ $category->name }}</a></li>
                     @endforeach
                   </ul>
 

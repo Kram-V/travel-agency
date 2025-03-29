@@ -2024,6 +2024,9 @@ select {
 .post .left-item {
     margin-bottom: 30px;
 }
+.post .active {
+    color: #fcbd01 !important;
+}
 .post .left-item .main-photo {
     margin-bottom: 25px;
 }
