@@ -109,7 +109,7 @@
                       </div>
                   </div>
                   <div class="filter-button">
-                      <button class="btn btn-primary">Filter</button>
+                      <button class="btn">Filter</button>
                   </div>
               </div>
             </form>

@@ -41,14 +41,13 @@
 
 
               <div class="main-item mb_50">
-
                   <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
                       <li class="nav-item" role="presentation">
-                          <button class="nav-link active" id="tab-1" data-bs-toggle="tab" data-bs-target="#tab-1-pane" type="button" role="tab" aria-controls="tab-1-pane" aria-selected="true">Detail</button>
+                          <button class="nav-link active" id="tab-1" data-bs-toggle="tab" data-bs-target="#tab-1-pane" type="button" role="tab" aria-controls="tab-1-pane" aria-selected="true">Details</button>
                       </li>
-                      <li class="nav-item" role="presentation">
+                      {{-- <li class="nav-item" role="presentation">
                           <button class="nav-link" id="tab-2" data-bs-toggle="tab" data-bs-target="#tab-2-pane" type="button" role="tab" aria-controls="tab-2-pane" aria-selected="false">Tour Plan</button>
-                      </li>
+                      </li> --}}
                       <li class="nav-item" role="presentation">
                           <button class="nav-link" id="tab-3" data-bs-toggle="tab" data-bs-target="#tab-3-pane" type="button" role="tab" aria-controls="tab-3-pane" aria-selected="false">Location</button>
                       </li>
@@ -111,8 +110,7 @@
                           
                       </div>
 
-                      <div class="tab-pane fade" id="tab-2-pane" role="tabpanel" aria-labelledby="tab-2" tabindex="0">
-                          <!-- Tour Plan -->
+                      {{-- <div class="tab-pane fade" id="tab-2-pane" role="tabpanel" aria-labelledby="tab-2" tabindex="0">
                           <h2 class="mt_30">Tour Plan</h2>
                           <div class="tour-plan">
                               @if (count($package_iteneraries) > 0)
@@ -134,7 +132,7 @@
                           </div>
 
                           <!-- // Tour Plan -->
-                      </div>
+                      </div> --}}
 
                       <div class="tab-pane fade" id="tab-3-pane" role="tabpanel" aria-labelledby="tab-3" tabindex="0">
                           <!-- Location -->
@@ -227,7 +225,7 @@
                       </div>
 
 
-                      <div class="tab-pane fade" id="tab-6-pane" role="tabpanel" aria-labelledby="tab-6" tabindex="0">
+                      <div class="tab-pane fade review-package-container mt_30" id="tab-6-pane" role="tabpanel" aria-labelledby="tab-6" tabindex="0">
                           <!-- Review -->
                           <div class="review-package">
 
@@ -323,7 +321,7 @@
                                           <textarea class="form-control" rows="3" placeholder="Comment" name="comment"></textarea>
                                       </div>
                                       <div class="mb-3">
-                                          <button type="submit" class="btn btn-primary">Submit</button>
+                                          <button type="submit" class="btn btn-submit">Submit</button>
                                       </div>
                                     </form>
                                   @else
@@ -333,18 +331,17 @@
                                   <div class="alert alert-danger">You need to book first with this package and payment completed to review.</div>            
                                 @endif  
                               @else
-                                <a href="{{ route('login') }}" class="btn btn-primary">Login to Review</a>
+                                <a href="{{ route('login') }}" class="btn btn-login">Login to Review</a>
                               @endif
-                           
                           </div>
                           <!-- // Review -->
                       </div>
 
 
 
-                      <div class="tab-pane fade" id="tab-7-pane" role="tabpanel" aria-labelledby="tab-7" tabindex="0">
+                      <div class="tab-pane fade enquery-form-container mt_30" id="tab-7-pane" role="tabpanel" aria-labelledby="tab-7" tabindex="0">
                           <!-- Inquiry -->
-                          <h2 class="mt_30">Ask Your Question</h2>
+                          <h2>Ask Your Question</h2>
                           <div class="enquery-form">
                               <form action="{{ route('send_inquiry') }}" method="POST">
                                   @csrf
@@ -360,8 +357,8 @@
                                   <div class="mb-3">
                                       <textarea class="form-control h-150" rows="3" placeholder="Message" name="message">{{ old('message') }}</textarea>
                                   </div>
-                                  <div class="mb-3">
-                                      <button type="submit" class="btn btn-primary">
+                                  <div>
+                                      <button type="submit" class="btn">
                                           Send Message
                                       </button>
                                   </div>
@@ -449,47 +446,37 @@
                                   </div>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <h2 class="mt_30">Payment</h2>
-                                
-                                    <div class="summary">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered">
-                                                <tr>
-                                                    <td>
-                                                        <input type="hidden" name="ticket_price" id="ticketPrice" value="{{ $package->price }}">
-                                                        <label for=""><b>Number of Persons</b></label>
-                                                        <input type="number" min="1" max="100" name="total_person" class="form-control" value="1" id="numPersons" oninput="calculateTotal()">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label for=""><b>Total</b></label>
-                                                        <input type="text" name="paid_amount" class="form-control" id="totalAmount" value="${{ $package->price }}" disabled>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label for=""><b>Select Payment Method</b></label>
-                                                        <select name="payment_method" class="form-select">
-                                                            <option value="paypal">PayPal</option>
-                                                            <option value="stripe">Stripe</option>
-                                                            <option value="cash">Cash</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        @if (Auth::guard('web')->check())
-                                                          <button type="submit" class="btn btn-primary">Pay Now</button>
-                                                        @else
-                                                          <a href="{{ route('login') }}"  class="btn btn-primary">Login First</a>
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                <div class="col-md-4 payment-container mt_30">
+                                    <h2>Payment</h2>
+                                      <div>
+                                        <div class="mb-3">
+                                          <input type="hidden" name="ticket_price" id="ticketPrice" value="{{ $package->price }}">
+                                          <label for=""><b>Number of Persons</b></label>
+                                          <input type="number" min="1" max="100" name="total_person" class="form-control" value="1" id="numPersons" oninput="calculateTotal()">
                                         </div>
-                                    </div>
+
+                                        <div class="mb-3">
+                                          <label for=""><b>Total</b></label>
+                                          <input type="text" name="paid_amount" class="form-control" id="totalAmount" value="${{ $package->price }}" disabled>
+                                        </div>
+
+                                        <div class="mb-4">
+                                          <label for=""><b>Select Payment Method</b></label>
+                                          <select name="payment_method" class="form-select">
+                                              <option value="paypal">PayPal</option>
+                                              <option value="stripe">Stripe</option>
+                                              <option value="cash">Cash</option>
+                                          </select>
+                                        </div>
+
+                                        <div>
+                                          @if (Auth::guard('web')->check())
+                                            <button type="submit" class="btn btn-submit">Pay Now</button>
+                                          @else
+                                            <a href="{{ route('login') }}"  class="btn btn-submit">Login First</a>
+                                          @endif
+                                        </div>
+                                      </div>
                               
                                     <script>
                                         function calculateTotal() {
