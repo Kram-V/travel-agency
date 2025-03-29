@@ -1387,7 +1387,8 @@ select {
     margin-right: 6px;
     margin-bottom: 6px;
 }
-.footer ul.social li a {
+.footer ul.social li a,
+.team .social ul li a {
     color: #fff;
     background: #fcbd01;
     width: 30px;

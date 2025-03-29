@@ -8,9 +8,9 @@
               <h2>{{ $team_member->name }}</h2>
               <div class="breadcrumb-container">
                   <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                      <li class="breadcrumb-item"><a href="volunteers.html">Team Members</a></li>
-                      <li class="breadcrumb-item active">Pat Flynn</li>
+                      <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                      <li class="breadcrumb-item"><a href="{{ route('team_members') }}">Team Members</a></li>
+                      <li class="breadcrumb-item active">{{ $team_member->name }}</li>
                   </ol>
               </div>
           </div>
@@ -35,46 +35,36 @@
               <div class="table-responsive">
                   <table class="table table-bordered">
                       <tr>
-                          <td>Name</td>
+                          <td><b>Name</b></td>
                           <td>{{ $team_member->name }}</td>
                       </tr>
                       <tr>
-                          <td>Designation</td>
+                          <td><b>Designation</b></td>
                           <td>{{ $team_member->designation }}</td>
                       </tr>
                       <tr>
-                          <td>Address</td>
+                          <td><b>Address</b></td>
                           <td>{{ $team_member->address }}</td>
                       </tr>
                       <tr>
-                          <td>Email Address</td>
+                          <td><b>Email Address</b></td>
                           <td>{{ $team_member->email_address }}</td>
                       </tr>
                       <tr>
-                          <td>Phone</td>
+                          <td><b>Phone</b></td>
                           <td>{{ $team_member->phone }}</td>
                       </tr>
                       <tr>
-                          <td>Social Media</td>
+                          <td><b>Social Media</b></td>
                           <td>
                               <ul>
-                                  @if ($team_member->facebook)
-                                    <li><a href="{{ $team_member->facebook }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                  @endif
-
-                                  @if ($team_member->twitter)
-                                    <li><a href="{{ $team_member->twitter }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                  @endif
-                           
-                                  @if ($team_member->linkedin)
-                                    <li><a href="{{ $team_member->linkedin }}" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                                  @endif
-                               
-
-                                  @if ($team_member->linkedin)
-                                    <li><a href="{{ $team_member->linkedin }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                                  @endif
-                       
+                                <li><a href="{{ $team_member->facebook ? $team_member->facebook : '#' }}"><i class="fab fa-facebook-f"></i></a></li>
+                      
+                                <li><a href="{{ $team_member->twitter ? $team_member->twitter : '#' }}"><i class="fab fa-twitter"></i></a></li>
+                        
+                                <li><a href="{{ $team_member->linkedin ? $team_member->linkedin : '#' }}"><i class="fab fa-linkedin-in"></i></a></li>
+                        
+                                <li><a href="{{ $team_member->linkedin ? $team_member->linkedin : '#' }}"><i class="fab fa-instagram"></i></a></li>
                               </ul>
                           </td>
                       </tr>
