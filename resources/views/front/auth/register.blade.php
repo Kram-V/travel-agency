@@ -41,14 +41,14 @@
                       <input type="password" class="form-control" name="confirm_password" id="confirm_password">
                   </div>
                   <div class="mb-3">
-                      <button type="submit" class="btn btn-primary bg-website">
+                      <button type="submit" class="btn">
                           Create Account
                       </button>
                   </div>
                 </form>
 
                 <div class="mb-3">
-                  <a href="{{ route('login') }}" class="primary-color">Existing User? Login Now</a>
+                  <a href="{{ route('login') }}" class="primary-color">Existing Account? Login Now</a>
                 </div>
               </div>
           </div>

@@ -1033,7 +1033,8 @@ select {
 
 .package-detail .enquery-form button,
 .message-form-container button,
-.profile-container .btn-submit {
+.profile-container .btn-submit,
+.login-form button {
     background-color: #fcbd01 !important;
     color: #fff !important;
     border: 1px solid #fcbd01 !important;

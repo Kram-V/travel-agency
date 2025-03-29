@@ -25,7 +25,7 @@
                 <form action="{{ route('forget_password_submit') }}" method="POST">
                   @csrf
                   <div class="mb-3">
-                      <label for="" class="form-label">Email Address</label>
+                      <label for="" class="form-label">Email Address *</label>
                       <input type="text" class="form-control" name="email" value="{{ old('email') }}">
                   </div>
                   <div class="mb-3">

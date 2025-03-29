@@ -25,11 +25,11 @@
                   <form action="{{ route('login_submit') }}" method="POST">
                       @csrf
                       <div class="mb-3">
-                          <label for="email" class="form-label">Email Address</label>
+                          <label for="email" class="form-label">Email Address *</label>
                           <input type="text" class="form-control" name="email" id="email" value="{{ old('email') }}">
                       </div>
                       <div class="mb-3">
-                          <label for="password" class="form-label">Password</label>
+                          <label for="password" class="form-label">Password *</label>
                           <input type="password" class="form-control" name="password" id="password">
                       </div>
                       <div class="mb-3">
