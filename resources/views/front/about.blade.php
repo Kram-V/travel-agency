@@ -102,20 +102,20 @@
 
 <div class="counter-section pt_70 pb_70">
   <div class="container">
-      <div class="row counter-items">
-          <div class="col-md-3 counter-item">
+      <div class="row counter-items justify-content-between">
+          <div class="col-md-3 counter-item" style="width: 200px;">
               <div class="counter">{{ $total_destinations }}</div>
               <div class="text">Destinations</div>
           </div>
-          <div class="col-md-3 counter-item">
+          <div class="col-md-3 counter-item" style="width: 200px;">
               <div class="counter">{{ $total_clients }}</div>
               <div class="text">Clients</div>
           </div>
-          <div class="col-md-3 counter-item">
+          <div class="col-md-3 counter-item" style="width: 200px;">
               <div class="counter">{{ $total_packages }}</div>
               <div class="text">Packages</div>
           </div>
-          <div class="col-md-3 counter-item">
+          <div class="col-md-3 counter-item" style="width: 200px;">
               <div class="counter">{{ $total_testimonials }}</div>
               <div class="text">Testimonials</div>
           </div>
