@@ -27,6 +27,7 @@
               </div>
           </div>
           <div class="col-lg-9 col-md-12">
+            <div class="profile-container">
               <form action="{{ route('update_profile') }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <div class="row"> 
@@ -107,11 +108,12 @@
                       </div>
                       <div class="col-md-6">
                           <div class="form-group">
-                              <input name="form_update" type="submit" class="btn btn-primary" value="Update">
+                              <input name="form_update" type="submit" class="btn btn-submit" value="Update">
                           </div>
                       </div>
                   </div>
               </form>
+            </div>
           </div>
       </div>
   </div>

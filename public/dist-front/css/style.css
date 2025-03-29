@@ -1021,14 +1021,19 @@ select {
 .package-detail .review-package-container,
 .package-detail .payment-container,
 .package-detail .package-tour-container,
-.contact .contact-form {
+.contact .contact-form,
+.user-panel .message-form-container,
+.user-panel .messages-container,
+.user-panel .profile-container {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
         rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 6px;
     padding: 30px;
 }
 
-.package-detail .enquery-form button {
+.package-detail .enquery-form button,
+.message-form-container button,
+.profile-container .btn-submit {
     background-color: #fcbd01 !important;
     color: #fff !important;
     border: 1px solid #fcbd01 !important;
@@ -1042,21 +1047,13 @@ select {
     font-size: 16px;
     font-weight: 600;
     display: inline-block;
-    background: #0663fc;
-    color: #fff;
     text-decoration: none;
-    border: 1px solid #0663fc;
     border-radius: 6px;
     padding: 8px 35px;
     transition: all 0.3s;
     -webkit-transition: all 0.3s;
 }
-.package-detail .enquery-form button:hover {
-    transition: all 0.3s;
-    background: transparent;
-    border: 1px solid #0663fc;
-    color: #0663fc;
-}
+
 .package-detail ul {
     padding-left: 0;
 }
@@ -2148,23 +2145,23 @@ select {
 
 .user-panel .list-group-item a {
     display: block;
-    color: #0663fc;
+    color: #000;
     font-weight: 600;
     transition: 0.4s;
     padding: 8px 15px;
 }
 
 .user-panel .list-group-item a:hover {
-    background: #0663fc;
+    background: #fcbd01;
     color: #fff;
 }
 
 .user-panel .list-group .active {
-    border-color: #0663fc !important;
+    border-color: #fcbd01 !important;
 }
 
 .user-panel .list-group .active a {
-    background: #0663fc !important;
+    background: #fcbd01 !important;
     color: #fff !important;
 }
 
@@ -2184,15 +2181,24 @@ select {
 }
 
 .user-panel .box1 {
-    background: #c0d5ff;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 6px;
+    border-top: 5px solid green;
 }
 
 .user-panel .box2 {
-    background: #ffc3c8;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 6px;
+    border-top: 5px solid orange;
 }
 
 .user-panel .box3 {
-    background: #dcffe2;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 6px;
+    border-top: 5px solid purple;
 }
 
 .user-panel input[type="submit"] {
@@ -2274,7 +2280,7 @@ select {
     padding: 15px;
 }
 .user-panel .message-item-admin-border {
-    border-left-color: #0663fc;
+    border-left-color: green;
     border-left-width: 5px;
 }
 

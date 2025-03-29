@@ -41,6 +41,12 @@
                           <p>Pending Orders</p>
                       </div>
                   </div>
+                  <div class="col-md-4">
+                    <div class="box3">
+                        <h4>{{ $user_reviews }}</h4>
+                        <p>Reviews</p>
+                    </div>
+                </div>
               </div>
           </div>
       </div>

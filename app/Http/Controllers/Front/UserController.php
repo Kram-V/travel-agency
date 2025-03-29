@@ -20,8 +20,9 @@ class UserController extends Controller
     public function dashboard() {
       $completed_orders = Booking::where(['user_id' => Auth::guard('web')->user()->id, 'payment_status' => 'COMPLETED'])->count();
       $pending_orders = Booking::where(['user_id' => Auth::guard('web')->user()->id, 'payment_status' => 'PENDING'])->count();
+      $user_reviews = Review::where(['user_id' => Auth::guard('web')->user()->id])->count();
 
-      return view('front.user.dashboard', compact('completed_orders', 'pending_orders'));
+      return view('front.user.dashboard', compact('completed_orders', 'pending_orders', 'user_reviews'));
     }
 
     public function message() {
