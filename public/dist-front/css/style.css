@@ -1757,7 +1757,7 @@ select {
     width: 70%;
 }
 .faq .accordion-button {
-    color: #0663fc;
+    color: #000;
     font-weight: 700;
     background: #ebebeb;
     font-size: 18px;
@@ -1778,7 +1778,7 @@ select {
     font-weight: 700;
     background-image: none;
     transform: none;
-    color: #0663fc;
+    color: #000;
 }
 .faq .accordion-button.collapsed::after {
     font-family: "Font Awesome 5 Free";
