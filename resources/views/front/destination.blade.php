@@ -5,7 +5,7 @@
   <div class="container">
       <div class="row">
           <div class="col-md-12">
-              <h2>Australia</h2>
+              <h2>{{ $destination->country }}</h2>
               <div class="breadcrumb-container">
                   <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -194,15 +194,19 @@
                   </h2>
                   <div class="photo-all">
                       <div class="row">
-                        @foreach ($destination_photos as $i => $photo)
-                        <div class="col-md-6 col-lg-3">
-                            <div class="item">
-                                <a href="{{ asset('uploads/destination-photos/' . $photo->photo) }}" class="magnific">
-                                    <img src="{{ asset('uploads/destination-photos/' . $photo->photo) }}" alt="{{ $photo->destination->name . '-' .  $i + 1}}">
-                                </a>
+                        @if (count($destination_photos) > 0)
+                          @foreach ($destination_photos as $i => $photo)
+                            <div class="col-md-6 col-lg-3">
+                                <div class="item">
+                                    <a href="{{ asset('uploads/destination-photos/' . $photo->photo) }}" class="magnific">
+                                        <img src="{{ asset('uploads/destination-photos/' . $photo->photo) }}" alt="{{ $photo->destination->name . '-' .  $i + 1}}">
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        @endforeach
+                          @endforeach
+                        @else
+                          <b>No Photos Yet</b>
+                        @endif
                       </div>
                   </div>
               </div>
@@ -212,19 +216,23 @@
                   </h2>
                   <div class="video-all">
                       <div class="row">
-                        @foreach ($destination_videos as $video)
-                        <div class="col-md-6 col-lg-6">
-                            <div class="item">
-                                <a class="video-button" href="http://www.youtube.com/watch?v={{ $video->video }}">
-                                    <img src="http://img.youtube.com/vi/{{ $video->video }}/0.jpg" alt="">
-                                    <div class="icon">
-                                        <i class="far fa-play-circle"></i>
-                                    </div>
-                                    <div class="bg"></div>
-                                </a>
-                            </div>
-                        </div>
-                        @endforeach
+                          @if (count($destination_videos) > 0)
+                            @foreach ($destination_videos as $video)
+                              <div class="col-md-6 col-lg-6">
+                                  <div class="item">
+                                      <a class="video-button" href="http://www.youtube.com/watch?v={{ $video->video }}">
+                                          <img src="http://img.youtube.com/vi/{{ $video->video }}/0.jpg" alt="">
+                                          <div class="icon">
+                                              <i class="far fa-play-circle"></i>
+                                          </div>
+                                          <div class="bg"></div>
+                                      </a>
+                                  </div>
+                              </div>
+                            @endforeach
+                          @else
+                            <b>No Videos Yet</b>
+                          @endif
                       </div>
                   </div>
               </div>
