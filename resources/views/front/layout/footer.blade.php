@@ -5,10 +5,10 @@
               <div class="item pb_50">
                   <h2 class="heading">Important Pages</h2>
                   <ul class="useful-links">
-                      <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
-                      <li><a href="destinations.html"><i class="fas fa-angle-right"></i> Destinations</a></li>
-                      <li><a href="packages.html"><i class="fas fa-angle-right"></i> Packages</a></li>
-                      <li><a href="blog.html"><i class="fas fa-angle-right"></i> Blog</a></li>
+                      <li><a href="{{ route('home') }}"><i class="fas fa-angle-right"></i> Home</a></li>
+                      <li><a href="{{ route('destinations') }}"><i class="fas fa-angle-right"></i> Destinations</a></li>
+                      <li><a href="{{ route('packages') }}"><i class="fas fa-angle-right"></i> Packages</a></li>
+                      <li><a href="{{ route('blogs') }}"><i class="fas fa-angle-right"></i> Blog</a></li>
                   </ul>
               </div>
           </div>
@@ -16,10 +16,8 @@
               <div class="item pb_50">
                   <h2 class="heading">Useful Links</h2>
                   <ul class="useful-links">
-                      <li><a href="faq.html"><i class="fas fa-angle-right"></i> FAQ</a></li>
-                      <li><a href="terms.html"><i class="fas fa-angle-right"></i> Terms of Use</a></li>
-                      <li><a href="privacy.html"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
-                      <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                      <li><a href="{{ route('faqs') }}"><i class="fas fa-angle-right"></i> FAQ</a></li>
+                      <li><a href="{{ route('contact') }}"><i class="fas fa-angle-right"></i> Contact</a></li>
                   </ul>
               </div>
           </div>
@@ -37,15 +35,15 @@
                   </div>
                   <div class="list-item">
                       <div class="left">
-                          <i class="fas fa-phone"></i>
+                        <i class="fas fa-envelope"></i>
                       </div>
                       <div class="right">contact@example.com</div>
                   </div>
                   <div class="list-item">
                       <div class="left">
-                          <i class="fas fa-envelope"></i>
+                        <i class="fas fa-phone"></i>
                       </div>
-                      <div class="right">122-222-1212</div>
+                      <div class="right">222-222-2222</div>
                   </div>
                   <ul class="social">
                       <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
@@ -70,7 +68,7 @@
                           <input type="text" name="email" class="form-control" placeholder="Email Address">
                       </div>
                       <div class="form-group">
-                          <input type="submit" class="btn btn-primary" value="Subscribe Now">
+                          <input type="submit" class="btn subscribe-now" value="Subscribe Now">
                       </div>
                   </form>
               </div>
@@ -84,7 +82,7 @@
       <div class="row">
           <div class="col-lg-12 col-md-12">
               <div class="copyright">
-                  Copyright &copy; 2024, TripSummit. All Rights Reserved.
+                  Copyright &copy; 2025, EscapeEase. All Rights Reserved.
               </div>
           </div>
       </div>

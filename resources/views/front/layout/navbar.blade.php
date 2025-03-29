@@ -1,9 +1,9 @@
-<div class="top">
+<div class="top bg-warning">
   <div class="container">
       <div class="row">
           <div class="col-md-6 left-side">
               <ul>
-                  <li class="phone-text"><i class="fas fa-phone"></i> 111-222-3333</li>
+                  <li class="phone-text"><i class="fas fa-phone"></i> 222-222-2222</li>
                   <li class="email-text"><i class="fas fa-envelope"></i> contact@example.com</li>
               </ul>
           </div>
@@ -55,22 +55,22 @@
                       <li class="nav-item {{ Route::is('about') ? 'active' : '' }}">
                           <a href="{{ route('about') }}" class="nav-link">About</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item {{ Route::is('destinations') ? 'active' : '' }}">
                           <a href="{{ route('destinations') }}" class="nav-link">Destinations</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item {{ Route::is('packages') ? 'active' : '' }}">
                           <a href="{{ route('packages') }}" class="nav-link">Packages</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item {{ Route::is('team_members') ? 'active' : '' }}">
                           <a href="{{ route('team_members') }}" class="nav-link">Team</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item {{ Route::is('faqs') ? 'active' : '' }}">
                           <a href="{{ route('faqs') }}" class="nav-link">FAQ</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item {{ Route::is('blogs') ? 'active' : '' }}">
                           <a href="{{ route('blogs') }}" class="nav-link">Blogs</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item {{ Route::is('contact') ? 'active' : '' }}">
                           <a href="{{ route('contact') }}" class="nav-link">Contact</a>
                       </li>
                   </ul>

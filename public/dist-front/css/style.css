@@ -158,29 +158,24 @@ select {
     font-size: 16px;
     font-weight: 600;
     display: inline-block;
-    background: #0663fc;
+    background: #fcbd01;
     color: #fff;
     text-decoration: none;
-    border: 1px solid #0663fc;
+    border: 1px solid #fcbd01;
     border-radius: 6px;
     padding: 14px 45px;
     transition: all 0.3s;
     -webkit-transition: all 0.3s;
 }
-.button-style-1 a:hover {
-    transition: all 0.3s;
-    background: #b6d1fc;
-    border: 1px solid #b6d1fc;
-    color: #0663fc;
-}
+
 .button-style-2 a {
     font-size: 16px;
     font-weight: 600;
     display: inline-block;
-    background: #0663fc;
+    background: #fcbd01;
     color: #fff;
     text-decoration: none;
-    border: 1px solid #0663fc;
+    border: 1px solid #fcbd01;
     border-radius: 6px;
     padding: 8px 35px;
     transition: all 0.3s;
@@ -189,8 +184,8 @@ select {
 .button-style-2 a:hover {
     transition: all 0.3s;
     background: transparent;
-    border: 1px solid #0663fc;
-    color: #0663fc;
+    border: 1px solid #fcbd01;
+    color: #fcbd01;
 }
 .see-more {
     text-align: center;
@@ -211,9 +206,7 @@ select {
 .top {
     min-height: 40px;
     color: #fff;
-    background: #0663fc;
     font-size: 14px;
-    border-bottom: 1px solid #d7d7d7;
 }
 .top ul {
     margin-bottom: 0;
@@ -346,7 +339,7 @@ select {
     position: relative;
 }
 .main-nav nav .navbar-nav .nav-item.active a {
-    color: #0663fc;
+    color: #fcbd01;
 }
 .main-nav nav .navbar-nav .nav-item .dropdown-menu li a {
     color: #444;
@@ -372,10 +365,10 @@ select {
     li
     a.active,
 .main-nav nav .navbar-nav .nav-item .dropdown-menu li:hover a {
-    color: #0663fc;
+    color: #fcbd01;
 }
 .main-nav nav .navbar-nav .nav-item .dropdown-menu li a:hover {
-    color: #0663fc !important;
+    color: #fcbd01 !important;
 }
 .main-nav img {
     height: 50px;
@@ -413,7 +406,7 @@ select {
     border-radius: 50%;
     bottom: 20px;
     right: 20px;
-    background: #0663fc;
+    background: #fcbd01;
     color: #fff;
     opacity: 0.7;
     z-index: 999999;
@@ -542,7 +535,7 @@ select {
     vertical-align: middle;
 }
 .special .left-side h3 {
-    color: #0663fc;
+    color: #fcbd01;
     font-size: 34px;
     font-weight: 800;
     margin-bottom: 30px;
@@ -600,7 +593,7 @@ select {
     display: block;
     width: 66px;
     height: 66px;
-    background: #0663fc;
+    background: #fcbd01;
     border-radius: 50%;
     animation: video-pop 1500ms ease-out infinite;
 }
@@ -614,7 +607,7 @@ select {
     display: block;
     width: 66px;
     height: 66px;
-    background: #0663fc;
+    background: #fcbd01;
     border-radius: 50%;
     transition: all 200ms;
 }
@@ -871,7 +864,7 @@ select {
     position: absolute;
     right: 10px;
     top: -30px;
-    background: #ce0d0d;
+    background: #087708;
     color: #fff;
     border-radius: 30px;
     padding: 7px 15px;
@@ -1180,7 +1173,7 @@ select {
 }
 
 .why-choose {
-    background: #0663fc;
+    background: #fcbd01;
 }
 .why-choose .heading {
     text-align: center;
@@ -1349,7 +1342,7 @@ select {
 }
 .footer ul.social li a {
     color: #fff;
-    background: #0663fc;
+    background: #fcbd01;
     width: 30px;
     height: 30px;
     line-height: 30px;
@@ -1358,7 +1351,7 @@ select {
     display: block;
 }
 .footer ul.social li a:hover {
-    color: #0663fc;
+    color: #fcbd01;
     background: #fff;
 }
 .footer ul.useful-links {
@@ -1375,7 +1368,17 @@ select {
 }
 .footer ul.useful-links li a:hover {
     padding-left: 6px;
-    color: #0663fc !important;
+    color: #fcbd01 !important;
+}
+
+.footer .subscribe-now {
+    background-color: #fcbd01 !important;
+    color: #fff !important;
+}
+
+.footer .subscribe-now:hover {
+    background-color: #fff !important;
+    color: #fcbd01 !important;
 }
 
 .footer-bottom {
@@ -1899,7 +1902,7 @@ select {
 .testimonial-carousel .owl-dots .owl-dot {
     width: 24px;
     height: 24px;
-    background: #0663fc;
+    background: #313131;
     border: 7px solid #fff;
     border-radius: 50%;
     display: inline-block;
@@ -1908,7 +1911,7 @@ select {
 .testimonial-carousel .owl-dots .owl-dot.active {
     width: 24px;
     height: 24px;
-    background: #313131;
+    background: #fcbd01;
     border: 7px solid #fff;
 }
 .testimonial-carousel .owl-nav .owl-prev,
