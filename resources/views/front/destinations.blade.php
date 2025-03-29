@@ -17,12 +17,12 @@
   </div>
 </div>
 
-<div class="destination pt_70 pb_50">
+<div class="destination pt_70 pb_70">
   <div class="container">
       <div class="row">
-        @foreach ($destinations as $destination)
-        <div class="col-lg-3 col-md-6">
-            <div class="item pb_25">
+        @foreach ($destinations as $destination) 
+        <div class="col-md-6 col-lg-3">
+            <div class="item">
                 <div class="photo">
                     <a href="{{ route('destination', $destination->slug) }}"><img src="{{ asset('uploads/destinations/' . $destination->featured_photo) }}" alt="{{ $destination->name }}"></a>
                 </div>
