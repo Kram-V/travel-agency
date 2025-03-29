@@ -251,9 +251,9 @@
                                                   <div class="set">
                                                     @for ($i = 1; $i <= 5; $i++)
                                                       @if ($i <= $review->rating)
-                                                        <i style="color: rgba(255, 183, 0, 0.73)" class="fas fa-star"></i>
+                                                        <i style="color: #ffb700ba" class="fas fa-star"></i>
                                                       @else
-                                                        <i style="color: rgba(255, 183, 0, 0.73)" class="far fa-star"></i>
+                                                        <i style="color: #ffb700ba" class="far fa-star"></i>
                                                       @endif
                                                     @endfor
                                                   </div>
@@ -373,7 +373,7 @@
                           <form action="{{ route('payment') }}" method="POST">
                             @csrf
                             <input type="hidden" name="package_id" value="{{ $package->id }}"> 
-                            <div class="row">
+                            <div class="row align-items-start">
                                 <div class="col-md-8">
                                   @php 
                                     $i = 0; 
@@ -395,8 +395,8 @@
                                         }                               
                                       @endphp
 
-                                      <div class="col-md-12">
-                                        <h2 class="mt_30">
+                                      <div class="col-md-11 package-tour-container mt_30">
+                                        <h2>
                                           <input type="radio" name="package_tour_id" value="{{ $package_tour->id }}">
                                           <span>Tour {{ $i }}</span>
                                         </h2>
