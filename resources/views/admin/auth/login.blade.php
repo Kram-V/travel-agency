@@ -19,7 +19,7 @@
                                 <input type="password" class="form-control" name="password"  placeholder="Password">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-lg w_100_p">
+                                <button type="submit" class="btn-lg btn-login-submit w_100_p">
                                     Login
                                 </button>
                             </div>

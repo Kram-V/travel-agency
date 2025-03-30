@@ -11,12 +11,19 @@
           <div class="col-md-6 right-side">
             <ul class="right">
               @if (Auth::guard('web')->check())
-              <li class="menu">
-                <a href="{{ route('dashboard') }}"><i class="fas fa-columns"></i> Dashboard</a>
-              </li>
-              <li class="menu">
-                <a href="{{ route('logout_submit') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
-              </li>
+                <li class="menu">
+                  @if (Auth::guard('web')->user()->photo)
+                    <img style="width: 30px; border-radius: 100%" src="{{ asset('uploads/user/' . Auth::guard('web')->user()->photo) }}" alt="{{ Auth::guard('web')->user()->name }}">
+                  @else
+                    <img style="width: 30px; border-radius: 100%" src="images/default.png" alt="Default">
+                  @endif
+                </li>
+                <li class="menu">
+                  <a href="{{ route('dashboard') }}"><i class="fas fa-columns"></i> Dashboard</a>
+                </li>
+                <li class="menu">
+                  <a href="{{ route('logout_submit') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
               @else
                 <li class="menu">
                     <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>

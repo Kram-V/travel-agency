@@ -212,6 +212,7 @@ thead tr th {
 }
 .card-header-auth h4 {
     font-size: 20px !important;
+    color: #1e1e1e !important;
 }
 .card-body-auth {
     padding: 10px 20px !important;
@@ -550,5 +551,5 @@ hr.invoice-above-table {
     padding: 15px;
 }
 .message-item-admin-border {
-    border-left-color: #0663fc;
+    border-left: 4px solid #0663fc;
 }

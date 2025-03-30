@@ -9,7 +9,7 @@
           <div class="section-header justify-content-between">
               <h1>Create Destination</h1>
               <div class="ml-auto">
-                  <a href="{{ route('admin_destinations_index') }}" class="btn btn-primary">Back to listing</a>
+                  <a href="{{ route('admin_destinations_index') }}">Back to listing</a>
               </div>
           </div>
           <div class="section-body">
@@ -86,13 +86,13 @@
                                     <textarea name="map" class="form-control h_300" rows="3">{{ old('map') }}</textarea>
                                   </div>
 
-                                  <div class="mb-4 form-group col-md-6">
+                                  <div class="mb-4 form-group col-md-6 editor-container">
                                     <label class="form-label">Description *</label>
                                     <textarea name="description" class="form-control editor h_100" rows="3">{{ old('description') }}</textarea>
                                   </div>
 
                                   <div class="mb-4">
-                                      <button type="submit" class="btn btn-primary">Create</button>
+                                      <button type="submit">Create</button>
                                   </div>
                                 </div>
                         

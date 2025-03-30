@@ -6,9 +6,6 @@
         </ul>
     </form>
     <ul class="navbar-nav navbar-right justify-content-end rightsidetop">
-        <li class="nav-link">
-            <a href="/" target="_blank" class="btn btn-warning">Front End</a>
-        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 @if (Auth::guard('admin')->user()->photo)

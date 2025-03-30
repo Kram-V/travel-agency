@@ -9,7 +9,7 @@
           <div class="section-header justify-content-between">
               <h1>Messages from {{ $message->user->name }}</h1>
               <div class="ml-auto">
-                <a href="{{ route('admin_messages_index') }}" class="btn btn-primary">Back to listing</a>
+                <a href="{{ route('admin_messages_index') }}">Back to listing</a>
             </div>
           </div>
           <div class="section-body">
@@ -68,7 +68,7 @@
                                     <textarea name="message" class="form-control h_150" cols="30" rows="10" placeholder="Write your message here"></textarea>
                                 </div>
                                 <div class="mb-2">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit">Submit</button>
                                 </div>
                             </form>
                           </div>

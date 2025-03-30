@@ -9,7 +9,7 @@
           <div class="section-header justify-content-between">
               <h1>Create Team Member</h1>
               <div class="ml-auto">
-                  <a href="{{ route('admin_team_members_index') }}" class="btn btn-primary">Back to listing</a>
+                  <a href="{{ route('admin_team_members_index') }}">Back to listing</a>
               </div>
           </div>
           <div class="section-body">
@@ -70,13 +70,13 @@
                                     <input type="text" class="form-control" name="instagram" value="{{ old('instagram') }}">
                                   </div>
 
-                                  <div class="mb-4 form-group col-md-6">
+                                  <div class="mb-4 form-group col-md-6 editor-container">
                                     <label class="form-label">Biography *</label>
                                     <textarea name="biography" class="form-control editor" cols="30" rows="10">{{ old('biography') }}</textarea>
                                   </div>
 
                                   <div class="mb-4">
-                                      <button type="submit" class="btn btn-primary">Create</button>
+                                      <button type="submit">Create</button>
                                   </div>
                                 </div>
                             </form>

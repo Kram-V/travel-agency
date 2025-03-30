@@ -32,8 +32,8 @@
                                               {{ $message->user->email }} <br />
                                               {{ $message->user->phone }} 
                                             </td>
-                                            <td class="pt_10 pb_10">
-                                              <a href="{{ route('admin_messages_message_details' , $message->id) }}" class="btn btn-primary">Messages</a>
+                                            <td class="pt_10 pb_10 messages-container">
+                                              <a href="{{ route('admin_messages_message_details' , $message->id) }}">Messages</a>
                                             </td>
                                         </tr>
                                       @endforeach

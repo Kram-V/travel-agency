@@ -28,7 +28,7 @@
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                   <div class="card card-statistic-1">
-                      <div class="card-icon bg-danger">
+                      <div class="card-icon bg-success">
                           <i class="fas fa-book-open"></i> 
                       </div>
                       <div class="card-wrap">
@@ -43,8 +43,8 @@
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                   <div class="card card-statistic-1">
-                      <div class="card-icon bg-warning">
-                          <i class="fas fa-bullhorn"></i>
+                      <div class="card-icon bg-danger">
+                        <i class="fas fa-box"></i>
                       </div>
                       <div class="card-wrap">
                           <div class="card-header">
@@ -59,7 +59,7 @@
               <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-warning">
-                        <i class="fas fa-bullhorn"></i>
+                      <i class="fas fa-users"></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
@@ -73,8 +73,8 @@
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
-                    <div class="card-icon bg-warning">
-                        <i class="fas fa-bullhorn"></i>
+                    <div class="card-icon bg-info">
+                      <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
@@ -88,8 +88,8 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">
-                  <div class="card-icon bg-warning">
-                      <i class="fas fa-bullhorn"></i>
+                  <div class="card-icon bg-primary">
+                    <i class="fas fa-comment"></i>
                   </div>
                   <div class="card-wrap">
                       <div class="card-header">
@@ -103,8 +103,8 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
-                    <div class="card-icon bg-warning">
-                        <i class="fas fa-bullhorn"></i>
+                    <div class="card-icon bg-success">
+                      <i class="fas fa-pen"></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">

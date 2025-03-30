@@ -16,7 +16,7 @@
                               <input type="text" class="form-control" name="email" placeholder="Email Address" value="" autofocus>
                           </div>
                           <div class="form-group">
-                              <button type="submit" class="btn btn-primary btn-lg w_100_p">
+                              <button type="submit" class="btn-lg btn-reset-link-submit w_100_p">
                                   Send Password Reset Link
                               </button>
                           </div>

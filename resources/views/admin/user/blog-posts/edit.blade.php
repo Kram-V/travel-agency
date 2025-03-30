@@ -9,7 +9,7 @@
           <div class="section-header justify-content-between">
               <h1>Edit Blog Post</h1>
               <div class="ml-auto">
-                  <a href="{{ route('admin_blog_posts_index') }}" class="btn btn-primary">Back to listing</a>
+                  <a href="{{ route('admin_blog_posts_index') }}">Back to listing</a>
               </div>
           </div>
           <div class="section-body">
@@ -51,13 +51,13 @@
                                       <input type="text" class="form-control" name="short_description" value="{{ $blog_post->short_description }}">
                                   </div>
 
-                                  <div class="mb-4 form-group col-md-6">
+                                  <div class="mb-4 form-group col-md-6 editor-container">
                                     <label class="form-label">Description *</label>
                                     <textarea name="description" class="form-control editor h_100" rows="3">{{ $blog_post->description }}</textarea>
                                   </div>
 
                                   <div class="mb-4">
-                                      <button type="submit" class="btn btn-primary">Update</button>
+                                      <button type="submit">Update</button>
                                   </div>
                                 </div>
                         

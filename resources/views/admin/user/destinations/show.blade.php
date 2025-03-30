@@ -9,7 +9,7 @@
           <div class="section-header justify-content-between">
               <h1>Destination Details</h1>
               <div class="ml-auto">
-                  <a href="{{ route('admin_destinations_index') }}" class="btn btn-primary">Back to listing</a>
+                  <a href="{{ route('admin_destinations_index') }}">Back to listing</a>
               </div>
           </div>
           <div class="section-body">

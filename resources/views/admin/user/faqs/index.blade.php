@@ -9,7 +9,7 @@
           <div class="section-header justify-content-between">
               <h1>FAQs</h1>
               <div class="ml-auto">
-                <a href="{{ route('admin_faqs_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+                <a href="{{ route('admin_faqs_create') }}"><i class="fas fa-plus"></i> Add New</a>
             </div>
           </div>
           <div class="section-body">
@@ -36,11 +36,11 @@
                                           <td>{{ $faq->question }}</td>
                                           <td>{{ $faq->answer }}</td>
                                           <td class="pt_10 pb_10">
-                                              <a href="{{ route('admin_faqs_edit', $faq->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                              <a href="{{ route('admin_faqs_edit', $faq->id) }}" class="btn btn-edit"><i class="fas fa-edit"></i></a>
                                               <form action="{{ route('admin_faqs_delete', $faq->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">
+                                                <button type="submit" class="btn btn-delete">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>

@@ -9,7 +9,7 @@
           <div class="section-header justify-content-between">
               <h1>Send Email To All Subscribers</h1>
               <div class="ml-auto">
-                  <a href="{{ route('admin_subscribers_index') }}" class="btn btn-primary">Back to subscribers</a>
+                  <a href="{{ route('admin_subscribers_index') }}">Back to subscribers</a>
               </div>
           </div>
           <div class="section-body">
@@ -31,7 +31,7 @@
                                   </div>
 
                                   <div class="mb-4">
-                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                      <button type="submit">Submit</button>
                                   </div>
                                 </div>
                         

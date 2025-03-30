@@ -212,8 +212,8 @@ Route::middleware('admin')->prefix('admin')->group(function () {
   Route::post('/messages', [AdminMessageController::class, 'store_message'])->name('admin_messages_store_message');
 
   Route::get('/subscribers-email', [AdminSubscriberController::class, 'index'])->name('admin_subscribers_index');
-  Route::get('/subscribers-send-mail', [AdminSubscriberController::class, 'email'])->name('admin_subscribers_email');
-  Route::post('/subscribers-send-mail', [AdminSubscriberController::class, 'send_email'])->name('admin_subscribers_send_email');
+  Route::get('/subscribers-send-email', [AdminSubscriberController::class, 'email'])->name('admin_subscribers_email');
+  Route::post('/subscribers-send-email', [AdminSubscriberController::class, 'send_email'])->name('admin_subscribers_send_email');
 
   Route::get('/logout', [AdminAuthController::class, 'logout_submit'])->name('admin_logout_submit');
 });

@@ -1,6 +1,5 @@
 @extends('front.layout.master')
 
-
 @section('content')
 <div class="page-top" style="background-image: url('images/banner.jpg')">
   <div class="container">
@@ -32,13 +31,11 @@
                   @csrf
                   <div class="row"> 
                       <div class="col-md-12 mb-3">
-                          <div class="form-group">
-                              @if (!$user->photo)
-                                <img src="{{ asset('images/default.png') }}" alt="Default" class="user-photo">
-                              @else
-                                <img src="{{ asset('uploads/user/' . $user->photo )}}" alt="Default" class="user-photo">
-                              @endif
-                          </div>
+                          @if (!$user->photo)
+                            <img style="border-radius: 100%" src="{{ asset('images/default.png') }}" alt="Default" class="user-photo">
+                          @else
+                            <img style="border-radius: 100%" src="{{ asset('uploads/user/' . $user->photo )}}" alt="Default" class="user-photo">
+                          @endif
                       </div>
                       <div class="col-md-12 mb-3">
                           <label for="">Change Photo</label>

@@ -2152,7 +2152,7 @@ h6 .badge {
     left: 0;
     width: 100%;
     height: 115px;
-    background-color: #6777ef;
+    background-color: #1e1e1e;
     z-index: -1;
 }
 
@@ -3890,7 +3890,7 @@ body.layout-3 .main-footer {
     background-color: #f8fafb;
 }
 .main-sidebar .sidebar-menu li.active a {
-    color: #6777ef;
+    color: #1e1e1e;
     font-weight: 600;
     background-color: #f8fafb;
 }
@@ -3931,11 +3931,11 @@ body.layout-3 .main-footer {
     font-weight: 400;
 }
 .main-sidebar .sidebar-menu li ul.dropdown-menu li a:hover {
-    color: #6777ef;
+    color: #1e1e1e;
     background-color: inherit;
 }
 .main-sidebar .sidebar-menu li ul.dropdown-menu li.active > a {
-    color: #6777ef;
+    color: #1e1e1e;
     font-weight: 600;
 }
 .main-sidebar .sidebar-menu li ul.dropdown-menu li a i {
@@ -3952,6 +3952,61 @@ body.layout-3 .main-footer {
     padding-top: 80px;
     width: 100%;
     position: relative;
+}
+
+.main-content .section-body .card-body .editor-container button {
+    background-color: transparent;
+    color: gray;
+    border: none;
+}
+
+.main-content .section-header a,
+.main-content .section-body .card-body button,
+.main-content .section-body .card-body .messages-container a {
+    background-color: #1e1e1e;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: 1px solid #1e1e1e;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.main-content .pagination .paginate_button.previous .page-link,
+.main-content .pagination .paginate_button.next .page-link {
+    color: #1e1e1e;
+}
+
+.main-content .pagination .paginate_button.previous .page-link:hover,
+.main-content .pagination .paginate_button.next .page-link:hover {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.page-item .page-link {
+    color: #1e1e1e;
+}
+
+.page-item.active .page-link {
+    background-color: #1e1e1e;
+    border: 1px solid #1e1e1e;
+}
+
+.page-item .page-link:hover {
+    background-color: #1e1e1e;
+    border: 1px solid #1e1e1e;
+    color: white;
+}
+
+.main-content .section-body .card-body .btn-delete {
+    background-color: red !important;
+    color: white;
+    border: none;
+}
+
+.main-content .section-body .card-body .btn-edit {
+    background-color: blue !important;
+    color: white;
 }
 
 .main-footer {
@@ -4123,4 +4178,15 @@ body:not(.sidebar-mini)
         -webkit-transform: scale(1.2, 1.2);
         opacity: 0;
     }
+}
+
+.btn-login-submit,
+.btn-reset-submit,
+.btn-reset-link-submit {
+    background-color: #1e1e1e;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
 }
