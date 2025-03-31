@@ -56,7 +56,7 @@
 
                                   <div class="mb-4 form-group col-md-6">
                                     <label class="form-label">Old Price</label>
-                                    <input type="text" class="form-control" name="old_price" value="{{ $package->old_price }}">
+                                    <input type="text" class="form-control" name="old_price" value="{{ empty($package->old_price) ? 0 : $package->old_price }}">
                                   </div>
 
                                   <div class="mb-4 form-group col-md-6">

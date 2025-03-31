@@ -102,7 +102,7 @@ class AdminPackageController extends Controller
       $package->slug = $request->slug;
       $package->destination_id = $request->destination;
       $package->price = $request->price;
-      if ($request->old_price) $package->old_price = $request->old_price;
+      if ($request->old_price || $request->old_price == 0) $package->old_price = $request->old_price;
       $package->map = $request->map;
       $package->description = $request->description;
       $package->save();

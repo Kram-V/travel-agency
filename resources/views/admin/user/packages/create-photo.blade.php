@@ -58,7 +58,7 @@
                                           <form action="{{ route('admin_packages_delete_photo', $package_photo->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">
+                                            <button type="submit" class="btn btn-delete">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>  

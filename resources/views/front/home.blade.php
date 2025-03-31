@@ -6,7 +6,12 @@
   <div class="slider">
     <div class="slide-carousel owl-carousel">
         @foreach ($sliders as $slider)
-        <div class="item" style="background-image:url({{ asset('uploads/sliders/' . $slider->background_img) }});">
+        <div class="item" style="
+          background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ asset('uploads/sliders/' . $slider->background_img) }});
+          background-size: cover;
+          background-position: center;
+          position: relative;"
+        >
             <div class="text">
                 <div class="container">
                     <div class="row">

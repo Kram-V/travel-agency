@@ -34,9 +34,9 @@ use Srmklive\PayPal\Services\PayPal;
 class FrontController extends Controller
 {
     public function home() {
-      $sliders = Slider::latest()->get();
+      $sliders = Slider::get();
       $welcome_item = WelcomeItem::first();
-      $features = Feature::latest()->get();
+      $features = Feature::get();
       $testimonials = Testimonial::latest()->get();
       $blog_posts = BlogPost::latest()->take(3)->get();
       $destinations = Destination::latest()->take(4)->get();
