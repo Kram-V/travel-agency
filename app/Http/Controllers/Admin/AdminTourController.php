@@ -26,9 +26,9 @@ class AdminTourController extends Controller
       $request->validate([
         'package' => 'required',
         'total_seat' => 'required|numeric|min:1',
-        'tour_start_date' => 'required',
-        'tour_end_date' => 'required',
-        'booking_end_date' => 'required',
+        'tour_start_date' => 'required|after:today',
+        'tour_end_date' => 'required|after:tour_start_date',
+        'booking_end_date' => 'required|before:tour_start_date',
       ]);
 
       $tour = new PackageTour();
