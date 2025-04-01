@@ -12,7 +12,7 @@
       <a href="{{ route('reviews') }}">Reviews</a>
   </li>
   <li class="list-group-item {{ Route::is('profile') ? 'active' : '' }}">
-      <a href="{{ route('profile') }}">Edit Profile</a>
+      <a href="{{ route('profile') }}">Profile</a>
   </li>
   <li class="list-group-item" {{ Route::is('logout') ? 'active' : '' }}>
       <a href="{{ route('logout_submit') }}">Logout</a>

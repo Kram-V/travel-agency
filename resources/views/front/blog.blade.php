@@ -8,7 +8,6 @@
               <h2>{{ $blog_post->title }}</h2>
               <div class="breadcrumb-container">
                   <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                       <li class="breadcrumb-item"><a href="{{ route('blogs') }}">Blogs</a></li>
                       <li class="breadcrumb-item active">{{ $blog_post->title }}</li>
                   </ol>
@@ -29,7 +28,7 @@
                   <div class="sub">
                       <ul>
                           <li><i class="fas fa-calendar-alt"></i> On: {{ $blog_post->created_at->format('m-d-Y'); }}</li>
-                          <li><i class="fas fa-th-large"></i> Category: <a href="{{ route('blog_category', $blog_post->blog_category->slug) }}">{{ $blog_post->blog_category->name }}</a></li>
+                          <li><i class="fas fa-th-large"></i> Category: <a href="{{ route('blog_category', $blog_post->blog_category->slug) }}" target="_blank">{{ $blog_post->blog_category->name }}</a></li>
                       </ul>
                   </div>
                   <div class="description">
@@ -50,7 +49,7 @@
                   <h2 class="mt_40">Categories</h2>
                   <ul>
                     @foreach ($categories as $category)
-                      <li><a href="{{ route('blog_category', $category->slug) }}" class="{{ $category->name === $blog_post->blog_category->name ? 'active' : '' }}"><i class="fas fa-angle-right"></i> {{ $category->name }}</a></li>
+                      <li><a href="{{ route('blog_category', $category->slug) }}" target="_blank" class="{{ $category->name === $blog_post->blog_category->name ? 'active' : '' }}"><i class="fas fa-angle-right"></i> {{ $category->name }}</a></li>
                     @endforeach
                   </ul>
 

@@ -8,7 +8,6 @@
               <h2>{{ $destination->country }}</h2>
               <div class="breadcrumb-container">
                   <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                       <li class="breadcrumb-item"><a href="{{ route('destinations') }}">Destinations</a></li>
                       <li class="breadcrumb-item active">{{ $destination->country }}</li>
                   </ol>
@@ -46,7 +45,7 @@
                             <div class="col-lg-4 col-md-6">
                               <div class="item pb_25">
                                   <div class="photo">
-                                      <a href="{{ route('package', $package->slug) }}"><img src="{{ asset('uploads/packages/' . $package->featured_photo) }}" alt="{{ $package->name }}"></a>
+                                      <a href="{{ route('package', $package->slug) }}" target="_blank"><img src="{{ asset('uploads/packages/' . $package->featured_photo) }}" alt="{{ $package->name }}"></a>
                                   </div>
                                   <div class="text">
                                       <div class="price">
@@ -58,7 +57,7 @@
                                           @endif
                                       </div>
                                       <h2>
-                                          <a href="{{ route('package', $package->slug) }}">{{ $package->name }}</a>
+                                          <a href="{{ route('package', $package->slug) }}" target="_blank">{{ $package->name }}</a>
                                       </h2>
         
                                       @php

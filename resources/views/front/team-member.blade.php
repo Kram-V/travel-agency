@@ -8,7 +8,6 @@
               <h2>{{ $team_member->name }}</h2>
               <div class="breadcrumb-container">
                   <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                       <li class="breadcrumb-item"><a href="{{ route('team_members') }}">Team Members</a></li>
                       <li class="breadcrumb-item active">{{ $team_member->name }}</li>
                   </ol>

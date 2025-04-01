@@ -6,13 +6,7 @@
   <div class="container">
       <div class="row">
           <div class="col-md-12">
-              <h2>Dashboard</h2>
-              <div class="breadcrumb-container">
-                  <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                      <li class="breadcrumb-item active">Message</li> 
-                  </ol>
-              </div>
+              <h2>Message</h2>
           </div>
       </div>
   </div>

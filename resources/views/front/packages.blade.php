@@ -6,12 +6,6 @@
       <div class="row">
           <div class="col-md-12">
               <h2>Packages</h2>
-              <div class="breadcrumb-container">
-                  <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                      <li class="breadcrumb-item active">Packages</li>
-                  </ol>
-              </div>
           </div>
       </div>
   </div>
@@ -122,7 +116,7 @@
                     <div class="col-lg-6 col-md-6">
                       <div class="item pb_25">
                           <div class="photo">
-                              <a href="{{ route('package', $package->slug) }}"><img src="{{ asset('uploads/packages/' . $package->featured_photo) }}" alt="{{ $package->name }}"></a>
+                              <a href="{{ route('package', $package->slug) }}" target="_blank"><img src="{{ asset('uploads/packages/' . $package->featured_photo) }}" alt="{{ $package->name }}"></a>
                           </div>
                           <div class="text">
                               <div class="price">
@@ -134,7 +128,7 @@
                                   @endif
                               </div>
                               <h2>
-                                  <a href="{{ route('package', $package->slug) }}">{{ $package->name }}</a>
+                                  <a href="{{ route('package', $package->slug) }}" target="_blank">{{ $package->name }}</a>
                               </h2>
 
                               @php
